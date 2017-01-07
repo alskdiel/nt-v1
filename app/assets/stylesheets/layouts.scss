@@ -1,0 +1,28 @@
+body {
+  margin: 0px;
+
+  .nav-bar {
+    height: 100px;
+    background: yellow;
+    div {
+      display: inline-block;
+    }
+  }
+
+  .side-bar {
+    visibility: hidden;
+    width: 250px;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 1;
+    background: white;
+    border: 1px solid black;
+  }
+
+
+  .content-container {
+    padding: 10px;
+  }
+}
