@@ -1,0 +1,42 @@
+body {
+  margin: 0px;
+  .main-container {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    .nav-bar {
+      height: 100px;
+      background: yellow;
+      div {
+        display: inline-block;
+      }
+    }
+    .content-container {
+      padding: 10px;
+    }
+  }
+  .side-bar {
+    width: 0px;
+    position: absolute;
+    height: 100%;
+    right: 0;
+    z-index: 1;
+    background: white;
+    transition: 0.5s;
+    &.opened {
+      width: 250px;
+    }
+  }
+  .modal-background {
+    display: none;
+    background-color: black;
+    opacity: .5;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+
+    &.sidebar-opened {
+      display: block;
+    }
+  }
+}

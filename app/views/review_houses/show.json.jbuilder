@@ -1,0 +1,1 @@
+json.partial! "review_houses/review_house", review_house: @review_house
