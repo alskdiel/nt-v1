@@ -1,11 +1,16 @@
 $(document).ready(function(){
 
   $('.nav-bar .menu').on('click', function(){
-    var isVisible = $('.side-bar').css('visibility');
-    if(isVisible == 'hidden') {
-      $('.side-bar').css('visibility', 'visible');
+    var $side_bar = $('.side-bar');
+
+    if($side_bar.hasClass("opened")) {
+      $('.nav-bar').removeClass("bgmode");
+      $('.content-container').removeClass("bgmode");
+      $side_bar.removeClass("opened");
     } else {
-      $('.side-bar').css('visibility', 'hidden');
+      $('.nav-bar').addClass("bgmode");
+      $('.content-container').addClass("bgmode");
+      $side_bar.addClass("opened");
     }
   })
 });
