@@ -8,12 +8,16 @@
 </head>
 <body>
 
-  <%= render template: "layouts/navbar" %>
+  <div class="main-container">
+    <%= render template: "layouts/navbar" %>
+    <div class="content-container">
+      <%= yield %>
+    </div>
+  </div>
+
   <%= render template: "layouts/sidebar" %>
 
-  <div class="content-container">
-    <%= yield %>
-  </div>
+  <div class="modal-background"></div>
 
 </body>
 </html>

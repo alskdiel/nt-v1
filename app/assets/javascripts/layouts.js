@@ -1,16 +1,24 @@
 $(document).ready(function(){
 
-  $('.nav-bar .menu').on('click', function(){
-    var $side_bar = $('.side-bar');
+  $modal_background = $('.modal-background');
+  $side_bar = $('.side-bar');
 
-    if($side_bar.hasClass("opened")) {
-      $('.nav-bar').removeClass("bgmode");
-      $('.content-container').removeClass("bgmode");
-      $side_bar.removeClass("opened");
-    } else {
-      $('.nav-bar').addClass("bgmode");
-      $('.content-container').addClass("bgmode");
-      $side_bar.addClass("opened");
-    }
-  })
+  $('.nav-bar .menu').on('click', function(){
+    openSidebar();
+  });
+
+  $('.side-bar .close').on('click', function(){
+    closeSidebar();
+  });
+
+
+  function openSidebar() {
+    $modal_background.addClass('sidebar-opened');
+    $side_bar.addClass('opened');
+  }
+
+  function closeSidebar() {
+    $modal_background.removeClass('sidebar-opened');
+    $side_bar.removeClass('opened');
+  }
 });

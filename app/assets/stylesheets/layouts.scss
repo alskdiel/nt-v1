@@ -1,44 +1,42 @@
 body {
   margin: 0px;
-
-
-
-  .side-bar {
-    // visibility: hidden;
-    width: 0px;
-    height: 100%;
+  .main-container {
     position: absolute;
-    top: 0;
+    height: 100%;
+    width: 100%;
+    .nav-bar {
+      height: 100px;
+      background: yellow;
+      div {
+        display: inline-block;
+      }
+    }
+    .content-container {
+      padding: 10px;
+    }
+  }
+  .side-bar {
+    width: 0px;
+    position: absolute;
+    height: 100%;
     right: 0;
     z-index: 1;
     background: white;
-    border: 1px solid black;
     transition: 0.5s;
-
     &.opened {
       width: 250px;
     }
   }
-
-
-  .nav-bar {
-    height: 100px;
-    background: yellow;
-    div {
-      display: inline-block;
-    }
-    &.bgmode {
-      background: rgba(0, 0, 0, 0.5);
-    }
-  }
-  .content-container {
-    padding: 0 10px;
-    height: calc(100% - 100px);
+  .modal-background {
+    display: none;
+    background-color: black;
+    opacity: .5;
     position: absolute;
     width: 100%;
-    height: calc(100% - 100px);
-    &.bgmode {
-      background: rgba(0, 0, 0, 0.5);
+    height: 100%;
+
+    &.sidebar-opened {
+      display: block;
     }
   }
 }
