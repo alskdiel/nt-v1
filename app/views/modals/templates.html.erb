@@ -2,14 +2,41 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
+        <h4 class="modal-title">로그인</h4>
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Modal Header</h4>
       </div>
       <div class="modal-body">
-        <p>Some text in the modal.</p>
+        <div id="sign-in">
+          <div class="email-container">
+            <div>이메일</div>
+            <input type="email" placeholder="이메일"/>
+          </div>
+          <div class="password-container">
+            <div>비밀번호</div>
+            <input type="password" placeholder="비밀번호"/>
+          </div>
+          <div class="remember-container">
+            <input type="checkbox">
+            <div>로그인 상태 유지</div>
+          </div>
+          <div class="sign-in-btn-container">
+            <div id="sign-in-btn">로그인</div>
+            <div>페이스북으로 로그인</div>
+          </div>
+          <div class="sign-up-btn-container">
+            <div>아직 회원이 아니신가요?</div>
+            <div id="sign-up-btn">이메일로 가입하기</div>
+          </div>
+          <div class="forgot-container">
+            <div>비밀번호를 모르시겠나요?</div>
+            <div>비밀번호 찾기</div>
+          </div>
+        </div>
+        <div id="sign-up">
+          <div>SIGN-UP</div>
+        </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
       </div>
     </div>
   </div>

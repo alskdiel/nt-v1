@@ -1,0 +1,14 @@
+.modal {
+  .modal-dialog {
+    .modal-content {
+      .modal-body {
+        #sign-in {
+          display: block;
+        }
+        #sign-up {
+          display: none;
+        }
+      }
+    }
+  }
+}
