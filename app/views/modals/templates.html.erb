@@ -2,11 +2,13 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h4 class="modal-title">로그인</h4>
         <button type="button" class="close" data-dismiss="modal">&times;</button>
       </div>
       <div class="modal-body">
         <div id="sign-in">
+          <div class="modal-title">
+            <div>로그인</div>
+          </div>
           <div class="email-container">
             <div>이메일</div>
             <input type="email" placeholder="이메일"/>
@@ -25,7 +27,7 @@
           </div>
           <div class="sign-up-btn-container">
             <div>아직 회원이 아니신가요?</div>
-            <div id="sign-up-btn">이메일로 가입하기</div>
+            <div class="sign-up-btn">이메일로 가입하기</div>
           </div>
           <div class="forgot-container">
             <div>비밀번호를 모르시겠나요?</div>
@@ -33,7 +35,46 @@
           </div>
         </div>
         <div id="sign-up">
-          <div>SIGN-UP</div>
+          <div class="modal-title">
+            <div>회원가입</div>
+          </div>
+          <div class="email-container">
+            <div>이메일</div>
+            <input type="email" placeholder="이메일"/>
+          </div>
+          <div class="password-container">
+            <div>비밀번호</div>
+            <input type="password" placeholder="비밀번호"/>
+            <input type="password" placeholder="비밀번호 확인"/>
+          </div>
+          <div class="btn-next">
+            <div>다음</div>
+          </div>
+        </div>
+        <div id="sign-up-sub">
+          <div class="modal-title">
+            <div>회원가입</div>
+          </div>
+          <div class="nickname-container">
+            <div>닉네임</div>
+            <input type="text" placeholder="닉네임"/>
+          </div>
+          <div class="birth-container">
+            <div>태어난 년도</div>
+            <input type="select" placeholder="선택해주세요"/>
+          </div>
+          <div class="occupation-container">
+            <div>직업</div>
+            <input type="select" placeholder="선택해주세요"/>
+          </div>
+          <div class="occupation-container">
+            <div>성별</div>
+            <input type="radio" name="sex" value="0" class="male">남</input>
+            <input type="radio" name="sex" value="1" class="female">여</input>
+          </div>
+          <div class="btn-confirm">
+            <div>회원가입</div>
+          </div>
         </div>
       </div>
       <div class="modal-footer">

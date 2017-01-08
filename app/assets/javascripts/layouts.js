@@ -12,7 +12,7 @@ $(document).ready(function(){
   });
 
   $('.side-bar .user-info').on('click', function(){
-    $("#modal-sign-in").modal();
+    openSignModal();
   });
 
   $('.side-bar .followings').on('click', function(){
@@ -28,6 +28,13 @@ $(document).ready(function(){
   function closeSidebar() {
     $side_bar_bg.removeClass('sidebar-opened');
     $side_bar.removeClass('opened');
+  }
+
+  function openSignModal() {
+    $("#modal-sign-in").modal();
+    $('.modal-content #sign-in').css('display', 'block');
+    $('.modal-content #sign-up').css('display', 'none');
+    $('.modal-content #sign-up-sub').css('display', 'none');
   }
 
 });
