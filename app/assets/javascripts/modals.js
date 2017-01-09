@@ -12,14 +12,44 @@ $(document).ready(function() {
   });
 
   $('.modal-content .btn-confirm').on('click', function() {
-    signUpProcess();
+    // signUpProcess();
   });
-  // $('#modal-sign-in').on('hidden.bs.modal', function () {
-  //   $('.modal-content #sign-in').css('display', 'block');
-  //   $('.modal-content #sign-up').css('display', 'none');
-  // });
-  //
-  function signUpProcess() {
+
+  $('.modal-content .sign-in-btn').on('click', function() {
+    var user_id = $(this).parent().parent().children('.email-container').children('.user-id').val();
+    var user_pw = $(this).parent().parent().children('.password-container').children('.user-pw').val();
+
+    signInProcess(user_id, user_pw);
+  });
+
+  function signInProcess(user_id, user_pw) {
+    params = {
+      email: user_id,
+      password: user_pw
+    }
+    $.ajax({
+      url: 'users/sign_in',
+      type: 'POST',
+      dataType: 'json',
+      data: params,
+      complete: function (jqXHR, textStatus) {
+        // callback
+      },
+      success: function (data, textStatus, jqXHR) {
+        // success callback
+        console.log(data);
+        if(data.ret) {
+          // login successful
+          window.location.reload(true);
+        } else {
+          alert("wrong info");
+          // login failed
+        }
+      },
+      error: function (jqXHR, textStatus, errorThrown) {
+        // error callback
+      }
+    });
     //ajax request
     //if success, close modal
     //if fail, stay in this modal and request again

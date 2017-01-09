@@ -2,7 +2,14 @@
 
 <div class="side-bar">
   <div class="cancel">close</div>
-  <div class="user-info">로그인/가입</div>
+  <% if !user_signed_in? %>
+  <div class="sign-in">로그인/가입</div>
+  <% else %>
+  <div class="user-info">
+    <div class="settings">설정</div>
+    <div class="logout">로그아웃</div>
+  </div>
+  <% end %>
   <div class="my-map">나의 관심지도</div>
   <div class="scrap">스크랩</div>
   <div class="followings">내가 구독한 유저</div>
