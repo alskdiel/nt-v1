@@ -7,16 +7,16 @@ $(document).ready(function(){
     openSidebar();
   });
 
-  $('.side-bar .cancel').on('click', function(){
+  $('.side-bar .header .cancel').on('click', function(){
     closeSidebar();
   });
 
-  $('.side-bar .sign-in').on('click', function(){
+  $('.side-bar .body .sign-in').on('click', function(){
     openSignModal();
   });
 
-  $('.side-bar .user-info .logout').on('click', function(){
-    logoutProcess();
+  $('.side-bar .body .user-info .sign-out').on('click', function(){
+    signoutProcess();
   });
 
   $('.side-bar .followings').on('click', function(){
@@ -41,7 +41,7 @@ $(document).ready(function(){
     $('.modal-content #sign-up-sub').css('display', 'none');
   }
 
-  function logoutProcess() {
+  function signoutProcess() {
     $.ajax({
       url: 'users/sign_out',
       type: 'DELETE',

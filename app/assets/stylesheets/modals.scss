@@ -1,9 +1,81 @@
 .modal {
   .modal-dialog {
+    width: 632.5px;
     .modal-content {
+      border-radius: 0px;
       .modal-body {
+        padding: 0px 0px 20px 0px;
+        .modal-title {
+          height: 80.5px;
+          padding: 0px 30.5px;
+          background: #f4ca66;
+          div {
+            display: inline-block;
+            line-height: 80.5px;
+            font-size: 30px;
+            color: #50265a;
+          }
+          .close {
+            line-height: 80.5px;
+          }
+        }
+        .content-wrapper {
+          padding: 19px 30.5px;
+        }
+
         #sign-in {
           display: block;
+          font-size: 24px;
+          .email-container, .password-container {
+            margin-bottom: 40px;
+            div {
+              margin-bottom: 15px;
+            }
+            input {
+              width: 571px;
+              padding: 12px 21px;
+              border-radius: 10px;
+              border: 1px solid #bbb;
+            }
+          }
+          .remember-container {
+            margin-bottom: 18.5px;
+            div {
+              display: inline-block;
+              font-size: 18px;
+            }
+          }
+          .sign-in-btn-container, .sign-up-btn-container {
+            margin-bottom: 31px;
+            .my-btn {
+              font-size: 26px;
+              text-align: center;
+              padding: 19px 0px;
+              border-radius: 10px;
+              background: #f4ca66;
+              color: #fff;
+              margin-bottom: 15.5px;
+              &.fb {
+                background: #4065b4;
+              }
+            }
+          }
+          .sign-up-btn-container {
+            margin-bottom: 20px;
+            .sign-up-info {
+              margin-bottom: 15.5px;
+              font-size: 24px;
+            }
+          }
+          .forgot-container {
+            div {
+              display: inline-block;
+              font-size: 24px;
+              &.find-pw {
+                text-decoration: underline;
+              }
+            }
+          }
         }
         #sign-up {
           display: none;

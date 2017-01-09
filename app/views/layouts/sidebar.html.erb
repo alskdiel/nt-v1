@@ -1,18 +1,22 @@
 <div class="side-bar-background"></div>
 
 <div class="side-bar">
-  <div class="cancel">close</div>
-  <% if !user_signed_in? %>
-  <div class="sign-in">로그인/가입</div>
-  <% else %>
-  <div class="user-info">
-    <div class="settings">설정</div>
-    <div class="logout">로그아웃</div>
+  <div class="header">
+    <div class="cancel">close</div>
   </div>
-  <% end %>
-  <div class="my-map">나의 관심지도</div>
-  <div class="scrap">스크랩</div>
-  <div class="followings">내가 구독한 유저</div>
-  <div class="followers">나를 구독한 유저</div>
-  <div class="cs">고객센터</div>
+  <div class="body">
+    <% if !user_signed_in? %>
+    <div class="sign-in side-btn border-top">로그인/가입</div>
+    <% else %>
+    <div class="user-info">
+      <div class="settings side-btn">설정</div>
+      <div class="sign-out side-btn">로그아웃</div>
+    </div>
+    <% end %>
+    <div class="my-map side-btn">나의 관심지도</div>
+    <div class="scrap side-btn border-bottom margin-bottom">스크랩</div>
+    <div class="followings side-btn border-top border-bottom margin-bottom">내가 구독한 유저</div>
+    <div class="followers side-btn border-top border-bottom margin-bottom">나를 구독한 유저</div>
+    <div class="cs side-btn border-top border-bottom">고객센터</div>
+  </div>
 </div>
