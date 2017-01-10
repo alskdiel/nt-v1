@@ -1,23 +1,21 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>NtV1</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
+  <head>
+    <title>NtV1</title>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= csrf_meta_tags %>
+    <script src='http://ajax.microsoft.com/ajax/jquery.templates/beta1/jquery.tmpl.min.js'></script>
+  </head>
+  <body>
 
-  <div class="main-container">
-    <%= render template: "layouts/navbar" %>
-    <div class="content-container">
-      <%= yield %>
+    <div class="main-container">
+      <%= render template: "layouts/navbar" %>
+      <div class="content-container">
+        <%= yield %>
+      </div>
     </div>
-  </div>
-
-  <%= render template: "layouts/sidebar" %>
-
-  <div class="modal-background"></div>
-
+    <%= render template: "layouts/sidebar" %>
+    <%= render template: "modals/templates" %>
 </body>
 </html>

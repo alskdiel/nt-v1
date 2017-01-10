@@ -5,6 +5,7 @@ class ReviewHousesController < ApplicationController
   # GET /review_houses.json
   def index
     @review_houses = ReviewHouse.all
+    # binding pry
   end
 
   # GET /review_houses/1

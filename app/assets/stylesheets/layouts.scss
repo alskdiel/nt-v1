@@ -5,8 +5,8 @@ body {
     height: 100%;
     width: 100%;
     .nav-bar {
-      height: 100px;
-      background: yellow;
+      height: 120px;
+      background: #f4ca66;
       div {
         display: inline-block;
       }
@@ -21,13 +21,42 @@ body {
     height: 100%;
     right: 0;
     z-index: 1;
-    background: white;
+    background: #fafafa;
     transition: 0.5s;
     &.opened {
-      width: 250px;
+      width: 300px;
+    }
+    .header {
+      height: 69.5px;
+    }
+    .body {
+      font-size: 25px;
+      .side-btn {
+        padding: 27px;
+        background: #fff;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+      }
+      .border-top {
+        border-top: 1px solid #e6e6e6;
+      }
+      .border-bottom {
+        border-bottom: 1px solid #e6e6e6;
+      }
+      .sign-in {
+        padding-top: 39px;
+      }
+      .scrap {
+        padding-bottom: 39px;
+      }
+      .margin-bottom {
+        margin-bottom: 31.5px;
+      }
     }
   }
-  .modal-background {
+
+  .side-bar-background {
     display: none;
     background-color: black;
     opacity: .5;
