@@ -38,7 +38,6 @@ $(document).ready(function(){
     $("#modal-sign-in").modal();
     $('.modal-content #sign-in').css('display', 'block');
     $('.modal-content #sign-up').css('display', 'none');
-    $('.modal-content #sign-up-sub').css('display', 'none');
   }
 
   function signoutProcess() {

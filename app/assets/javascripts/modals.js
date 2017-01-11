@@ -2,13 +2,12 @@ $(document).ready(function() {
   $('.modal-content .content-wrapper .sign-up-btn').on('click', function() {
     $('.modal-content #sign-in').css('display', 'none');
     $('.modal-content #sign-up').css('display', 'block');
-    $('.modal-content #sign-up-sub').css('display', 'none');
+    // $('.modal-content #sign-up-sub').css('display', 'none');
   });
 
   $('.modal-content .content-wrapper .btn-next').on('click', function() {
-    $('.modal-content #sign-in').css('display', 'none');
-    $('.modal-content #sign-up').css('display', 'none');
-    $('.modal-content #sign-up-sub').css('display', 'block');
+    $('.modal-content #sign-up .sign-up-main').css('display', 'none');
+    $('.modal-content #sign-up .sign-up-sub').css('display', 'block');
   });
 
   $('.modal-content .content-wrapper .btn-confirm').on('click', function() {
