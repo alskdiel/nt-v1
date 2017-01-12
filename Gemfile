@@ -9,6 +9,7 @@ gem 'sass-rails', '>= 3.2'
 gem 'sprockets-rails', :require => 'sprockets/railtie'
 
 gem "letter_opener", :group => :development
+# gem 'mailcatcher'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.7'
