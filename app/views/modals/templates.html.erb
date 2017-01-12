@@ -43,12 +43,14 @@
           <div class="content-wrapper sign-up-main">
             <div class="email-container">
               <div>이메일</div>
-              <input type="email" placeholder="이메일"/>
+              <input type="email" placeholder="이메일" class="email"/>
+              <div class="email-conf"></div>
             </div>
             <div class="password-container">
               <div>비밀번호</div>
-              <input type="password" placeholder="비밀번호"/>
-              <input type="password" placeholder="비밀번호 확인"/>
+              <input type="password" placeholder="비밀번호" class="password"/>
+              <input type="password" placeholder="비밀번호 확인" class="password-conf"/>
+              <div class="pw-match"></div>
             </div>
             <div class="btn-next">
               <div>다음</div>
@@ -57,20 +59,27 @@
           <div class="content-wrapper sign-up-sub">
             <div class="nickname-container">
               <div>닉네임</div>
-              <input type="text" placeholder="닉네임"/>
+              <input type="text" placeholder="닉네임" class="nickname"/>
+              <div class="nick-conf"></div>
             </div>
             <div class="birth-container">
               <div>태어난 년도</div>
-              <input type="select" placeholder="선택해주세요"/>
+              <select class="birth"></select>
             </div>
             <div class="occupation-container">
               <div>직업</div>
-              <input type="select" placeholder="선택해주세요"/>
+              <select class="occupation">
+                <option value="1">대학생</option>
+                <option value="2">대학원생</option>
+                <option value="3">직장인</option>
+                <option value="4">무직</option>
+                <option value="5">대학생</option>
+              </select>
             </div>
-            <div class="occupation-container">
+            <div class="sex-container">
               <div>성별</div>
-              <input type="radio" name="sex" value="0" class="male">남</input>
-              <input type="radio" name="sex" value="1" class="female">여</input>
+              <input type="radio" name="sex" value="0">남</input>
+              <input type="radio" name="sex" value="1">여</input>
             </div>
             <div class="btn-confirm">
               <div>회원가입</div>

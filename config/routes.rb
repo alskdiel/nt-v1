@@ -2,11 +2,15 @@ Rails.application.routes.draw do
   resources :review_houses
   devise_for :users, controllers: { sessions: "users/sessions", registrations: "users/registrations" }
 
+  devise_scope :user do
+    post "users/confirm" => "users/registrations#confirm"
+    post "users/confirm_nick" => "users/registrations#confirm_nick"
+  end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root 'review_houses#index'
+  root "review_houses#index"
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

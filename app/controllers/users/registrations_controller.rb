@@ -7,10 +7,83 @@ class Users::RegistrationsController < Devise::RegistrationsController
   #   super
   # end
 
-  # POST /resource
   # def create
+  #   build_resource
+  #
   #   super
+  #   # if resource.save
+  #   #   if resource.active_for_authentication?
+  #   #     set_flash_message :notice, :signed_up if is_navigational_format?
+  #   #     sign_up(resource_name, resource)
+  #   #     return render :json => {:success => true}
+  #   #   else
+  #   #     set_flash_message :notice, :"signed_up_but_#{resource.inactive_message}" if is_navigational_format?
+  #   #     expire_session_data_after_sign_in!
+  #   #     return render :json => {:success => true}
+  #   #   end
+  #   # else
+  #   #   clean_up_passwords resource
+  #   #   return render :json => {:success => false}
+  #   # end
   # end
+  #
+  # # Signs in a user on sign up. You can overwrite this method in your own
+  # # RegistrationsController.
+  # def sign_up(resource_name, resource)
+  #   sign_in(resource_name, resource)
+  # end
+
+  def confirm
+    email = params[:email]
+    ret = User.where(email: email).take.present?
+
+    render json: { ret: !ret }
+  end
+
+  def confirm_nick
+    nickname = params[:nickname]
+    ret = UserInfo.where(nickname: nickname).take.present?
+
+    render json: { ret: !ret }
+  end
+
+  # POST /resource
+  def create
+    params[:user][:password_confirmation] = params[:user][:password]
+    build_resource(sign_up_params)
+
+    resource.save
+    yield resource if block_given?
+    if resource.persisted?
+      nickname = params[:nickname]
+      birth = params[:birth]
+      occupation = params[:occupation]
+      sex = params[:sex]
+
+      if resource.active_for_authentication?
+        UserInfo.create(nickname: nickname,
+                        birth: birth,
+                        occupation: occupation,
+                        sex: sex,
+                        user_id: resource.id)
+        sign_up(resource_name, resource)
+        render json: { ret: true }
+      else
+        UserInfo.create(nickname: nickname,
+                        birth: birth,
+                        occupation: occupation,
+                        sex: sex,
+                        user_id: resource.id)
+        expire_data_after_sign_in!
+        render json: { ret: true }
+      end
+    else
+      clean_up_passwords resource
+      set_minimum_password_length
+      render json: { ret: false }
+    end
+
+  end
 
   # GET /resource/edit
   # def edit

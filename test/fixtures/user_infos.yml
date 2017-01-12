@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  nickname: MyString
+  birth: 1
+  occupation: 1
+  sex: 1
+
+two:
+  nickname: MyString
+  birth: 1
+  occupation: 1
+  sex: 1
