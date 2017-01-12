@@ -7,6 +7,7 @@ $(document).ready(function() {
 
     $('.modal-content #sign-up .sign-up-main').css('display', 'block');
     $('.modal-content #sign-up .sign-up-sub').css('display', 'none');
+    $('.modal-content #sign-up .sign-up-fin').css('display', 'none');
     // $('.modal-content #sign-up-sub').css('display', 'none');
   });
 
@@ -14,6 +15,7 @@ $(document).ready(function() {
     if(isPossibleToUserInfo_email && isPossibleToUserInfo_pw) {
       $('.modal-content #sign-up .sign-up-main').css('display', 'none');
       $('.modal-content #sign-up .sign-up-sub').css('display', 'block');
+      $('.modal-content #sign-up .sign-up-fin').css('display', 'none');
 
       setBirthYears();
     } else {
@@ -37,6 +39,10 @@ $(document).ready(function() {
   });
 
   // sign-in button
+  $('.modal-content .content-wrapper .btn-okay').on('click', function() {
+    window.location.reload(true);
+  });
+
   $('.modal-content .content-wrapper .sign-in-btn').on('click', function() {
     var user_email = $(this).parent().parent().children('.email-container').children('.user-id').val();
     var user_pw = $(this).parent().parent().children('.password-container').children('.user-pw').val();
@@ -219,7 +225,11 @@ $(document).ready(function() {
         // success callback
         if(data.ret) {
           // login successful
-          window.location.reload(true);
+          // window.location.reload(true);
+          // show info modal
+          $('.modal-content #sign-up .sign-up-sub').css('display', 'none');
+          $('.modal-content #sign-up .sign-up-fin').css('display', 'block');
+
         } else {
           alert("wrong info");
           // login failed

@@ -50,6 +50,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # POST /resource
   def create
     params[:user][:password_confirmation] = params[:user][:password]
+    # super
     build_resource(sign_up_params)
 
     resource.save
