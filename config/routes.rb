@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   resources :review_houses
-  devise_for :users, controllers: { sessions: "users/sessions", registrations: "users/registrations", confirmation: "users/confirmations" }
+  devise_for :users, controllers: { sessions: "users/sessions", registrations: "users/registrations", confirmations: "users/confirmations" }
 
   devise_scope :user do
     post "users/confirm" => "users/registrations#confirm"
