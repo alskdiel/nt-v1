@@ -1,9 +1,12 @@
-$(document).ready(function(){
 
+var init;
+init  = function() {
   $side_bar_bg = $('.side-bar-background');
   $side_bar = $('.side-bar');
+  console.log('xx');
 
   $('.nav-bar .menu').on('click', function(){
+  console.log('side-bar');
     openSidebar();
   });
 
@@ -61,5 +64,12 @@ $(document).ready(function(){
       }
     });
   }
+}
 
-});
+// $(document).ready(init);
+// $(document).on('page:load', init);
+// $(document).on('ready page:partial-load', init);
+$(document).on('ready', init);
+// $(document).on('turbolinks:change', init);
+$(document).on('turbolinks:load', init);
+

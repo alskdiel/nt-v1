@@ -32,7 +32,7 @@
               margin-bottom: 15px;
             }
             input {
-              width: 571px;
+              width: 100%;
               padding: 12px 21px;
               border-radius: 10px;
               border: 1px solid #bbb;
@@ -80,9 +80,128 @@
         #sign-up {
           .sign-up-main {
             display: block;
+            font-size: 26px;
+            padding-top: 93.5px;
+            .email-container, .password-container {
+              div {
+                margin-bottom: 12px;
+              }
+              span {
+                font-size: 13px;
+                color: #ed1c24;
+                position: relative;
+                float: right;
+                top: -40px;
+                margin-right: 21px;
+              }
+              input {
+                border: 1px solid #bbb;
+                padding: 12px 21px;
+                border-radius: 10px;
+                width: 100%;
+                &.password {
+                  margin-bottom: 20px;
+                }
+              }
+            }
+            .email-container {
+              margin-bottom: 42px;
+            }
+            .password-container {
+              margin-bottom: 75px;
+            }
+            .btn-next {
+              font-size: 26px;
+              text-align: center;
+              padding: 19px 0px;
+              border-radius: 10px;
+              background: #f4ca66;
+              color: #fff;
+              margin-bottom: 15.5px;
+            }
           }
           .sign-up-sub {
+            font-size: 26px;
             display: none;
+            padding-top: 30px;
+            .nickname-container {
+              span {
+                font-size: 13px;
+                color: #ed1c24;
+                position: relative;
+                float: right;
+                top: -40px;
+                margin-right: 21px;
+              }
+            }
+            .nickname-container, .birth-container, .occupation-container {
+              div {
+                line-height: 26px;
+                margin-bottom: 12px;
+              }
+              select {
+                -webkit-appearance: none; /* 네이티브 외형 감추기 */ 
+                -moz-appearance: none; 
+                appearance: none;
+              }
+              input, .birth, .occupation {
+                background: #fff;
+                border: 1px solid #bbb;
+                padding: 12px 21px;
+                border-radius: 10px;
+                width: 100%;
+                line-height: 26px;
+              }
+              .arrow {
+                width: 0;
+                height: 0;
+                border-left: 10px solid transparent;
+                border-right: 10px solid transparent;
+                border-top: 16px solid #bbb;
+                position: relative;
+                float: right;
+                top: -31px;
+                margin-right: 20px;
+              }
+              margin-bottom: 42px;
+            }
+            .sex-container {
+              div {
+                margin-bottom: 12px;
+                line-height: 26px;
+              }
+              .radio-container {
+                font-size: 24px;
+                input {
+                  margin: 0px 10px;
+                  &:nth-child(2) {
+                    margin-left: 50px;
+                  }
+                }
+              }
+              margin-bottom: 20px;
+            }
+            .btn-confirm {
+              font-size: 26px;
+              text-align: center;
+              padding: 19px 0px;
+              border-radius: 10px;
+              background: #f4ca66;
+              color: #fff;
+              margin-bottom: 15.5px;
+            }
+            // .birth-container {
+            //   div {
+            //     margin-bottom: 12px;
+            //     .birth {
+            //       border: 1px solid #bbb;
+            //       padding: 12px 21px;
+            //       border-radius: 10px;
+            //       width: 100%;
+            //     }
+            //   }
+            //   margin-bottom: 42px;
+            // }
           }
           .sign-up-fin {
             display: none;
