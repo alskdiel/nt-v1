@@ -1,0 +1,4 @@
+<div><%= review_house.title %></div>
+<div><%= review_house.address %></div>
+<div>by.<%= User.where(id: review_house.user_id).take.user_info.nickname %></div>
+

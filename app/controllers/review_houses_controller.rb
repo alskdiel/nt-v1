@@ -26,10 +26,34 @@ class ReviewHousesController < ApplicationController
   # POST /review_houses.json
   def create
     @review_house = current_user.review_houses.new(review_house_params)
+    if @review_house.save
+      ret = true
+    else
+      ret = false
+    end
+
+    pros = params[:pros]
+    cons = params[:cons]
+
+    pros.each do |key, value|
+      puts key
+      puts value
+      if value != ""
+        ProsAndCons.create(review_house_id: @review_house.id, content_type: 1, content: value)
+      end
+    end
+
+    cons.each do |key, value|
+      puts key
+      puts value
+      if value != ""
+        ProsAndCons.create(review_house_id: @review_house.id, content_type: 0, content: value)
+      end
+    end
 
 
     respond_to do |format|
-      if @review_house.save
+      if ret
         format.html { redirect_to @review_house, notice: 'Review house was successfully created.' }
         format.json { render :show, status: :created, location: @review_house }
       else

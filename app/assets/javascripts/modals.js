@@ -269,7 +269,7 @@ var modal_function = function () {
   }
 
   $('#modal-write .modal-content .modal-body .oneroom').on('click', function() {
-    window.location.href = "review_houses/new";
+    window.location.href = "/review_houses/new";
   });
 
   $('#modal-write .modal-content .modal-body .living').on('click', function() {

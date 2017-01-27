@@ -1,4 +1,13 @@
 var review_houses_function = function() {
+
+  // index functions
+  $('.grid').masonry({
+    itemSelector: '.grid-item',
+    columnWidth: 275
+  });
+
+
+  // write functions
   var $write_form = $('.write-container').find('.content-wrapper');
   setDuration();
 
