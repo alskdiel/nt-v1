@@ -1,5 +1,5 @@
 <div class="write-container">
-  <form id="form-write" action="/review_houses" method="post">
+  <form id="form-write" action="/review_houses" method="post" enctype="multipart/form-data">
     <input type="hidden" name="authenticity_token" value="QGthAE0W7zBgRqvzsphx7J05/bXasa8bpotEkFjwctIqEBfabdK1rN6B8wlcupH4ElpoBt2n9KwRY2it813Whw==">
     <div class="content-wrapper">
       <div class="title">
@@ -7,6 +7,10 @@
       </div>
       <div class="address">
         <input type="text" placeholder="주소 ex) 서울시 마포구 망원동 479-94" name="review_house[address]"/>
+      </div>
+      <div class="image">
+        <%# <%= file_field_tag :pic_house, multiple: true %>
+        <input type="file" name="pic_house[]" multiple/>
       </div>
       <div class="duration">
         <%= render template: "review_houses/_duration" %>

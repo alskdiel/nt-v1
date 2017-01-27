@@ -1,4 +1,16 @@
+<%= image_tag review_house.thumb_nail %>
 <div><%= review_house.title %></div>
 <div><%= review_house.address %></div>
-<div>by.<%= User.where(id: review_house.user_id).take.user_info.nickname %></div>
-
+<div>by.<%= review_house.written_by %></div>
+<div class="avr-satis">
+<%  cnt = 0
+    while cnt < review_house.avr_satis %>
+      <%= image_tag 'write/star-purple.png', class: "star" %>
+<%    cnt += 1
+    end
+    while cnt < 5 %>
+      <%= image_tag 'write/star-grey.png', class: "star" %>
+<%    cnt += 1
+    end
+ %>
+</div>

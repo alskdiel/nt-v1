@@ -27,11 +27,31 @@
   .index-container {
     padding: 50px 200px;
     .content-wrapper {
-      background: #fff;
+      background: #dddddd;
+      .title {
+        height: 60px;
+        line-height: 60px;
+        text-align: center;
+        font-size: 60px;
+        color: #50265e;
+      }
     }
   }
 }
 
 .grid-item {
   width: 275px;
+  padding: 13px;
+  .card-wrapper {
+    background: #fff;
+    border-radius: 10px;
+    img {
+      width: 100%;
+      border-radius: 10px 10px 0px 0px;
+      &.star {
+        width: 30px;
+        height: 30px;
+      }
+    }
+  }
 }
