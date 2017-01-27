@@ -8,7 +8,7 @@
             <div>로그인</div>
             <button type="button" class="close" data-dismiss="modal">&times;</button>
           </div>
-          <div class="content-wrapper" class="sign-in-main">
+          <div class="content-wrapper sign-in-main">
             <div class="email-container">
               <div>이메일</div>
               <input type="email" placeholder="이메일" class="user-id"/>
@@ -99,6 +99,22 @@
             </div>
           </div>
         </div>
+      </div>
+    </div>
+  </div>
+</div>
+<% else %>
+
+<div class="modal fade" id="modal-write" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-title">
+        <div>글쓰기</div>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <%= image_tag 'write/button-oneroom_review.png', class: "oneroom" %>
+        <%= image_tag 'write/button-living_feed.png', class: "living" %>
       </div>
     </div>
   </div>

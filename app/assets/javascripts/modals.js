@@ -1,7 +1,7 @@
 // sign_in, sign_up modal
 var modal_function = function () {
   // sign-up button in sign-in modal
-  $('.modal-content .content-wrapper .sign-up-btn').on('click', function() {
+  $('#modal-sign-in .modal-content .content-wrapper .sign-up-btn').on('click', function() {
     $('.modal-content #sign-in').css('display', 'none');
     $('.modal-content #sign-up').css('display', 'block');
 
@@ -11,7 +11,16 @@ var modal_function = function () {
     // $('.modal-content #sign-up-sub').css('display', 'none');
   });
 
-  $('.modal-content .content-wrapper .btn-next').on('click', function() {
+  $('#modal-sign-in .modal-content .content-wrapper .sign-up-btn').on('click', function() {
+    $('.modal-content #sign-in').css('display', 'none');
+    $('.modal-content #sign-up').css('display', 'block');
+
+    $('.modal-content #sign-up .sign-up-main').css('display', 'block');
+    $('.modal-content #sign-up .sign-up-sub').css('display', 'none');
+    $('.modal-content #sign-up .sign-up-fin').css('display', 'none');
+  });
+
+  $('#modal-sign-in .modal-content .content-wrapper .btn-next').on('click', function() {
     if(isPossibleToUserInfo_email && isPossibleToUserInfo_pw) {
       $('.modal-content #sign-up .sign-up-main').css('display', 'none');
       $('.modal-content #sign-up .sign-up-sub').css('display', 'block');
@@ -26,7 +35,7 @@ var modal_function = function () {
   });
 
   // sign-up confirm button
-  $('.modal-content #sign-up .content-wrapper.sign-up-sub .btn-confirm').on('click', function() {
+  $('#modal-sign-in .modal-content #sign-up .content-wrapper.sign-up-sub .btn-confirm').on('click', function() {
     var email = $(this).parent().parent().children('.sign-up-main').children('.email-container').children('.email').val();
     var password = $(this).parent().parent().children('.sign-up-main').children('.password-container').children('.password-conf').val();
     var nickname = $(this).parent().children('.nickname-container').children('.nickname').val();
@@ -35,28 +44,27 @@ var modal_function = function () {
     var $sex = $("#sign-up .sign-up-sub .sex-container input:radio[name='sex']");
     var sex = $("#sign-up .sign-up-sub .sex-container input:radio[name='sex']").val();
 
-    console.log(email+"/"+password+"/"+nickname+"/"+birth+'/'+occupation+"/"+sex);
     if(email && password && nickname && birth && occupation && $sex.is(':checked')) {
-      // signUpProcess(email, password, nickname, birth, occupation, sex);
-      alert('ok');
+      signUpProcess(email, password, nickname, birth, occupation, sex);
     } else {
       alert("정보를 입력해 주세요.");
     }
   });
 
   // sign-in button
-  $('.modal-content .content-wrapper.sign-up-fin .btn-okay').on('click', function() {
+  $('#modal-sign-in .modal-content .content-wrapper.sign-up-fin .btn-okay').on('click', function() {
     window.location.reload(true);
   });
 
-  $('.modal-content .content-wrapper.sign-in-main .sign-in-btn').on('click', function() {
+  $('#modal-sign-in .modal-content .content-wrapper.sign-in-main .sign-in-btn').on('click', function() {
     var user_email = $(this).parent().parent().children('.email-container').children('.user-id').val();
     var user_pw = $(this).parent().parent().children('.password-container').children('.user-pw').val();
+    var remember_me = $(this).parent().parent().children('.remember-container').children('.remember-me').is(':checked') ? 1: 0;
 
-    signInProcess(user_email, user_pw);
+    signInProcess(user_email, user_pw, remember_me);
   });
 
-  $('.modal-content .content-wrapper.sign-up-main .email-container input').on('focusout', function() {
+  $('#modal-sign-in .modal-content .content-wrapper.sign-up-main .email-container input').on('focusout', function() {
     var user_email = $(this).val();
     var $info_box = $(this).parent().children('.email-conf');
     if(user_email.indexOf("@") == -1) {
@@ -67,7 +75,7 @@ var modal_function = function () {
     }
   });
 
-  $('.modal-content .content-wrapper.sign-up-sub .nickname-container input').on('focusout', function() {
+  $('#modal-sign-in .modal-content .content-wrapper.sign-up-sub .nickname-container input').on('focusout', function() {
     var nickname = $(this).val();
     var $info_box = $(this).parent().children('.nick-conf');
 
@@ -79,7 +87,7 @@ var modal_function = function () {
   var isPossibleToUserInfo_pw2 = false;
   var isPossibleToUserInfo_nick = false;
 
-  $('.modal-content .content-wrapper.sign-up-main .password-container .password').on('focusout', function() {
+  $('#modal-sign-in .modal-content .content-wrapper.sign-up-main .password-container .password').on('focusout', function() {
     isPossibleToUserInfo_pw2 = false;
     $info_box = $(this).parent().children('.pw-cond');
     var pw = $(this).parent().children('.password').val();
@@ -93,7 +101,7 @@ var modal_function = function () {
     }
   });
 
-  $('.modal-content .content-wrapper.sign-up-main .password-container .password-conf').on('focusout', function() {
+  $('#modal-sign-in .modal-content .content-wrapper.sign-up-main .password-container .password-conf').on('focusout', function() {
     isPossibleToUserInfo_pw = false;
     var pw = $(this).parent().children('.password').val();
     var pw_conf = $(this).parent().children('.password-conf').val();
@@ -129,7 +137,7 @@ var modal_function = function () {
   }
 
   function setBirthYears() {
-    $sb = $('#sign-up').find('.sign-up-sub').find('.birth-container').find('.birth');
+    var $sb = $('#sign-up').find('.sign-up-sub').find('.birth-container').find('.birth');
     var today = new Date().getFullYear();
     for(var i=today; i>1899; i--) {
       $sb.append("<option value="+i+">"+i+"</option>");
@@ -191,10 +199,13 @@ var modal_function = function () {
     });
   }
 
-  function signInProcess(user_email, user_pw) {
+  function signInProcess(user_email, user_pw, remember_me) {
     params = {
-      email: user_email,
-      password: user_pw
+      user: {
+        email: user_email,
+        password: user_pw,
+        remember_me: remember_me
+      }
     }
     $.ajax({
       url: '/users/sign_in',
@@ -255,12 +266,19 @@ var modal_function = function () {
         // error callback
       }
     });
-  
   }
+
+  $('#modal-write .modal-content .modal-body .oneroom').on('click', function() {
+    window.location.href = "review_houses/new";
+  });
+
+  $('#modal-write .modal-content .modal-body .living').on('click', function() {
+    alert("liv")
+  });
 }
 
 
 
-$(document).on('ready', modal_function);
+// $(document).on('ready', modal_function);
 // $(document).on('turbolinks:change', modal_function);
 $(document).on('turbolinks:load', modal_function);

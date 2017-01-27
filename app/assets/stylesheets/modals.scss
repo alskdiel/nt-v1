@@ -1,210 +1,237 @@
 .modal {
-  .modal-dialog {
-    width: 632.5px;
-    .modal-content {
-      border-radius: 0px;
-      .modal-body {
-        padding: 0px 0px 20px 0px;
-        .modal-title {
-          height: 80.5px;
-          padding: 0px 30.5px;
-          background: #f4ca66;
-          div {
-            display: inline-block;
-            line-height: 80.5px;
-            font-size: 30px;
-            color: #50265a;
+  &#modal-sign-in {
+    .modal-dialog {
+      .modal-content {
+        width: 632.5px;
+        border-radius: 0px;
+        .modal-body {
+          padding: 0px 0px 20px 0px;
+          .modal-title {
+            height: 80.5px;
+            padding: 0px 30.5px;
+            background: #f4ca66;
+            div {
+              display: inline-block;
+              line-height: 80.5px;
+              font-size: 30px;
+              color: #50265a;
+            }
+            .close {
+              line-height: 80.5px;
+            }
           }
-          .close {
-            line-height: 80.5px;
+          .content-wrapper {
+            padding: 19px 30.5px;
           }
-        }
-        .content-wrapper {
-          padding: 19px 30.5px;
-        }
 
-        #sign-in {
-          display: block;
-          font-size: 24px;
-          .email-container, .password-container {
-            margin-bottom: 40px;
-            div {
-              margin-bottom: 15px;
-            }
-            input {
-              width: 100%;
-              padding: 12px 21px;
-              border-radius: 10px;
-              border: 1px solid #bbb;
-            }
-          }
-          .remember-container {
-            margin-bottom: 18.5px;
-            div {
-              display: inline-block;
-              font-size: 18px;
-            }
-          }
-          .sign-in-btn-container, .sign-up-btn-container {
-            margin-bottom: 31px;
-            .my-btn {
-              font-size: 26px;
-              text-align: center;
-              padding: 19px 0px;
-              border-radius: 10px;
-              background: #f4ca66;
-              color: #fff;
-              margin-bottom: 15.5px;
-              &.fb {
-                background: #4065b4;
-              }
-            }
-          }
-          .sign-up-btn-container {
-            margin-bottom: 20px;
-            .sign-up-info {
-              margin-bottom: 15.5px;
-              font-size: 24px;
-            }
-          }
-          .forgot-container {
-            div {
-              display: inline-block;
-              font-size: 24px;
-              &.find-pw {
-                text-decoration: underline;
-              }
-            }
-          }
-        }
-        #sign-up {
-          .sign-up-main {
+          #sign-in {
             display: block;
-            font-size: 26px;
-            padding-top: 93.5px;
+            font-size: 24px;
             .email-container, .password-container {
+              margin-bottom: 40px;
               div {
-                margin-bottom: 12px;
-              }
-              span {
-                font-size: 13px;
-                color: #ed1c24;
-                position: relative;
-                float: right;
-                top: -40px;
-                margin-right: 21px;
+                margin-bottom: 15px;
               }
               input {
-                border: 1px solid #bbb;
+                width: 100%;
                 padding: 12px 21px;
                 border-radius: 10px;
-                width: 100%;
-                &.password {
-                  margin-bottom: 20px;
+                border: 1px solid #bbb;
+              }
+            }
+            .remember-container {
+              margin-bottom: 18.5px;
+              div {
+                display: inline-block;
+                font-size: 18px;
+              }
+            }
+            .sign-in-btn-container, .sign-up-btn-container {
+              margin-bottom: 31px;
+              .my-btn {
+                font-size: 26px;
+                text-align: center;
+                padding: 19px 0px;
+                border-radius: 10px;
+                background: #f4ca66;
+                color: #fff;
+                margin-bottom: 15.5px;
+                &.fb {
+                  background: #4065b4;
                 }
               }
             }
-            .email-container {
-              margin-bottom: 42px;
+            .sign-up-btn-container {
+              margin-bottom: 20px;
+              .sign-up-info {
+                margin-bottom: 15.5px;
+                font-size: 24px;
+              }
             }
-            .password-container {
-              margin-bottom: 75px;
-            }
-            .btn-next {
-              font-size: 26px;
-              text-align: center;
-              padding: 19px 0px;
-              border-radius: 10px;
-              background: #f4ca66;
-              color: #fff;
-              margin-bottom: 15.5px;
+            .forgot-container {
+              div {
+                display: inline-block;
+                font-size: 24px;
+                &.find-pw {
+                  text-decoration: underline;
+                }
+              }
             }
           }
-          .sign-up-sub {
-            font-size: 26px;
-            display: none;
-            padding-top: 30px;
-            .nickname-container {
-              span {
-                font-size: 13px;
-                color: #ed1c24;
-                position: relative;
-                float: right;
-                top: -40px;
-                margin-right: 21px;
-              }
-            }
-            .nickname-container, .birth-container, .occupation-container {
-              div {
-                line-height: 26px;
-                margin-bottom: 12px;
-              }
-              select {
-                -webkit-appearance: none; /* 네이티브 외형 감추기 */ 
-                -moz-appearance: none; 
-                appearance: none;
-              }
-              input, .birth, .occupation {
-                background: #fff;
-                border: 1px solid #bbb;
-                padding: 12px 21px;
-                border-radius: 10px;
-                width: 100%;
-                line-height: 26px;
-              }
-              .arrow {
-                width: 0;
-                height: 0;
-                border-left: 10px solid transparent;
-                border-right: 10px solid transparent;
-                border-top: 16px solid #bbb;
-                position: relative;
-                float: right;
-                top: -31px;
-                margin-right: 20px;
-              }
-              margin-bottom: 42px;
-            }
-            .sex-container {
-              div {
-                margin-bottom: 12px;
-                line-height: 26px;
-              }
-              .radio-container {
-                font-size: 24px;
+          #sign-up {
+            .sign-up-main {
+              display: block;
+              font-size: 26px;
+              padding-top: 93.5px;
+              .email-container, .password-container {
+                div {
+                  margin-bottom: 12px;
+                }
+                span {
+                  font-size: 13px;
+                  color: #ed1c24;
+                  position: relative;
+                  float: right;
+                  top: -40px;
+                  margin-right: 21px;
+                }
                 input {
-                  margin: 0px 10px;
-                  &:nth-child(2) {
-                    margin-left: 50px;
+                  border: 1px solid #bbb;
+                  padding: 12px 21px;
+                  border-radius: 10px;
+                  width: 100%;
+                  &.password {
+                    margin-bottom: 20px;
                   }
                 }
               }
-              margin-bottom: 20px;
+              .email-container {
+                margin-bottom: 42px;
+              }
+              .password-container {
+                margin-bottom: 75px;
+              }
+              .btn-next {
+                font-size: 26px;
+                text-align: center;
+                padding: 19px 0px;
+                border-radius: 10px;
+                background: #f4ca66;
+                color: #fff;
+                margin-bottom: 15.5px;
+              }
             }
-            .btn-confirm {
+            .sign-up-sub {
               font-size: 26px;
-              text-align: center;
-              padding: 19px 0px;
-              border-radius: 10px;
-              background: #f4ca66;
-              color: #fff;
-              margin-bottom: 15.5px;
+              display: none;
+              padding-top: 30px;
+              .nickname-container {
+                span {
+                  font-size: 13px;
+                  color: #ed1c24;
+                  position: relative;
+                  float: right;
+                  top: -40px;
+                  margin-right: 21px;
+                }
+              }
+              .nickname-container, .birth-container, .occupation-container {
+                div {
+                  line-height: 26px;
+                  margin-bottom: 12px;
+                }
+                select {
+                  -webkit-appearance: none; /* 네이티브 외형 감추기 */ 
+                  -moz-appearance: none; 
+                  appearance: none;
+                }
+                input, .birth, .occupation {
+                  background: #fff;
+                  border: 1px solid #bbb;
+                  padding: 12px 21px;
+                  border-radius: 10px;
+                  width: 100%;
+                  line-height: 26px;
+                }
+                .arrow {
+                  width: 0;
+                  height: 0;
+                  border-left: 10px solid transparent;
+                  border-right: 10px solid transparent;
+                  border-top: 16px solid #bbb;
+                  position: relative;
+                  float: right;
+                  top: -31px;
+                  margin-right: 20px;
+                }
+                margin-bottom: 42px;
+              }
+              .sex-container {
+                div {
+                  margin-bottom: 12px;
+                  line-height: 26px;
+                }
+                .radio-container {
+                  font-size: 24px;
+                  input {
+                    margin: 0px 10px;
+                    &:nth-child(2) {
+                      margin-left: 50px;
+                    }
+                  }
+                }
+                margin-bottom: 20px;
+              }
+              .btn-confirm {
+                font-size: 26px;
+                text-align: center;
+                padding: 19px 0px;
+                border-radius: 10px;
+                background: #f4ca66;
+                color: #fff;
+                margin-bottom: 15.5px;
+              }
+              // .birth-container {
+              //   div {
+              //     margin-bottom: 12px;
+              //     .birth {
+              //       border: 1px solid #bbb;
+              //       padding: 12px 21px;
+              //       border-radius: 10px;
+              //       width: 100%;
+              //     }
+              //   }
+              //   margin-bottom: 42px;
+              // }
             }
-            // .birth-container {
-            //   div {
-            //     margin-bottom: 12px;
-            //     .birth {
-            //       border: 1px solid #bbb;
-            //       padding: 12px 21px;
-            //       border-radius: 10px;
-            //       width: 100%;
-            //     }
-            //   }
-            //   margin-bottom: 42px;
-            // }
+            .sign-up-fin {
+              display: none;
+            }
           }
-          .sign-up-fin {
-            display: none;
+        }
+      }
+    }
+  }
+  &#modal-write {
+    .modal-dialog {
+      .modal-content {
+        width: 632.5px;
+        height: 360px;
+        border-radius: 0px;
+        .modal-title {
+          height: 80px;
+          background: #f4ca66;
+        }
+        .modal-body {
+          padding: 45px 78px;
+          img {
+            height: 190px;
+            &:first-child {
+              float: left;
+            }
+            &:nth-child(2) {
+              float: right;
+            }
           }
         }
       }

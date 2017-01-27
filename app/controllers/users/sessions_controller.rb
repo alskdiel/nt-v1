@@ -8,12 +8,15 @@ class Users::SessionsController < Devise::SessionsController
 
   # POST /resource/sign_in
   def create
-
-    resource = User.find_for_database_authentication(email: params[:email])
+    resource = User.find_for_database_authentication(email: params[:user][:email])
     return invalid_login_attempt unless resource
 
-    if resource.valid_password?(params[:password])
+    if resource.valid_password?(params[:user][:password])
       sign_in :user, resource
+      # if params[:user][:remember_me] == "1"
+      #   resource.update(remember_created_at: Time.now, remember_me: true)
+      #   resource.remember_me!
+      # end
       return render json: { ret: true }
     end
     invalid_login_attempt

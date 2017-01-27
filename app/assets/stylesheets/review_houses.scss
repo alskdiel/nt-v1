@@ -1,3 +1,29 @@
-// Place all the styles related to the review_houses controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+.content-container {
+  .write-container {
+    height: 100%;
+    background: #dddddd;
+    margin: 0px;
+    padding: 50px 100px 0px 100px;
+    .content-wrapper {
+      background: #fff;
+      padding: 44px 22px;
+      .duration {
+        .duration_start, .duration_end {
+
+        }
+      }
+      .satisfactions {
+        .stars {
+          .score {
+            display: inline-block;
+            img {
+              &.none {
+                display: none;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

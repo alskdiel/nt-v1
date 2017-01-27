@@ -3,10 +3,22 @@ var init;
 init  = function() {
   $side_bar_bg = $('.side-bar-background');
   $side_bar = $('.side-bar');
-  console.log('xx');
+
+  $side_bar_bg.on('click', function() {
+    if($(this).hasClass('sidebar-opened')) {
+      closeSidebar();
+    }
+  });
+
+  $('.nav-bar .logo').on('click', function(){
+    window.location.href = "/";
+  });
+
+  $('.nav-bar .write').on('click', function(){
+    openWriteModal();
+  });
 
   $('.nav-bar .menu').on('click', function(){
-  console.log('side-bar');
     openSidebar();
   });
 
@@ -26,6 +38,9 @@ init  = function() {
     $("#modal-test").modal();
   });
 
+  function openWriteModal() {
+    $("#modal-write").modal();
+  }
 
   function openSidebar() {
     $side_bar_bg.addClass('sidebar-opened');
@@ -69,7 +84,7 @@ init  = function() {
 // $(document).ready(init);
 // $(document).on('page:load', init);
 // $(document).on('ready page:partial-load', init);
-$(document).on('ready', init);
+// $(document).on('ready', init);
 // $(document).on('turbolinks:change', init);
 $(document).on('turbolinks:load', init);
 

@@ -1,7 +1,16 @@
 <div class="nav-bar">
-  <div class="logo">LOGO</div>
-  <input type="text" class="search" value="search"/>
-  <div class="add">ADD</div>
-  <div class="map">MAP</div>
-  <div class="menu">MENU</div>
+  <div class="nav-logo">
+    <%= image_tag 'navbar/logo.png', class: "logo" %>
+  </div>
+  <div class="nav-search">
+    <input type="text" class="search" value="search"/>
+  </div>
+  <div class="nav-buttons">
+    <%= image_tag 'navbar/button-write.png', class: "write" %>
+    <%= image_tag 'navbar/button-map.png', class: "map" %>
+    <%= image_tag 'navbar/button-menu.png', class: "menu" %>
+  </div>
+  <% if user_signed_in? %>
+    <div><%= current_user.email %></div>
+  <% end %>
 </div>

@@ -15,7 +15,7 @@ class ReviewHousesController < ApplicationController
 
   # GET /review_houses/new
   def new
-    @review_house = ReviewHouse.new
+    # @review_house = ReviewHouse.new
   end
 
   # GET /review_houses/1/edit
@@ -25,7 +25,8 @@ class ReviewHousesController < ApplicationController
   # POST /review_houses
   # POST /review_houses.json
   def create
-    @review_house = ReviewHouse.new(review_house_params)
+    @review_house = current_user.review_houses.new(review_house_params)
+
 
     respond_to do |format|
       if @review_house.save
@@ -70,6 +71,6 @@ class ReviewHousesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def review_house_params
-      params.fetch(:review_house, {})
+      params.require(:review_house).permit(:title, :address, :start_time, :end_time, :price_satisfaction, :residence_satisfaction, :env_satisfaction, :price_review, :residence_review, :env_review)
     end
 end
