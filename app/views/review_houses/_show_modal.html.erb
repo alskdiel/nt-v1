@@ -1,0 +1,77 @@
+<script type="text/ng-template" id="showModal.html">
+  <div class="content-wrapper show-modal">
+    <div class="image-container">
+    </div>
+
+    <div class="title-container">
+      <div class="title">{{title}}</div>
+    </div>
+
+    <div class="writtenby-container">
+      <div>by.</div>
+      <div class="written-by">{{written_by}}</div>
+    </div>
+
+    <div class="addr-container">
+      <div class="addr">{{address}}</div>
+    </div>
+
+    <div class="duration-container">
+      <div>거주기간 - </div>
+      <div class="start">{{duration.start_time}}</div>
+      <div>~</div>
+      <div class="end">{{duration.end_time}}</div>
+    </div>
+
+    <div class="satisfaction-container">
+      <div class="avr-container">
+        <div class="title">총 평점</div>
+        <div class="stars">
+          <%= render template: "review_houses/_star_container" %>
+        </div>
+      </div>
+      <div class="detail-container">
+        <%= render template: "review_houses/_satisfactions" %>
+      </div>
+    </div>
+
+    <div class="review-container">
+      <div class="review-wrapper review-price">
+        <div class="title">가격 리뷰</div>
+        <div class="content">{{reviews.price}}</div>
+      </div>
+      <div class="review-wrapper review-residence">
+        <div class="title">주거 리뷰</div>
+        <div class="content">{{reviews.residence}}</div>
+      </div>
+      <div class="review-wrapper review-env">
+        <div class="title">주거환경 리뷰</div>
+        <div class="content">{{reviews.env}}</div>
+      </div>
+    </div>
+
+    <div class="p-a-c-container">
+      <div class="pros">
+        <div class="title">단점</div>
+        <div class="pros-content-wrapper" ng-repeat="pro in pros_and_cons.pros track by $index">
+          <div class="content">{{pro}}</div>
+        </div>
+      </div>
+      <div class="cons">
+        <div class="title">장점</div>
+        <div class="cons-content-wrapper" ng-repeat="con in pros_and_cons.cons track by $index">
+          <div class="content">{{con}}</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="upvote-and-scrap-container">
+      <div class="upvote">
+        <%= image_tag 'show/button-good.png', class: "btn-upvote" %>
+      </div>
+      <div class="scrap">
+        <%= image_tag 'show/button-scrap.png', class: "btn-scrap" %>
+      </div>
+    <div>
+  </div>
+</script>

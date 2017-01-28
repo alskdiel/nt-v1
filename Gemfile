@@ -7,6 +7,8 @@ gem 'pry'
 gem 'bootstrap-sass', '~> 3.3.6'
 gem 'sass-rails', '>= 3.2'
 gem 'sprockets-rails', :require => 'sprockets/railtie'
+gem 'angularjs-rails'
+gem 'angular-ui-bootstrap-rails'
 
 gem "letter_opener", :group => :development
 # gem 'mailcatcher'

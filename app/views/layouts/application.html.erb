@@ -7,7 +7,7 @@
     <%= csrf_meta_tags %>
     <script src='http://ajax.microsoft.com/ajax/jquery.templates/beta1/jquery.tmpl.min.js'></script>
   </head>
-  <body>
+  <body ng-app="myApp" ng-controller="MainCtrl">
     <div class="main-container">
       <%= render template: "layouts/navbar" %>
       <div class="content-container">

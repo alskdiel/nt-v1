@@ -18,4 +18,32 @@ class ReviewHouse < ActiveRecord::Base
 
     return ((price + residence + env) / 3).round
   end
+
+  def image_url
+    pics = PicHouse.where(review_house_id: self.id)
+    urls = []
+    pics.each do |pic|
+      urls.push(pic.image.url)
+    end
+    return urls
+  end
+
+  def pros
+    pros = ProsAndCons.where(review_house_id: self.id, content_type: 1)
+    ret = []
+    pros.each do |pro|
+      ret.push(pro.content)
+    end
+    return ret
+  end
+
+  def cons
+    cons = ProsAndCons.where(review_house_id: self.id, content_type: 0)
+    ret = []
+    cons.each do |con|
+      ret.push(con.content)
+    end
+    return ret
+  end
+
 end

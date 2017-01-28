@@ -11,8 +11,8 @@ class ReviewHousesController < ApplicationController
   # GET /review_houses/1
   # GET /review_houses/1.json
   def show
-    review = ReviewHouse.find(params[:id])
-    return render json: { review: review.to_json }
+    @review = ReviewHouse.find(params[:id])
+    # return render json: { review: review.to_json }
   end
 
   # GET /review_houses/new

@@ -1,44 +1,7 @@
 var review_houses_function = function() {
 
   // index functions
-  var $grid = $('.grid');
 
-  $grid.masonry({
-    itemSelector: '.grid-item',
-    columnWidth: 275
-  });
-
-  $grid.on('click', '.grid-item', function() {
-    var review_id = $(this).attr('id');
-    getReview(review_id);
-  });
-
-  function getReview(id) {
-    url = "/review_houses/"+id;
-    $.ajax({
-      url: url,
-      type: 'get',
-      dataType: 'json',
-      // data: $.param( $('Element or Expression') ),
-      complete: function (jqXHR, textStatus) {
-        // callback
-      },
-      success: function (data, textStatus, jqXHR) {
-        setJsonDataToShow(JSON.parse(data.review));
-        $('#modal-show').modal();
-        // success callback
-      },
-      error: function (jqXHR, textStatus, errorThrown) {
-        // error callback
-      }
-    });
-  }
-
-  function setJsonDataToShow(data) {
-    var $modal_show = $('#modal-show');
-    var $title_container = $modal_show.find('.modal-dialog').find('.modal-content').find('.modal-title');
-    $title_container.find('.title').text(data.title);
-  }
   // show functions
 
 
