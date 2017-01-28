@@ -62,17 +62,19 @@
     .modal-content {
       border-radius: 0px;
       .content-wrapper.show-modal {
-        padding: 23px 20px;
         .image-container {
+          padding: 23px 20px;
           margin-bottom: 53px;
         }
         .title-container {
+          padding: 0px 20px;
           height: 48px;
           line-height: 48px;
           font-size: 48px;
           margin-bottom: 19px;
         }
         .writtenby-container, .addr-container, .duration-container {
+          padding: 0px 20px;
           height: 24px;
           line-height: 24px;
           font-size: 24px;
@@ -83,7 +85,6 @@
           }
         }
         .satisfaction-container {
-          margin: 0px -20px;
           border-top: 1px solid #999999;
           border-bottom: 1px solid #999999;
           .avr-container, .detail-container {
@@ -141,7 +142,6 @@
         .review-container {
           .review-wrapper {
             border-bottom: 1px solid #999999;
-            margin: 0px -20px;
             padding: 19px 20px;
             .title, .content {
               display: inline-block;
@@ -159,7 +159,6 @@
           }
         }
         .p-a-c-container {
-          margin: 0px -20px;
           border-bottom: 1px solid #999999;
           .pros, .cons {
             display: inline-block;
@@ -194,9 +193,14 @@
           }
         }
         .upvote-and-scrap-container {
-          div {
-            img {
-              height: 50px;
+          padding: 105px 0px 56px 0px;
+          .upvote, .scrap {
+            display: inline-block;
+            .button {
+              height: 100px;
+              img {
+                height: 100%;
+              }
             }
           }
         }

@@ -11,6 +11,8 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
   root "review_houses#index"
+  post "upvote/:id" => "review_houses#upvote"
+  post "scrap/:id" => "review_houses#scrap"
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

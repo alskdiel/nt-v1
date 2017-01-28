@@ -12,6 +12,8 @@ class ReviewHousesController < ApplicationController
   # GET /review_houses/1.json
   def show
     @review = ReviewHouse.find(params[:id])
+    @upvote = current_user.has_upvoted?(params[:id])
+    @scrap = current_user.has_scraped?(params[:id])
     # return render json: { review: review.to_json }
   end
 
@@ -85,6 +87,32 @@ class ReviewHousesController < ApplicationController
     respond_to do |format|
       format.html { redirect_to review_houses_url, notice: 'Review house was successfully destroyed.' }
       format.json { head :no_content }
+    end
+  end
+
+  def upvote
+    review_house_id = params[:id]
+
+    current_state = UpvoteHouse.where(review_house_id: review_house_id, user_id: current_user.id).take
+    if current_state.present?
+      current_state.delete
+      return render json: { has_upvoted: false }
+    else
+      UpvoteHouse.create(review_house_id: review_house_id, user_id: current_user.id)
+      return render json: { has_upvoted: true }
+    end
+  end
+
+  def scrap
+    review_house_id = params[:id]
+
+    current_state = ScrapHouse.where(review_house_id: review_house_id, user_id: current_user.id).take
+    if current_state.present?
+      current_state.delete
+      return render json: { has_scraped: false }
+    else
+      ScrapHouse.create(review_house_id: review_house_id, user_id: current_user.id)
+      return render json: { has_scraped: true }
     end
   end
 

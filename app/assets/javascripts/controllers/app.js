@@ -1,5 +1,11 @@
 var myApp = angular.module('myApp', ['ui.bootstrap']);
 
+myApp.config([
+  "$httpProvider", function($httpProvider) {
+    $httpProvider.defaults.headers.common['X-CSRF-Token'] = $('meta[name=csrf-token]').attr('content');
+  }
+]);
+
 myApp.controller('MainCtrl', [
   '$scope',
   function($scope) {
@@ -55,6 +61,7 @@ myApp.controller('ShowCtrl', [
   function($scope, $http, $timeout, $uibModalInstance, data) {
     console.log(data);
 
+    $scope.id = data.id;
     $scope.title = data.title;
     $scope.written_by = data.written_by;
     $scope.address = data.address;
@@ -62,10 +69,47 @@ myApp.controller('ShowCtrl', [
     $scope.satisfaction = data.satisfaction;
     $scope.reviews = data.reviews;
     $scope.pros_and_cons = data.pros_and_cons;
+    $scope.upvote_and_scrap = data.upvote_and_scrap;
 
     $timeout(function() {
       setStarScore(data.satisfaction);
     });
+
+    $scope.upvote = function() {
+      var url = "/upvote/"+$scope.id;
+      $http({
+        method: 'post',
+        url: url,
+      })
+        .then(function(data, status, headers, config) {
+          console.log(data);
+          if(data.data.has_upvoted) {
+            $scope.upvote_and_scrap.cnt_upvotes++;
+            $scope.upvote_and_scrap.has_upvoted = true;
+          } else {
+            $scope.upvote_and_scrap.cnt_upvotes--;
+            $scope.upvote_and_scrap.has_upvoted = false;
+          }
+        });
+    }
+
+    $scope.scrap = function() {
+      var url = "/scrap/"+$scope.id;
+      $http({
+        method: 'post',
+        url: url,
+      })
+        .then(function(data, status, headers, config) {
+          console.log(data);
+          if(data.data.has_scraped) {
+            $scope.upvote_and_scrap.cnt_scraps++;
+            $scope.upvote_and_scrap.has_scraped = true;
+          } else {
+            $scope.upvote_and_scrap.cnt_scraps--;
+            $scope.upvote_and_scrap.has_scraped = false;
+          }
+        });
+    }
 
     function setStarScore(satisfaction) {
       var $container = $('.modal-dialog .modal-content .show-modal .satisfaction-container');

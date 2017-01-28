@@ -1,5 +1,5 @@
 # json.partial! "review_houses/review_house", review_house: @review_house
-
+json.id @review.id
 json.image_url @review.image_url
 json.title @review.title
 json.written_by @review.written_by
@@ -26,4 +26,11 @@ end
 json.pros_and_cons do
   json.pros @review.pros
   json.cons @review.cons
+end
+
+json.upvote_and_scrap do
+  json.has_upvoted @upvote
+  json.cnt_upvotes @review.cnt_upvotes
+  json.has_scraped @scrap
+  json.cnt_scraps @review.cnt_scraps
 end

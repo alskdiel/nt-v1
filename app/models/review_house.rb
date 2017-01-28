@@ -1,6 +1,10 @@
 class ReviewHouse < ActiveRecord::Base
   has_many :pros_and_cons, :dependent => :delete_all
   has_many :pic_houses, :dependent => :delete_all
+  has_many :upvote_houses
+  has_many :scrap_houses
+  has_many :comment_houses
+
   belongs_to :user
 
   def thumb_nail
@@ -44,6 +48,14 @@ class ReviewHouse < ActiveRecord::Base
       ret.push(con.content)
     end
     return ret
+  end
+
+  def cnt_upvotes
+    UpvoteHouse.where(review_house_id: self.id).count
+  end
+
+  def cnt_scraps
+    ScrapHouse.where(review_house_id: self.id).count
   end
 
 end
