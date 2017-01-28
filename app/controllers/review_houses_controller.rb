@@ -12,8 +12,12 @@ class ReviewHousesController < ApplicationController
   # GET /review_houses/1.json
   def show
     @review = ReviewHouse.find(params[:id])
-    @upvote = current_user.has_upvoted?(params[:id])
-    @scrap = current_user.has_scraped?(params[:id])
+    if user_signed_in?
+      @upvote = current_user.has_upvoted?(params[:id])
+      @scrap = current_user.has_scraped?(params[:id])
+    else
+      @upvote = @scrap = false
+    end
     # return render json: { review: review.to_json }
   end
 
@@ -90,29 +94,54 @@ class ReviewHousesController < ApplicationController
     end
   end
 
-  def upvote
-    review_house_id = params[:id]
-
-    current_state = UpvoteHouse.where(review_house_id: review_house_id, user_id: current_user.id).take
-    if current_state.present?
-      current_state.delete
-      return render json: { has_upvoted: false }
+  def submit_comment
+    if user_signed_in?
+      review_house_id = params[:review_house_id]
+      content = params[:comment]
+      CommentHouse.create(review_house_id: review_house_id, user_id: current_user.id, content: content)
+      return render json: { current_user: true }
     else
-      UpvoteHouse.create(review_house_id: review_house_id, user_id: current_user.id)
-      return render json: { has_upvoted: true }
+      return render json: { current_user: false }
+    end
+  end
+
+  def get_comments
+    review_house_id = params[:id]
+    comments = ReviewHouse.find(review_house_id).comments
+    return render json: { comments: comments }
+  end
+
+  def upvote
+    if user_signed_in?
+      review_house_id = params[:id]
+
+      current_state = UpvoteHouse.where(review_house_id: review_house_id, user_id: current_user.id).take
+      if current_state.present?
+        current_state.delete
+        return render json: { current_user: true, has_upvoted: false }
+      else
+        UpvoteHouse.create(review_house_id: review_house_id, user_id: current_user.id)
+        return render json: { current_user: true, has_upvoted: true }
+      end
+    else
+      return render json: { current_user: false }
     end
   end
 
   def scrap
-    review_house_id = params[:id]
+    if user_signed_in?
+      review_house_id = params[:id]
 
-    current_state = ScrapHouse.where(review_house_id: review_house_id, user_id: current_user.id).take
-    if current_state.present?
-      current_state.delete
-      return render json: { has_scraped: false }
+      current_state = ScrapHouse.where(review_house_id: review_house_id, user_id: current_user.id).take
+      if current_state.present?
+        current_state.delete
+        return render json: { curent_user: true, has_scraped: false }
+      else
+        ScrapHouse.create(review_house_id: review_house_id, user_id: current_user.id)
+        return render json: { current_user: true, has_scraped: true }
+      end
     else
-      ScrapHouse.create(review_house_id: review_house_id, user_id: current_user.id)
-      return render json: { has_scraped: true }
+      return render json: { current_user: false }
     end
   end
 

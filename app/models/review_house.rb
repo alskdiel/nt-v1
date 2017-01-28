@@ -58,4 +58,19 @@ class ReviewHouse < ActiveRecord::Base
     ScrapHouse.where(review_house_id: self.id).count
   end
 
+  def comments
+    comments = CommentHouse.where(review_house_id: self.id)
+    ret = []
+
+    comments.each do |comment|
+      ret.push({
+        written_by: User.find(comment.user_id).nickname,
+        content: comment.content,
+        created_at: comment.created_at.strftime("%Y-%m-%d")
+      })
+    end
+
+    return ret
+  end
+
 end

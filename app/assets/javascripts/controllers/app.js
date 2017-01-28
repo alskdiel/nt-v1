@@ -38,6 +38,7 @@ myApp.controller('IndexCtrl', [
           // console.log(data);
 
           var modalInstance = $uibModal.open({
+            windowClass: 'modal-dialog-show',
             controller: 'ShowCtrl',
             templateUrl: 'showModal.html',
             resolve: {
@@ -70,9 +71,13 @@ myApp.controller('ShowCtrl', [
     $scope.reviews = data.reviews;
     $scope.pros_and_cons = data.pros_and_cons;
     $scope.upvote_and_scrap = data.upvote_and_scrap;
+    $scope.comments = [];
+
+    $scope.comment_writting = "";
 
     $timeout(function() {
       setStarScore(data.satisfaction);
+      getComments();
     });
 
     $scope.upvote = function() {
@@ -83,12 +88,16 @@ myApp.controller('ShowCtrl', [
       })
         .then(function(data, status, headers, config) {
           console.log(data);
-          if(data.data.has_upvoted) {
-            $scope.upvote_and_scrap.cnt_upvotes++;
-            $scope.upvote_and_scrap.has_upvoted = true;
+          if(data.data.current_user) {
+            if(data.data.has_upvoted) {
+              $scope.upvote_and_scrap.cnt_upvotes++;
+              $scope.upvote_and_scrap.has_upvoted = true;
+            } else {
+              $scope.upvote_and_scrap.cnt_upvotes--;
+              $scope.upvote_and_scrap.has_upvoted = false;
+            }
           } else {
-            $scope.upvote_and_scrap.cnt_upvotes--;
-            $scope.upvote_and_scrap.has_upvoted = false;
+            alert("로그인 해 주세요");
           }
         });
     }
@@ -101,13 +110,48 @@ myApp.controller('ShowCtrl', [
       })
         .then(function(data, status, headers, config) {
           console.log(data);
-          if(data.data.has_scraped) {
-            $scope.upvote_and_scrap.cnt_scraps++;
-            $scope.upvote_and_scrap.has_scraped = true;
+          if(data.data.current_user) {
+            if(data.data.has_scraped) {
+              $scope.upvote_and_scrap.cnt_scraps++;
+              $scope.upvote_and_scrap.has_scraped = true;
+            } else {
+              $scope.upvote_and_scrap.cnt_scraps--;
+              $scope.upvote_and_scrap.has_scraped = false;
+            }
           } else {
-            $scope.upvote_and_scrap.cnt_scraps--;
-            $scope.upvote_and_scrap.has_scraped = false;
+            alert("로그인 해 주세요");
           }
+        });
+    }
+
+    $scope.submit_comment = function() {
+      $http({
+        method: 'post',
+        url: 'new_comment',
+        data: { review_house_id: $scope.id,
+                comment: $scope.comment_writting }
+      })
+        .then(function(data, status, headers, config) {
+          console.log(data);
+          if(data.data.current_user) {
+            // get comments
+            getComments();
+          } else {
+            alert("로그인 해 주세요");
+          }
+        });
+    }
+
+    function getComments() {
+      var url = "/get_comments/"+$scope.id+".json";
+      $http({
+        method: 'get',
+        url: url,
+      })
+        .then(function(data, status, headers, config) {
+          console.log(data);
+          $scope.comments = data.data.comments
+          console.log($scope.comments);
         });
     }
 

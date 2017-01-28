@@ -57,149 +57,177 @@
 }
 
 .modal {
-  .modal-dialog {
-    width: calc(100% - 420px);
-    .modal-content {
-      border-radius: 0px;
-      .content-wrapper.show-modal {
-        .image-container {
-          padding: 23px 20px;
-          margin-bottom: 53px;
-        }
-        .title-container {
-          padding: 0px 20px;
-          height: 48px;
-          line-height: 48px;
-          font-size: 48px;
-          margin-bottom: 19px;
-        }
-        .writtenby-container, .addr-container, .duration-container {
-          padding: 0px 20px;
-          height: 24px;
-          line-height: 24px;
-          font-size: 24px;
-          margin-bottom: 19px;
-          div {
-            display: inline-block;
-            color: #999999;
+  &.modal-dialog-show {
+    .modal-dialog {
+      width: calc(100% - 420px);
+      .modal-content {
+        border-radius: 0px;
+        padding: 23px 0px;
+        .content-wrapper.show-modal {
+          .image-container {
+            padding: 0px 20px;
+            margin-bottom: 53px;
           }
-        }
-        .satisfaction-container {
-          border-top: 1px solid #999999;
-          border-bottom: 1px solid #999999;
-          .avr-container, .detail-container {
-            padding: 45px 20px;
-            width: calc(50% - 21px);
-            display: inline-block;
-            text-align: center;
+          .title-container {
+            padding: 0px 20px;
+            height: 48px;
+            line-height: 48px;
+            font-size: 48px;
+            margin-bottom: 19px;
+          }
+          .writtenby-container, .addr-container, .duration-container {
+            padding: 0px 20px;
+            height: 24px;
+            line-height: 24px;
+            font-size: 24px;
+            margin-bottom: 19px;
             div {
-              div{
-                &.score {
-                  display: inline-block;
-                  height: 100%;
-                  img {
+              display: inline-block;
+              color: #999999;
+            }
+          }
+          .satisfaction-container {
+            border-top: 1px solid #999999;
+            border-bottom: 1px solid #999999;
+            .avr-container, .detail-container {
+              padding: 45px 20px;
+              width: calc(50% - 21px);
+              display: inline-block;
+              text-align: center;
+              div {
+                div{
+                  &.score {
+                    display: inline-block;
                     height: 100%;
-                    &.none {
-                      display: none;
+                    img {
+                      height: 100%;
+                      &.none {
+                        display: none;
+                      }
                     }
                   }
                 }
               }
             }
-          }
-          .avr-container {
-            .title {
-              height: 48px;
-              line-height: 48px;
-              font-size: 48px;
-              margin-bottom: 20px;
-            }
-            .stars {
-              height: 30px;
-              .score {
-                margin: 0px 17px
+            .avr-container {
+              .title {
+                height: 48px;
+                line-height: 48px;
+                font-size: 48px;
+                margin-bottom: 20px;
               }
-            }
-          }
-          .detail-container {
-            div {
-              margin-bottom: 30px;
-              &:last-child {
-                margin-bottom: 0px;
-              }
-              .title, .stars {
-                margin-bottom: 0px;
-                height: 24px;
-                line-height: 24px;
-                font-size: 24px;
-                display: inline-block;
+              .stars {
+                height: 30px;
                 .score {
+                  margin: 0px 10px;
+                }
+              }
+            }
+            .detail-container {
+              div {
+                margin-bottom: 30px;
+                &:last-child {
+                  margin-bottom: 0px;
+                }
+                .title, .stars {
+                  margin-bottom: 0px;
+                  height: 24px;
+                  line-height: 24px;
+                  font-size: 24px;
+                  display: inline-block;
+                  .score {
+                  }
                 }
               }
             }
           }
-        }
-        .review-container {
-          .review-wrapper {
+          .review-container {
+            .review-wrapper {
+              border-bottom: 1px solid #999999;
+              padding: 19px 20px;
+              .title, .content {
+                display: inline-block;
+                &.title {
+                  height: 48px;
+                  line-height: 48px;
+                  font-size: 48px;
+                }
+                &.content {
+                  height: 24px;
+                  line-height: 24px;
+                  font-size: 24px;
+                }
+              }
+            }
+          }
+          .p-a-c-container {
             border-bottom: 1px solid #999999;
-            padding: 19px 20px;
-            .title, .content {
+            .pros, .cons {
               display: inline-block;
-              &.title {
+              padding: 30px 42px;
+              width: calc(50% - 20px);
+              .title {
                 height: 48px;
                 line-height: 48px;
+                text-align: center;
                 font-size: 48px;
+                margin-bottom: 25px;
               }
-              &.content {
-                height: 24px;
-                line-height: 24px;
+              .pros-content-wrapper, .cons-content-wrapper {
+                margin-bottom: 15px;
+                .content {
+                  height: 24px;
+                  line-height: 24px;
+                  font-size: 24px;
+                }
+              }
+            }
+            .pros {
+              border-right: 1px solid #999999;
+              .title {
+                color: #dc534c;
+              }
+            }
+            .cons {
+              .title {
+                color: #f4ca66;
+              }
+            }
+          }
+          .upvote-and-scrap-container {
+            padding: 105px 0px 56px 0px;
+            .upvote, .scrap {
+              display: inline-block;
+              .button {
+                height: 100px;
+                img {
+                  height: 100%;
+                }
+              }
+            }
+          }
+          .comment-container {
+            .write-container {
+              .title {
+                border-bottom: 1px solid #000;
+                padding: 20px 20px;
                 font-size: 24px;
               }
-            }
-          }
-        }
-        .p-a-c-container {
-          border-bottom: 1px solid #999999;
-          .pros, .cons {
-            display: inline-block;
-            padding: 30px 42px;
-            width: calc(50% - 20px);
-            .title {
-              height: 48px;
-              line-height: 48px;
-              text-align: center;
-              font-size: 48px;
-              margin-bottom: 25px;
-            }
-            .pros-content-wrapper, .cons-content-wrapper {
-              margin-bottom: 15px;
-              .content {
-                height: 24px;
-                line-height: 24px;
-                font-size: 24px;
+              textarea {
+                width: calc(100% - 46px);
+                height: 160px;
+                margin: 22px;
+                resize: none;
               }
-            }
-          }
-          .pros {
-            border-right: 1px solid #999999;
-            .title {
-              color: #dc534c;
-            }
-          }
-          .cons {
-            .title {
-              color: #f4ca66;
-            }
-          }
-        }
-        .upvote-and-scrap-container {
-          padding: 105px 0px 56px 0px;
-          .upvote, .scrap {
-            display: inline-block;
-            .button {
-              height: 100px;
-              img {
-                height: 100%;
+              .button {
+                width: 128px;
+                height: 57px;
+                line-height: 57px;
+                text-align: center;
+                font-size: 26px;
+                border-radius: 10px;
+                background: #f4ca66;
+                color: #fff;
               }
             }
           }
