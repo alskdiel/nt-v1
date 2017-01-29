@@ -87,6 +87,10 @@
         <div class="button" ng-click="submit_comment()">등록</div>
       </div>
       <div class="list-container">
+        <div class="sort-by">
+          <div class="hot">HOT</div>
+          <div class="new">NEW</div>
+        </div>
         <div class="comment-wrapper" ng-repeat="comment in comments track by $index">
           <div class="comment-header">
             <div class="nickname">{{comment.written_by}}</div>
@@ -94,11 +98,15 @@
           </div>
           <div class="comment-body">
             <div class="content">{{comment.content}}</div>
-            <div class="upvote"></div>
+            <div class="upvote">
+              <%= image_tag 'show/button-good.png' %>
+            </div>
           </div>
           <div class="comment-footer">
-            <div class="show-subcomments"></div>
-            <div class="write-subcomments"></div>
+            <div class="show-subcomments">
+            </div>
+            <div class="write-subcomments">
+            </div>
           </div>
         <div>
       </div>
