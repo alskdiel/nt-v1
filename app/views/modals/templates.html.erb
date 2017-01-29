@@ -119,14 +119,31 @@
     </div>
   </div>
 </div>
-<% end %>
 
-<div class="modal fade" id="modal-test" role="dialog">
+<div class="modal fade" id="modal-write-lifefeed" role="dialog">
   <div class="modal-dialog">
     <div class="modal-content">
+      <div class="modal-header">
+      </div>
       <div class="modal-body">
-        <p>TEST MODAL.</p>
+        <div class="title">
+          <input type="text" placeholder="제목" name="review_life[title]"/>
+        </div>
+        <div class="hashtag">
+          <input type="text" placeholder="해시태그" name="hashtag"/>
+        </div>
+        <div class="image-file">
+          <input type="file" name="review_life[image]"/>
+        </div>
+        <div class="content">
+          <textarea placeholder="글쓰기" name="reveiw_life[content]"/></textarea>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <div class="button submit">공유하기</div>
       </div>
     </div>
   </div>
 </div>
+<% end %>
+

@@ -237,4 +237,40 @@
       }
     }
   }
+  &#modal-write-lifefeed {
+    .modal-dialog {
+      .modal-content {
+        width: 640px;
+        padding: 66px 22px;
+        border-radius: 0px;
+        .modal-header {
+          border: 0px;
+          padding: 0px;
+        }
+        .modal-body {
+          padding: 0px;
+          .title, .hashtag, .content {
+            width: 100%;
+            input, textarea {
+              width: 100%;
+            }
+            textarea {
+              resize: none;
+              height: 145px;
+            }
+          }
+          .image-file {
+          
+          }
+          .title, .hashtag, .image-file {
+            margin-bottom: 23px;
+          }
+        }
+        .modal-footer {
+          border: 0px;
+          padding: 0px;
+        }
+      }
+    }
+  }
 }

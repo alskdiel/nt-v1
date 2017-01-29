@@ -273,7 +273,9 @@ var modal_function = function () {
   });
 
   $('#modal-write .modal-content .modal-body .living').on('click', function() {
-    alert("liv")
+    // modal
+    $("#modal-write").modal('hide');
+    $("#modal-write-lifefeed").modal();
   });
 }
 
