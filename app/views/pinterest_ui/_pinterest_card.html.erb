@@ -1,4 +1,6 @@
+<% if review.thumb_nail != nil %>
 <%= image_tag review.thumb_nail %>
+<% end %>
 <div><%= review.title %></div>
 <% if review.is_house_review? %>
   <div><%= review.address %></div>

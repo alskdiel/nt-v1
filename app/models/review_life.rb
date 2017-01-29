@@ -8,7 +8,11 @@ class ReviewLife < ActiveRecord::Base
   end
 
   def thumb_nail
-    return self.image.url
+    if self.image.url != '/images/original/missing.png'
+      return self.image.url
+    else
+      return nil
+    end
   end
 
   def written_by
