@@ -62,6 +62,10 @@ myApp.controller('ShowCtrl', [
   function($scope, $http, $timeout, $uibModalInstance, data) {
     console.log(data);
 
+    var ROOT_PATH = "http://localhost:3000/"
+    var current_img_tab;
+    $scope.image_url = data.image_url;
+
     $scope.id = data.id;
     $scope.title = data.title;
     $scope.written_by = data.written_by;
@@ -78,7 +82,26 @@ myApp.controller('ShowCtrl', [
     $timeout(function() {
       setStarScore(data.satisfaction);
       getComments();
+      initImagePath();
     });
+
+    $scope.to_prev_image = function() {
+      if(current_img_tab === 0) {
+        current_img_tab = $scope.image_url.length - 1;
+      } else {
+        current_img_tab--;
+      }
+      $scope.current_img = ROOT_PATH+$scope.image_url[current_img_tab];
+    }
+
+    $scope.to_next_image = function() {
+      if(current_img_tab < $scope.image_url.length-1) {
+        current_img_tab++;
+      } else {
+        current_img_tab = 0;
+      }
+      $scope.current_img = ROOT_PATH+$scope.image_url[current_img_tab];
+    }
 
     $scope.upvote = function() {
       var url = "/upvote/"+$scope.id;
@@ -91,11 +114,10 @@ myApp.controller('ShowCtrl', [
           if(data.data.current_user) {
             if(data.data.has_upvoted) {
               $scope.upvote_and_scrap.cnt_upvotes++;
-              $scope.upvote_and_scrap.has_upvoted = true;
             } else {
               $scope.upvote_and_scrap.cnt_upvotes--;
-              $scope.upvote_and_scrap.has_upvoted = false;
             }
+            $scope.upvote_and_scrap.has_upvoted = data.data.has_upvoted;
           } else {
             alert("로그인 해 주세요");
           }
@@ -113,11 +135,10 @@ myApp.controller('ShowCtrl', [
           if(data.data.current_user) {
             if(data.data.has_scraped) {
               $scope.upvote_and_scrap.cnt_scraps++;
-              $scope.upvote_and_scrap.has_scraped = true;
             } else {
               $scope.upvote_and_scrap.cnt_scraps--;
-              $scope.upvote_and_scrap.has_scraped = false;
             }
+            $scope.upvote_and_scrap.has_scraped = data.data.has_scraped;
           } else {
             alert("로그인 해 주세요");
           }
@@ -134,8 +155,28 @@ myApp.controller('ShowCtrl', [
         .then(function(data, status, headers, config) {
           console.log(data);
           if(data.data.current_user) {
-            // get comments
             getComments();
+          } else {
+            alert("로그인 해 주세요");
+          }
+        });
+    }
+
+    $scope.upvote_comment = function(comment) {
+      var url = "/upvote_comment/"+comment.id;
+      $http({
+        method: 'post',
+        url: url,
+      })
+        .then(function(data, status, headers, config) {
+          console.log(data);
+          if(data.data.current_user) {
+            if(data.data.has_upvoted) {
+              comment.upvote_count++;
+            } else {
+              comment.upvote_count--;
+            }
+            comment.has_upvoted = data.data.has_upvoted;
           } else {
             alert("로그인 해 주세요");
           }
@@ -153,6 +194,11 @@ myApp.controller('ShowCtrl', [
           $scope.comments = data.data.comments
           console.log($scope.comments);
         });
+    }
+
+    function initImagePath() {
+      current_img_tab = 0;
+      $scope.current_img = ROOT_PATH + $scope.image_url[current_img_tab];
     }
 
     function setStarScore(satisfaction) {

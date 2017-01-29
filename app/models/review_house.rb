@@ -58,15 +58,23 @@ class ReviewHouse < ActiveRecord::Base
     ScrapHouse.where(review_house_id: self.id).count
   end
 
-  def comments
+  def comments (current_user = nil)
     comments = CommentHouse.where(review_house_id: self.id)
     ret = []
 
     comments.each do |comment|
+      if current_user != nil
+        has_upvoted = comment.has_upvoted?(current_user.id)
+      else
+        has_upvoted = false
+      end
       ret.push({
+        id: comment.id,
         written_by: User.find(comment.user_id).nickname,
         content: comment.content,
-        created_at: comment.created_at.strftime("%Y-%m-%d")
+        created_at: comment.created_at.strftime("%Y-%m-%d"),
+        upvote_count: comment.upvotes,
+        has_upvoted: has_upvoted
       })
     end
 

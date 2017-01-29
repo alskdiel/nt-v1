@@ -107,7 +107,11 @@ class ReviewHousesController < ApplicationController
 
   def get_comments
     review_house_id = params[:id]
-    comments = ReviewHouse.find(review_house_id).comments
+    if user_signed_in?
+      comments = ReviewHouse.find(review_house_id).comments (current_user)
+    else
+      comments = ReviewHouse.find(review_house_id).comments
+    end
     return render json: { comments: comments }
   end
 
@@ -145,6 +149,22 @@ class ReviewHousesController < ApplicationController
     end
   end
 
+  def upvote_comment
+    if user_signed_in?
+      comment_house_id = params[:id]
+
+      current_state = UpvoteCommentHouse.where(comment_house_id: comment_house_id, user_id: current_user.id).take
+      if current_state.present?
+        current_state.delete
+        return render json: { current_user: true, has_upvoted: false }
+      else
+        UpvoteCommentHouse.create(comment_house_id: comment_house_id, user_id: current_user.id)
+        return render json: { current_user: true, has_upvoted: true }
+      end
+    else
+      return render json: { current_user: false }
+    end
+  end
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_review_house

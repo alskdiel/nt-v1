@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   post "upvote/:id" => "review_houses#upvote"
   post "scrap/:id" => "review_houses#scrap"
   post "new_comment" => "review_houses#submit_comment"
+  post "upvote_comment/:id" => "review_houses#upvote_comment"
   get "get_comments/:id" => "review_houses#get_comments"
 
   # Example of regular route:

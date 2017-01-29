@@ -1,6 +1,9 @@
 <script type="text/ng-template" id="showModal.html">
   <div class="content-wrapper show-modal">
     <div class="image-container">
+      <div class="to_prev" ng-click="to_prev_image()">이전</div>
+      <img ng-src="{{current_img}}"/>
+      <div class="to_next" ng-click="to_next_image()">다음</div>
     </div>
 
     <div class="title-container">
@@ -98,9 +101,10 @@
           </div>
           <div class="comment-body">
             <div class="content">{{comment.content}}</div>
-            <div class="upvote">
+            <div class="upvote" ng-click="upvote_comment(comment)">
               <%= image_tag 'show/button-good.png' %>
             </div>
+            <div class="upvote-count">{{comment.upvote_count}}</div>
           </div>
           <div class="comment-footer">
             <div class="show-subcomments">

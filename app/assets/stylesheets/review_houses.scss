@@ -67,6 +67,9 @@
           .image-container {
             padding: 0px 20px;
             margin-bottom: 53px;
+            img {
+              width: 100%;
+            }
           }
           .title-container {
             padding: 0px 20px;
@@ -256,8 +259,9 @@
                       font-size: 17px;
                     }
                     &.upvote {
+                      height: 40px;
                       img {
-                        height: 40px;
+                        height: 100%;
                       }
                     }
                   }
