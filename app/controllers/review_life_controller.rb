@@ -1,7 +1,8 @@
 class ReviewLifeController < ApplicationController
 
   def index
-    @review_lives = ReviewLife.all
+    @reviews = ReviewLife.all
+    render "pinterest_ui/index"
     # binding pry
   end
 

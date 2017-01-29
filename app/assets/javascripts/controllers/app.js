@@ -26,7 +26,7 @@ myApp.controller('IndexCtrl', [
       itemSelector: '.grid-item',
       columnWidth: 275
     });
-    $scope.getCardDetail = function(id) {
+    $scope.getCardDetail_house = function(id) {
       console.log(id);
       var url = "/review_houses/"+id+".json";
 

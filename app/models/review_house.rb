@@ -7,6 +7,10 @@ class ReviewHouse < ActiveRecord::Base
 
   belongs_to :user
 
+  def is_house_review?
+    return true
+  end
+
   def thumb_nail
     return PicHouse.where(review_house_id: self.id).take.image.url
   end

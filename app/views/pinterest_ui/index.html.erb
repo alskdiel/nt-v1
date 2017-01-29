@@ -2,10 +2,14 @@
   <div class="content-wrapper">
     <div class="title">살아본 놈이 제일 잘 안다</div>
     <div class="grid" data-masonry='{ "itemSelector": ".grid-item", "columnWidth": 275 }'>
-      <% @review_houses.each do |review_house| %>
-        <div class="grid-item" ng-click="getCardDetail(<%= review_house.id %>)">
+      <% @reviews.each do |review| %>
+        <% if review.is_house_review? %>
+          <div class="grid-item" ng-click="getCardDetail_house(<%= review.id %>)">
+        <% else %>
+          <div class="grid-item" ng-click="getCardDetail_life(<%= review.id %>)">
+        <% end %>
           <div class="card-wrapper">
-            <%= render template: "review_houses/_pinterest_card", :locals => {:review_house => review_house} %>
+            <%= render template: "pinterest_ui/_pinterest_card", :locals => {:review => review} %>
           </div>
         </div>
       <% end %>
