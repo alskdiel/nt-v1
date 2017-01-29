@@ -273,9 +273,12 @@ var modal_function = function () {
   });
 
   $('#modal-write .modal-content .modal-body .living').on('click', function() {
-    // modal
     $("#modal-write").modal('hide');
     $("#modal-write-lifefeed").modal();
+  });
+
+  $('#modal-write-lifefeed .modal-content .modal-footer .submit').on('click', function() {
+    $("#form-life").submit();
   });
 }
 

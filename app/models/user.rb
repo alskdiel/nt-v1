@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
   has_many :review_houses
+  has_many :review_lifes
   has_many :upvote_houses
   has_many :scrap_houses
   has_many :comment_houses
