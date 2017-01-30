@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170130083405) do
+ActiveRecord::Schema.define(version: 20170130091844) do
 
   create_table "comment_houses", force: :cascade do |t|
     t.integer  "review_house_id"
@@ -27,6 +27,19 @@ ActiveRecord::Schema.define(version: 20170130083405) do
     t.text     "content"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
+  end
+
+  create_table "hash_tag_refs", force: :cascade do |t|
+    t.integer  "hash_tag_id"
+    t.integer  "review_life_id"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
+  create_table "hash_tags", force: :cascade do |t|
+    t.string   "keyword"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "pic_houses", force: :cascade do |t|
