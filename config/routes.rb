@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root "review_houses#index"
+  root "main#index"
   get "review_lives" => "review_life#index"
   post "review_lifes" => "review_life#create"
   post "upvote/:id" => "review_houses#upvote"

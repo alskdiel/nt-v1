@@ -5,13 +5,17 @@
       <% @reviews.each do |review| %>
         <% if review.is_house_review? %>
           <div class="grid-item" ng-click="getCardDetail_house(<%= review.id %>)">
+            <div class="card-wrapper">
+              <%= render template: "pinterest_ui/_pinterest_card", :locals => {:review => review} %>
+            </div>
+          </div>
         <% else %>
           <div class="grid-item" ng-click="getCardDetail_life(<%= review.id %>)">
-        <% end %>
-          <div class="card-wrapper">
-            <%= render template: "pinterest_ui/_pinterest_card", :locals => {:review => review} %>
-          </div>
+            <div class="card-wrapper">
+              <%= render template: "pinterest_ui/_pinterest_card_life", :locals => {:review => review} %>
+            </div>
         </div>
+        <% end %>
       <% end %>
     </div>
   </div>

@@ -2,21 +2,17 @@
 <%= image_tag review.thumb_nail %>
 <% end %>
 <div><%= review.title %></div>
-<% if review.is_house_review? %>
-  <div><%= review.address %></div>
-<% end %>
+<div><%= review.address %></div>
 <div>by.<%= review.written_by %></div>
-<% if review.is_house_review? %>
-  <div class="avr-satis">
-  <%  cnt = 0
-      while cnt < review.avr_satis %>
-        <%= image_tag 'write/star-purple.png', class: "star" %>
-  <%    cnt += 1
-      end
-      while cnt < 5 %>
-        <%= image_tag 'write/star-grey.png', class: "star" %>
-  <%    cnt += 1
-      end
-   %>
-  </div>
-<% end %>
+<div class="avr-satis">
+<%  cnt = 0
+    while cnt < review.avr_satis %>
+      <%= image_tag 'write/star-purple.png', class: "star" %>
+<%    cnt += 1
+    end
+    while cnt < 5 %>
+      <%= image_tag 'write/star-grey.png', class: "star" %>
+<%    cnt += 1
+    end
+ %>
+</div>

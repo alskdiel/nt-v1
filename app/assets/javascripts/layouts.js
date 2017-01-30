@@ -14,6 +14,10 @@ init  = function() {
     window.location.href = "/";
   });
 
+  $('.sub-navbar .all').on('click', function() {
+    window.location.href = "/";
+  });
+
   $('.sub-navbar .house').on('click', function() {
     window.location.href = "/review_houses";
   });
