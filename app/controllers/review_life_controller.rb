@@ -21,6 +21,24 @@ class ReviewLifeController < ApplicationController
     review_life = current_user.review_lifes.new(review_life_params)
     review_life.save
 
+    hashtag_str = params[:hashtag]
+    hashtag_str.downcase!
+    hashtag_str.delete! "\ "
+
+    hashtags_tmp = hashtag_str.split("#")
+    hashtags = []
+
+    hashtags_tmp.each do |hashtag|
+      if hashtag != "" && !hashtags.include?(hashtag)
+        hashtags.push(hashtag)
+        current_tag = HashTag.where(keyword: hashtag).take
+        if !current_tag.present?
+          current_tag = HashTag.create(keyword: hashtag)
+        end
+        HashTagRef.create(hash_tag_id: current_tag.id, review_life_id: review_life.id)
+      end
+    end
+
     redirect_to root_path
   end
 
