@@ -14,12 +14,20 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable,
          :confirmable
 
-  def has_upvoted? (review_house_id)
+  def has_upvoted_H? (review_house_id)
     return self.upvote_houses.where(review_house_id: review_house_id).take.present?
   end
 
-  def has_scraped? (review_house_id)
+  def has_scraped_H? (review_house_id)
     return self.scrap_houses.where(review_house_id: review_house_id).take.present?
+  end
+
+  def has_upvoted_L? (review_life_id)
+    return self.upvote_lives.where(review_life_id: review_life_id).take.present?
+  end
+
+  def has_scraped_L? (review_life_id)
+    return self.scrap_lives.where(review_life_id: review_life_id).take.present?
   end
 
   def nickname

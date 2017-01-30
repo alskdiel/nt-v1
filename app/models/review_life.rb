@@ -26,11 +26,11 @@ class ReviewLife < ActiveRecord::Base
     return User.where(id: self.user_id).take.user_info.nickname
   end
 
-  # def cnt_upvotes
-  #   UpvoteLife.where(review_life_id: self.id).count
-  # end
-  #
-  # def cnt_scraps
-  #   ScrapLife.where(review_life_id: self.id).count
-  # end
+  def cnt_upvotes
+    UpvoteLife.where(review_life_id: self.id).count
+  end
+
+  def cnt_scraps
+    ScrapLife.where(review_life_id: self.id).count
+  end
 end

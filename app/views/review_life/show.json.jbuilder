@@ -4,9 +4,9 @@ json.title @review.title
 json.written_by @review.written_by
 json.content @review.content
 
-# json.upvote_and_scrap do
-#   json.has_upvoted @upvote
-#   json.cnt_upvotes @review.cnt_upvotes
-#   json.has_scraped @scrap
-#   json.cnt_scraps @review.cnt_scraps
-# end
+json.upvote_and_scrap do
+  json.has_upvoted @upvote
+  json.cnt_upvotes @review.cnt_upvotes
+  json.has_scraped @scrap
+  json.cnt_scraps @review.cnt_scraps
+end

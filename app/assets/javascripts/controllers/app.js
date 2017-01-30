@@ -126,7 +126,7 @@ myApp.controller('ShowCtrl', [
     }
 
     $scope.upvote = function() {
-      var url = "/upvote/"+$scope.id;
+      var url = "/upvote_H/"+$scope.id;
       $http({
         method: 'post',
         url: url,
@@ -147,7 +147,7 @@ myApp.controller('ShowCtrl', [
     }
 
     $scope.scrap = function() {
-      var url = "/scrap/"+$scope.id;
+      var url = "/scrap_H/"+$scope.id;
       $http({
         method: 'post',
         url: url,
@@ -281,7 +281,7 @@ myApp.controller('ShowLifeCtrl', [
     });
 
     $scope.upvote = function() {
-      var url = "/upvote/"+$scope.id;
+      var url = "/upvote_L/"+$scope.id;
       $http({
         method: 'post',
         url: url,
@@ -302,7 +302,7 @@ myApp.controller('ShowLifeCtrl', [
     }
 
     $scope.scrap = function() {
-      var url = "/scrap/"+$scope.id;
+      var url = "/scrap_L/"+$scope.id;
       $http({
         method: 'post',
         url: url,

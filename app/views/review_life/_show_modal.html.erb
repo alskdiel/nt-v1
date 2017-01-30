@@ -17,5 +17,20 @@
       <div class="content">{{content}}</div>
     </div>
 
+    <div class="upvote-and-scrap-container">
+      <div class="upvote">
+        <div class="count">{{upvote_and_scrap.cnt_upvotes}}</div>
+        <div class="button" ng-click="upvote()">
+          <%= image_tag 'show/button-good.png' %>
+        </div>
+      </div>
+      <div class="scrap">
+        <div class="count">{{upvote_and_scrap.cnt_scraps}}</div>
+        <div class="button" ng-click="scrap()">
+          <%= image_tag 'show/button-scrap.png' %>
+        </div>
+      </div>
+    </div>
+
   </div>
 </script>

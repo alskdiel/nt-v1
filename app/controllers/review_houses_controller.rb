@@ -14,8 +14,8 @@ class ReviewHousesController < ApplicationController
   def show
     @review = ReviewHouse.find(params[:id])
     if user_signed_in?
-      @upvote = current_user.has_upvoted?(params[:id])
-      @scrap = current_user.has_scraped?(params[:id])
+      @upvote = current_user.has_upvoted_H?(params[:id])
+      @scrap = current_user.has_scraped_H?(params[:id])
     else
       @upvote = @scrap = false
     end
