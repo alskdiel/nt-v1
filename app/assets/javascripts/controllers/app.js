@@ -268,6 +268,7 @@ myApp.controller('ShowLifeCtrl', [
     $scope.id = data.id;
     $scope.title = data.title;
     $scope.written_by = data.written_by;
+    $scope.hash_tags = data.hash_tags;
     $scope.content = data.content;
 
     $scope.upvote_and_scrap = data.upvote_and_scrap;

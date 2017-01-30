@@ -58,4 +58,15 @@ class ReviewLife < ActiveRecord::Base
 
     return ret
   end
+
+  def hash_tag_str
+    hash_tag_str = ""
+    refs = self.hash_tag_refs
+    refs.each do |ref|
+      hash_tag_str = hash_tag_str + "##{HashTag.find(ref.hash_tag_id).keyword} "
+    end
+
+    return hash_tag_str
+  end
+
 end

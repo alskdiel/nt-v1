@@ -11,4 +11,5 @@ class CommentLife < ActiveRecord::Base
   def has_upvoted? (user_id)
     return UpvoteCommentLife.where(comment_life_id: self.id, user_id: user_id).take.present?
   end
+
 end
