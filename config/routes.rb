@@ -18,9 +18,12 @@ Rails.application.routes.draw do
   post "scrap_H/:id" => "review_houses#scrap"
   post "upvote_L/:id" => "review_life#upvote"
   post "scrap_L/:id" => "review_life#scrap"
-  post "new_comment" => "review_houses#submit_comment"
-  post "upvote_comment/:id" => "review_houses#upvote_comment"
-  get "get_comments/:id" => "review_houses#get_comments"
+  post "new_comment_H" => "review_houses#submit_comment"
+  post "new_comment_L" => "review_life#submit_comment"
+  post "upvote_comment_H/:id" => "review_houses#upvote_comment"
+  post "upvote_comment_L/:id" => "review_life#upvote_comment"
+  get "get_comments_H/:id" => "review_houses#get_comments"
+  get "get_comments_L/:id" => "review_life#get_comments"
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

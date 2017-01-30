@@ -1,0 +1,4 @@
+class SubcommentLife < ActiveRecord::Base
+  belongs_to :user
+  belongs_to :comment_life
+end

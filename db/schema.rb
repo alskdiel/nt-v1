@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170130073336) do
+ActiveRecord::Schema.define(version: 20170130083405) do
 
   create_table "comment_houses", force: :cascade do |t|
     t.integer  "review_house_id"
@@ -19,6 +19,14 @@ ActiveRecord::Schema.define(version: 20170130073336) do
     t.text     "content"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
+  end
+
+  create_table "comment_lives", force: :cascade do |t|
+    t.integer  "review_life_id"
+    t.integer  "user_id"
+    t.text     "content"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
   end
 
   create_table "pic_houses", force: :cascade do |t|
@@ -89,11 +97,26 @@ ActiveRecord::Schema.define(version: 20170130073336) do
     t.datetime "updated_at",       null: false
   end
 
+  create_table "subcomment_lives", force: :cascade do |t|
+    t.integer  "comment_life_id"
+    t.integer  "user_id"
+    t.text     "content"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
   create_table "upvote_comment_houses", force: :cascade do |t|
     t.integer  "comment_house_id"
     t.integer  "user_id"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
+  end
+
+  create_table "upvote_comment_lives", force: :cascade do |t|
+    t.integer  "comment_life_id"
+    t.integer  "user_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
   end
 
   create_table "upvote_houses", force: :cascade do |t|

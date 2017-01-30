@@ -7,6 +7,10 @@ class User < ActiveRecord::Base
   has_many :scrap_lives
   has_many :comment_houses
   has_many :subcomment_houses
+  has_many :comment_lives
+  has_many :subcomment_lives
+  has_many :upvote_comment_houses
+  has_many :upvote_comment_lives
   has_one :user_info
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable

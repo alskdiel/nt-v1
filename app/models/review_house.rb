@@ -63,7 +63,7 @@ class ReviewHouse < ActiveRecord::Base
   end
 
   def comments (current_user = nil)
-    comments = CommentHouse.where(review_house_id: self.id)
+    comments = self.comment_houses
     ret = []
 
     comments.each do |comment|

@@ -41,6 +41,28 @@ class ReviewLifeController < ApplicationController
     end
   end
 
+  def submit_comment
+    if user_signed_in?
+      review_life_id = params[:review_life_id]
+      content = params[:comment]
+      CommentLife.create(review_life_id: review_life_id, user_id: current_user.id, content: content)
+      return render json: { current_user: true }
+    else
+      return render json: { current_user: false }
+    end
+  end
+
+  def get_comments
+    review_life_id = params[:id]
+    if user_signed_in?
+      comments = ReviewLife.find(review_life_id).comments (current_user)
+    else
+      comments = ReviewLife.find(review_life_id).comments
+    end
+    puts comments
+    return render json: { comments: comments }
+  end
+
   def scrap
     if user_signed_in?
       review_life_id = params[:id]
@@ -52,6 +74,23 @@ class ReviewLifeController < ApplicationController
       else
         ScrapLife.create(review_life_id: review_life_id, user_id: current_user.id)
         return render json: { current_user: true, has_scraped: true }
+      end
+    else
+      return render json: { current_user: false }
+    end
+  end
+
+  def upvote_comment
+    if user_signed_in?
+      comment_life_id = params[:id]
+
+      current_state = UpvoteCommentLife.where(comment_life_id: comment_life_id, user_id: current_user.id).take
+      if current_state.present?
+        current_state.delete
+        return render json: { current_user: true, has_upvoted: false }
+      else
+        UpvoteCommentLife.create(comment_life_id: comment_life_id, user_id: current_user.id)
+        return render json: { current_user: true, has_upvoted: true }
       end
     else
       return render json: { current_user: false }

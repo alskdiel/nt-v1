@@ -170,7 +170,7 @@ myApp.controller('ShowCtrl', [
     $scope.submit_comment = function() {
       $http({
         method: 'post',
-        url: 'new_comment',
+        url: 'new_comment_H',
         data: { review_house_id: $scope.id,
                 comment: $scope.comment_writting }
       })
@@ -185,7 +185,7 @@ myApp.controller('ShowCtrl', [
     }
 
     $scope.upvote_comment = function(comment) {
-      var url = "/upvote_comment/"+comment.id;
+      var url = "/upvote_comment_H/"+comment.id;
       $http({
         method: 'post',
         url: url,
@@ -206,7 +206,7 @@ myApp.controller('ShowCtrl', [
     }
 
     function getComments() {
-      var url = "/get_comments/"+$scope.id+".json";
+      var url = "/get_comments_H/"+$scope.id+".json";
       $http({
         method: 'get',
         url: url,
@@ -276,7 +276,7 @@ myApp.controller('ShowLifeCtrl', [
     $scope.comment_writting = "";
 
     $timeout(function() {
-      // getComments();
+      getComments();
       initImagePath();
     });
 
@@ -325,8 +325,8 @@ myApp.controller('ShowLifeCtrl', [
     $scope.submit_comment = function() {
       $http({
         method: 'post',
-        url: 'new_comment',
-        data: { review_house_id: $scope.id,
+        url: 'new_comment_L',
+        data: { review_life_id : $scope.id,
                 comment: $scope.comment_writting }
       })
         .then(function(data, status, headers, config) {
@@ -340,7 +340,7 @@ myApp.controller('ShowLifeCtrl', [
     }
 
     $scope.upvote_comment = function(comment) {
-      var url = "/upvote_comment/"+comment.id;
+      var url = "/upvote_comment_L/"+comment.id;
       $http({
         method: 'post',
         url: url,
@@ -367,7 +367,7 @@ myApp.controller('ShowLifeCtrl', [
     }
 
     function getComments() {
-      var url = "/get_comments/"+$scope.id+".json";
+      var url = "/get_comments_L/"+$scope.id+".json";
       $http({
         method: 'get',
         url: url,
