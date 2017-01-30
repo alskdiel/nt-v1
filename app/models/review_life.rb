@@ -15,6 +15,10 @@ class ReviewLife < ActiveRecord::Base
     end
   end
 
+  def image_url
+    self.thumb_nail
+  end
+
   def written_by
     return User.where(id: self.user_id).take.user_info.nickname
   end

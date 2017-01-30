@@ -1,0 +1,21 @@
+<script type="text/ng-template" id="showLifeModal.html">
+  <div class="content-wrapper show-modal-life">
+    <div class="title-container">
+      <div class="title">{{title}}</div>
+    </div>
+
+    <div class="writtenby-container">
+      <div>by.</div>
+      <div class="written-by">{{written_by}}</div>
+    </div>
+
+    <div class="image-container" ng-if="image_url != null">
+      <img ng-src="{{image_url}}"/>
+    </div>
+
+    <div class="content-container">
+      <div class="content">{{content}}</div>
+    </div>
+
+  </div>
+</script>
