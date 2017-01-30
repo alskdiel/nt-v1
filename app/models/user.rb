@@ -3,6 +3,8 @@ class User < ActiveRecord::Base
   has_many :review_lifes
   has_many :upvote_houses
   has_many :scrap_houses
+  has_many :upvote_lives
+  has_many :scrap_lives
   has_many :comment_houses
   has_many :subcomment_houses
   has_one :user_info
