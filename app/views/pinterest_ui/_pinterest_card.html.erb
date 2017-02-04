@@ -1,18 +1,34 @@
 <% if review.thumb_nail != nil %>
 <%= image_tag review.thumb_nail %>
 <% end %>
-<div><%= review.title %></div>
-<div><%= review.address %></div>
-<div>by.<%= review.written_by %></div>
-<div class="avr-satis">
-<%  cnt = 0
-    while cnt < review.avr_satis %>
-      <%= image_tag 'write/star-purple.png', class: "star" %>
-<%    cnt += 1
-    end
-    while cnt < 5 %>
-      <%= image_tag 'write/star-grey.png', class: "star" %>
-<%    cnt += 1
-    end
- %>
+<div class="title-wrapper">
+  <div><%= review.title %></div>
+</div>
+<div class="address-wrapper">
+  <div><%= review.address %></div>
+</div>
+<div class="writtenby-wrapper">
+  <div>by.<%= review.written_by %></div>
+</div>
+<div class="upvote-and-scrap-wrapper">
+  <div class="upvote-wrapper">
+    <div>좋아요<%= review.cnt_upvotes%>개</div>
+  </div>
+  <div class="scrap-wrapper">
+    <div>스크랩<%= review.cnt_scraps %>개</div>
+  </div>
+</div>
+<div class="satisfaction-wrapper">
+  <div class="avr-satis">
+  <%  cnt = 0
+      while cnt < review.avr_satis %>
+        <%= image_tag 'write/star-purple.png', class: "star" %>
+  <%    cnt += 1
+      end
+      while cnt < 5 %>
+        <%= image_tag 'write/star-grey.png', class: "star" %>
+  <%    cnt += 1
+      end
+   %>
+  </div>
 </div>
