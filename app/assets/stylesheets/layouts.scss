@@ -33,18 +33,37 @@ body {
         &.nav-search {
           height: 100%;
           padding: 45px 0px;
-          width: calc(100% - 370px);
-          input {
+          width: calc(100% - 420px);
+          .search-wrapper {
             width: 100%;
             height: 100%;
-            padding: 5px;
-            border: 0px;
-            margin: 0;
-            -webkit-box-sizing: border-box;
-            -moz-box-sizing: border-box;
-            -o-box-sizing: border-box;
-            -ms-box-sizing: border-box;
-            box-sizing: border-box;
+            background: #fff;
+            .search-img-wrapper, .search-input-wrapper {
+              height: 100%;
+              display: inline-block;
+              background: #fff;
+            }
+            .search-img-wrapper {
+              padding: 6px;
+              img {
+                height: 100%;
+              }
+            }
+            .search-input-wrapper {
+              width: calc(100% - 35px);
+              input {
+                width: 100%;
+                height: 100%;
+                padding: 0px;
+                border: 0px;
+                margin: 0;
+                -webkit-box-sizing: border-box;
+                -moz-box-sizing: border-box;
+                -o-box-sizing: border-box;
+                -ms-box-sizing: border-box;
+                box-sizing: border-box;
+              }
+            }
           }
         }
         &.nav-buttons {

@@ -3,7 +3,14 @@
     <%= image_tag 'navbar/logo.png', class: "logo" %>
   </div>
   <div class="nav-search">
-    <input type="text" class="search" value="search"/>
+    <div class="search-wrapper">
+      <div class="search-img-wrapper">
+        <%= image_tag 'navbar/search.png' %>
+      </div>
+      <div class="search-input-wrapper">
+        <input type="text" class="search" placeholder="search"/>
+      </div>
+    </div>
   </div>
   <div class="nav-buttons">
     <%= image_tag 'navbar/button-write.png', class: "write" %>

@@ -14,6 +14,12 @@ init  = function() {
     window.location.href = "/";
   });
 
+  $('.nav-bar .nav-search .search').on('keydown', function(key){
+    if(key.keyCode == 13) {
+      alert('aaa');
+    }
+  });
+
   $('.sub-navbar .all').on('click', function() {
     window.location.href = "/";
   });
