@@ -140,7 +140,7 @@ class ReviewHousesController < ApplicationController
       current_state = ScrapHouse.where(review_house_id: review_house_id, user_id: current_user.id).take
       if current_state.present?
         current_state.delete
-        return render json: { curent_user: true, has_scraped: false }
+        return render json: { current_user: true, has_scraped: false }
       else
         ScrapHouse.create(review_house_id: review_house_id, user_id: current_user.id)
         return render json: { current_user: true, has_scraped: true }

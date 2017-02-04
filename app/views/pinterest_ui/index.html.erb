@@ -4,13 +4,13 @@
     <div class="grid" data-masonry='{ "itemSelector": ".grid-item", "columnWidth": 275 }'>
       <% @reviews.each do |review| %>
         <% if review.is_house_review? %>
-          <div class="grid-item" ng-click="getCardDetail_house(<%= review.id %>)">
+          <div class="grid-item oneroom" ng-click="getCardDetail_house(<%= review.id %>)">
             <div class="card-wrapper">
               <%= render template: "pinterest_ui/_pinterest_card", :locals => {:review => review} %>
             </div>
           </div>
         <% else %>
-          <div class="grid-item" ng-click="getCardDetail_life(<%= review.id %>)">
+          <div class="grid-item life" ng-click="getCardDetail_life(<%= review.id %>)">
             <div class="card-wrapper">
               <%= render template: "pinterest_ui/_pinterest_card_life", :locals => {:review => review} %>
             </div>

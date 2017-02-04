@@ -21,4 +21,8 @@ class MainController < ApplicationController
     render "pinterest_ui/index"
   end
 
+  def search_item
+
+  end
+
 end

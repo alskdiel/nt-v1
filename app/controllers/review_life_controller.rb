@@ -88,7 +88,7 @@ class ReviewLifeController < ApplicationController
       current_state = ScrapLife.where(review_life_id: review_life_id, user_id: current_user.id).take
       if current_state.present?
         current_state.delete
-        return render json: { curent_user: true, has_scraped: false }
+        return render json: { current_user: true, has_scraped: false }
       else
         ScrapLife.create(review_life_id: review_life_id, user_id: current_user.id)
         return render json: { current_user: true, has_scraped: true }
