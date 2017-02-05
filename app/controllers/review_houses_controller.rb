@@ -4,9 +4,16 @@ class ReviewHousesController < ApplicationController
   # GET /review_houses
   # GET /review_houses.json
   def index
-    @reviews = ReviewHouse.all
+    # @reviews = ReviewHouse.all
     render "pinterest_ui/index"
     # binding pry
+  end
+
+  def get_reviews
+    @reviews = ReviewHouse.all
+    # return render json: { ret: true,
+    #                       reviews: reviews}
+
   end
 
   # GET /review_houses/1

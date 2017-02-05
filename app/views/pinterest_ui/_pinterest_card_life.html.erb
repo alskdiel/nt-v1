@@ -1,20 +1,22 @@
-<% if review.thumb_nail != nil %>
-<%= image_tag review.thumb_nail %>
-<% end %>
-<div class="type-wrapper">
-  <div>생활</div>
-</div>
-<div class="title-wrapper">
-  <div><%= review.title %></div>
-</div>
-<div class="writtenby-wrapper">
-  <div>by.<%= review.written_by %></div>
-</div>
-<div class="upvote-and-scrap-wrapper">
-  <div class="upvote-wrapper">
-    <div>좋아요<%= review.cnt_upvotes%>개</div>
+<script type="text/ng-template" id="pinterest_card_life.html">
+  <div class="image-wrapper" ng-if="review.thumb_nail">
+    <img ng-src="{{review.thumb_nail}}"/>
   </div>
-  <div class="scrap-wrapper">
-    <div>스크랩<%= review.cnt_scraps %>개</div>
+  <div class="type-wrapper">
+    <div>생활</div>
   </div>
-</div>
+  <div class="title-wrapper">
+    <div>{{review.title}}</div>
+  </div>
+  <div class="writtenby-wrapper">
+    <div>by. {{review.written_by}}</div>
+  </div>
+  <div class="upvote-and-scrap-wrapper">
+    <div class="upvote-wrapper">
+      <div>좋아요 {{review.cnt_upvotes}}개</div>
+    </div>
+    <div class="scrap-wrapper">
+      <div>스크랩 {{review.cnt_scraps}}개</div>
+    </div>
+  </div>
+</script>

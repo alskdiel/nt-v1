@@ -1,27 +1,22 @@
 <div class="index-container" ng-controller="IndexCtrl">
   <div class="content-wrapper">
     <div class="title">살아본 놈이 제일 잘 안다</div>
-    <div class="grid" data-masonry='{ "itemSelector": ".grid-item", "columnWidth": 275 }'>
-      <% @reviews.each do |review| %>
-        <% if review.is_house_review? %>
-          <div class="grid-item oneroom" ng-click="getCardDetail_house(<%= review.id %>)">
-            <div class="card-wrapper">
-              <%= render template: "pinterest_ui/_pinterest_card", :locals => {:review => review} %>
-            </div>
-          </div>
-        <% else %>
-          <div class="grid-item life" ng-click="getCardDetail_life(<%= review.id %>)">
-            <div class="card-wrapper">
-              <%= render template: "pinterest_ui/_pinterest_card_life", :locals => {:review => review} %>
-            </div>
+
+    <div masonry>
+      <div class="masonry-brick" ng-repeat="review in reviews" ng-click="getCardDetail(review)">
+        <div class="card-wrapper">
+          <div ng-include src="'pinterest_card.html'" ng-if="review.is_house_review"></div>
+          <div ng-include src="'pinterest_card_life.html'" ng-if="!review.is_house_review"></div>
         </div>
-        <% end %>
-      <% end %>
+      </div>
     </div>
+
   </div>
 </div>
 
 <div class="show-container">
+  <%= render template: "pinterest_ui/_pinterest_card" %>
+  <%= render template: "pinterest_ui/_pinterest_card_life" %>
   <%= render template: "review_houses/_show_modal" %>
   <%= render template: "review_life/_show_modal" %>
 </div>

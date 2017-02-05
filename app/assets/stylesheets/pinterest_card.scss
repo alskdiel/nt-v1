@@ -1,4 +1,4 @@
-.grid-item {
+.masonry-brick {
   width: 275px;
   padding: 13px;
   .card-wrapper {
@@ -7,9 +7,16 @@
     img {
       width: 100%;
       border-radius: 10px 10px 0px 0px;
-      &.star {
-        width: 30px;
-        height: 30px;
+    }
+    .satisfaction-wrapper {
+      .star-container {
+        display: inline-block;
+        div {
+          width: 30px;
+          img.star {
+            height: 100%;
+          }
+        }
       }
     }
   }

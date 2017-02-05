@@ -1,4 +1,4 @@
-var myApp = angular.module('myApp', ['ui.bootstrap']);
+var myApp = angular.module('myApp', ['ui.bootstrap', 'wu.masonry']);
 
 myApp.config([
   "$httpProvider", function($httpProvider) {
@@ -16,27 +16,29 @@ myApp.controller('MainCtrl', [
 myApp.controller('IndexCtrl', [
   '$scope',
   '$http',
+  '$timeout',
   '$uibModal',
 
-  function($scope, $http, $uibModal) {
-    var $grid = $('.grid');
+  function($scope, $http, $timeout, $uibModal) {
+    $scope.reviews = [];
 
-    $grid.masonry({
-      itemSelector: '.grid-item',
-      columnWidth: 275
-    });
+    initController();
 
-    $scope.getCardDetail_house = function(id) {
-      console.log(id);
+    $scope.getCardDetail = function(review) {
+      if(review.is_house_review) {
+        getCardDetail_house(review.id);
+      } else {
+        getCardDetail_life(review.id);
+      }
+    }
+
+    function getCardDetail_house(id) {
       var url = "/review_houses/"+id+".json";
-
       $http({
         method: 'get',
         url: url,
       })
         .then(function(data, status, headers, config) {
-          // console.log(data);
-
           var modalInstance = $uibModal.open({
             windowClass: 'modal-dialog-show',
             controller: 'ShowCtrl',
@@ -48,17 +50,13 @@ myApp.controller('IndexCtrl', [
         });
     }
 
-    $scope.getCardDetail_life= function(id) {
-      console.log(id);
+    function getCardDetail_life(id) {
       var url = "/review_lives/"+id+".json";
-
       $http({
         method: 'get',
         url: url,
       })
         .then(function(data, status, headers, config) {
-          // console.log(data);
-
           var modalInstance = $uibModal.open({
             windowClass: 'modal-dialog-show-life',
             controller: 'ShowLifeCtrl',
@@ -67,6 +65,48 @@ myApp.controller('IndexCtrl', [
               data: data.data
             }
           });
+        });
+    }
+
+    function initController() {
+    var input_type = window.location.pathname;
+      if(input_type === "/") {
+        getAllReviews();
+      } else if(input_type === "/review_houses") {
+        getOneroomReviews();
+      } else if(input_type === "/review_lives") {
+        getLifeReviews();
+      }
+
+    }
+
+    function getAllReviews() {
+      $http({
+        method: 'get',
+        url: '/get_reviews.json'
+      })
+        .then(function(data, status, headers, config) {
+          $scope.reviews = data.data;
+        });
+    }
+
+    function getOneroomReviews() {
+      $http({
+        method: 'get',
+        url: '/get_house_reviews.json'
+      })
+        .then(function(data, status, headers, config) {
+          $scope.reviews = data.data;
+        });
+    }
+
+    function getLifeReviews() {
+      $http({
+        method: 'get',
+        url: '/get_life_reviews.json'
+      })
+        .then(function(data, status, headers, config) {
+          $scope.reviews = data.data;
         });
     }
   }

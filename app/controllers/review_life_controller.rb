@@ -1,9 +1,15 @@
 class ReviewLifeController < ApplicationController
 
   def index
-    @reviews = ReviewLife.all
+    # @reviews = ReviewLife.all
     render "pinterest_ui/index"
     # binding pry
+  end
+
+  def get_reviews
+    @reviews = ReviewLife.all.order("created_at DESC");
+    # return render json: { ret: true,
+    #                       reviews: reviews}
   end
 
   def show
