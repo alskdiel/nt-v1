@@ -1,100 +1,176 @@
 .modal {
   &.modal-dialog-show-life {
     .modal-dialog {
-      width: calc(100% - 420px);
+      width: 860px;
       .modal-content {
         border-radius: 0px;
-        padding: 23px 20px;
+        padding: 23px 0px;
         .content-wrapper.show-modal-life {
-          .title-container {
-            font-size: 48px;
-          }
-          .writtenby-container {
-            font-size: 24px;
-            div {
-              display: inline-block;
+          .content-header {
+            padding: 0px 20px 23px 20px;
+            .title-container {
+              font-size: 54px;
+              line-height: 54px;
+              margin-bottom: 19px;
+            }
+            .writtenby-container, .hashtag-container {
+              line-height: 27px;
+              font-size: 27px;
+              margin-bottom: 16px;
+              div {
+                display: inline-block;
+                color: #999999;
+              }
             }
           }
-          .image-container {
-            padding: 0px 20px;
-            margin-bottom: 53px;
-            height: 300px;
-            text-align: center;
-            img {
-              height: 100%;
+          .content-body {
+            border-top: 1px solid #e6e6e6;
+            border-bottom: 1px solid #e6e6e6;
+            padding: 50px 20px;
+            .image-container {
+              padding: 0px 10px;
+              margin-bottom: 53px;
+              text-align: center;
+              img {
+                width: 100%;
+              }
             }
-          }
-          .content-container {
-            font-size: 20px;
-            background: #fff;
+            .content-container {
+              font-size: 20px;
+              background: #fff;
+            }
           }
           .upvote-and-scrap-container {
-            padding: 105px 0px 56px 0px;
+            height: 320px;
             .upvote, .scrap {
               display: inline-block;
+              margin: 107px 0px 54px 0px;
+              height: 158px;
+              line-height: 158px;
+              .count {
+                display: inline-block;
+                font-size: 47px;
+              }
               .button {
-                height: 100px;
+                display: inline-block;
+                height: 100%;
                 img {
                   height: 100%;
                 }
               }
             }
+            .upvote {
+              margin-left: 128px;
+              float: left;
+              .count {
+                float: left;
+                color: #faca66;
+                margin-right: 62px;
+              }
+            }
+            .scrap {
+              margin-right: 128px;
+              float: right;
+              .count {
+                float: right;
+                color: #50265e;
+                margin-left: 62px;
+              }
+            }
           }
           .comment-container {
             .write-container {
+              height: 310px;
               .title {
                 border-bottom: 1px solid #000;
-                padding: 20px 20px;
-                font-size: 24px;
+                padding: 0px 20px 10px 20px;
+                font-size: 27px;
+                line-height: 27px;
               }
               textarea {
+                border: 1px solid #e6e6e6;
                 width: calc(100% - 46px);
                 height: 160px;
-                margin: 22px;
+                margin: 24px 21px;
                 resize: none;
               }
               .button {
+                float: right;
+                margin-right: 25px;
                 width: 128px;
                 height: 57px;
                 line-height: 57px;
                 text-align: center;
-                font-size: 26px;
-                border-radius: 10px;
+                font-size: 30px;
                 background: #f4ca66;
                 color: #fff;
               }
             }
             .list-container {
               .sort-by {
+                padding: 5px 20px 22px 20px;
                 div {
                   display: inline-block;
-                  font-size: 24px;
+                  height: 71px;
+                  line-height: 71px;
+                  font-size: 27px;
+                  width: 69px;
+                  text-align: center;
+                  border-bottom: 3px solid #000;
+                  margin-right: 22px;
+
                 }
               }
               .comment-wrapper {
-                .comment-header {
-                  div {
-                    display: inline-block;
-                    &.nickname {
-                      font-size: 17px;
+                padding: 19px 20px 11px 20px;
+                border-bottom: 1px solid #e6e6e6;
+                .comment-left {
+                  display: inline-block;
+                  width: 700px;
+                  .comment-header {
+                    margin-bottom: 10px;
+                    div {
+                      display: inline-block;
+                      margin-right: 17px;
+                      &.nickname {
+                        font-size: 19px;
+                      }
+                      &.created-at {
+                        color: #999;
+                        font-size: 13px;
+                      }
                     }
-                    &.created-at {
-                      font-size: 12px;
+                  }
+                  .comment-body {
+                    margin-bottom: 17px;
+                    div {
+                      display: inline-block;
+                      &.content {
+                        font-size: 19px;
+                        color: #4d4d4d;
+                      }
                     }
                   }
                 }
-                .comment-body {
-                  div {
+                .comment-right {
+                  vertical-align: top;
+                  display: inline-block;
+                  margin-left: 30px;
+                  height: 43px;
+                  line-height: 43px;
+                  .upvote {
+                    height: 100%;
+                    line-height: 50px;
                     display: inline-block;
-                    &.content {
-                      font-size: 17px;
+                    img {
+                      height: 100%;
                     }
-                    &.upvote {
-                      height: 40px;
-                      img {
-                        height: 100%;
-                      }
-                    }
+                  }
+                  .upvote-count {
+                    display: inline-block;
+                    font-size: 27px;
+                    color: #f4ca66;
+                    margin-left: 9px;
                   }
                 }
               }

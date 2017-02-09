@@ -26,6 +26,7 @@ body {
         &.nav-logo {
           height: 100%;
           margin-right: 26px;
+          float: left;
           img {
             height: 100%;
           }
@@ -94,18 +95,39 @@ body {
     }
     .header {
       text-align: right;
-      .cancel {
-        height: 69.5px;
+      .cancel-wrapper {
+        padding: 21px 16px;
+        .cancel {
+          height: 27px;
+        }
       }
     }
     .body {
       font-size: 25px;
+      line-height: 25px;
       .side-btn {
         padding: 27px;
         background: #fff;
         text-overflow: ellipsis;
         white-space: nowrap;
         overflow: hidden;
+        &.nickname {
+          text-align: center;
+          padding-bottom: 22px;
+        }
+        &.settings, &.sign-out {
+          height: 53px;
+          line-height: 22px;
+          font-size: 22px;
+          padding: 0px 41px 21px 41px;
+          div {
+            display: inline-block;
+          }
+          img {
+            height: 100%;
+            margin-right: 17px;
+          }
+        }
       }
       .border-top {
         border-top: 1px solid #e6e6e6;
@@ -133,7 +155,6 @@ body {
     width: 100%;
     height: 100%;
     z-index: 2;
-    // height: 150%;
 
     &.sidebar-opened {
       display: block;

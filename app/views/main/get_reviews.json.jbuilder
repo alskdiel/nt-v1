@@ -10,5 +10,7 @@ json.array! @reviews do |review|
   if review.is_house_review?
     json.address review.address
     json.avr_satis review.avr_satis
+  else
+    json.hash_tags review.hash_tag_str
   end
 end

@@ -2,15 +2,24 @@
 
 <div class="side-bar">
   <div class="header">
-    <%= image_tag 'buttons/close.png', class: "cancel" %>
+    <div class="cancel-wrapper">
+      <%= image_tag 'buttons/close.png', class: "cancel" %>
+    </div>
   </div>
   <div class="body">
     <% if !user_signed_in? %>
     <div class="sign-in side-btn border-top">로그인/가입</div>
     <% else %>
     <div class="user-info">
-      <div class="settings side-btn">설정</div>
-      <div class="sign-out side-btn">로그아웃</div>
+      <div class="nickname side-btn"><%= current_user.nickname %></div>
+      <div class="settings side-btn">
+        <%= image_tag 'navbar/button-setting.png', class: "cancel" %>
+        <div>설정</div>
+      </div>
+      <div class="sign-out side-btn">
+        <%= image_tag 'navbar/button-logout.png', class: "cancel" %>
+        <div>로그아웃</div>
+      </div>
     </div>
     <% end %>
     <div class="my-map side-btn">나의 관심지도</div>

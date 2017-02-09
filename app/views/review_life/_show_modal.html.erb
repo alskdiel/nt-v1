@@ -1,26 +1,29 @@
 <script type="text/ng-template" id="showLifeModal.html">
   <div class="content-wrapper show-modal-life">
-    <div class="title-container">
-      <div class="title">{{title}}</div>
+    <div class="content-header">
+      <div class="title-container">
+        <div class="title">{{title}}</div>
+      </div>
+
+      <div class="writtenby-container">
+        <div>by.</div>
+        <div class="written-by">{{written_by}}</div>
+      </div>
+
+      <div class="hashtag-container">
+        <div class="hash-tags">{{hash_tags}}</div>
+      </div>
     </div>
 
-    <div class="writtenby-container">
-      <div>by.</div>
-      <div class="written-by">{{written_by}}</div>
-    </div>
+    <div class="content-body">
+      <div class="image-container" ng-if="image_url != null">
+        <img ng-src="{{image_url}}"/>
+      </div>
 
-    <div class="hashtag-container">
-      <div class="hash-tags">{{hash_tags}}</div>
+      <div class="content-container">
+        <div class="content">{{content}}</div>
+      </div>
     </div>
-
-    <div class="image-container" ng-if="image_url != null">
-      <img ng-src="{{image_url}}"/>
-    </div>
-
-    <div class="content-container">
-      <div class="content">{{content}}</div>
-    </div>
-
     <div class="upvote-and-scrap-container">
       <div class="upvote">
         <div class="count">{{upvote_and_scrap.cnt_upvotes}}</div>
@@ -48,22 +51,24 @@
           <div class="new">NEW</div>
         </div>
         <div class="comment-wrapper" ng-repeat="comment in comments track by $index">
-          <div class="comment-header">
-            <div class="nickname">{{comment.written_by}}</div>
-            <div class="created-at">{{comment.created_at}}</div>
+          <div class="comment-left">
+            <div class="comment-header">
+              <div class="nickname">{{comment.written_by}}</div>
+              <div class="created-at">{{comment.created_at}}</div>
+            </div>
+            <div class="comment-body">
+              <div class="content">{{comment.content}}</div>
+              <div class="show-subcomments">
+              </div>
+              <div class="write-subcomments">
+              </div>
+            </div>
           </div>
-          <div class="comment-body">
-            <div class="content">{{comment.content}}</div>
+          <div class="comment-right">
             <div class="upvote" ng-click="upvote_comment(comment)">
               <%= image_tag 'show/button-good.png' %>
             </div>
             <div class="upvote-count">{{comment.upvote_count}}</div>
-          </div>
-          <div class="comment-footer">
-            <div class="show-subcomments">
-            </div>
-            <div class="write-subcomments">
-            </div>
           </div>
         </div>
       </div>

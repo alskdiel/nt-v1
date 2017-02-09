@@ -1,20 +1,85 @@
 .masonry-brick {
-  width: 275px;
+  width: 300px;
   padding: 13px;
   .card-wrapper {
     background: #fff;
-    border-radius: 10px;
-    img {
-      width: 100%;
-      border-radius: 10px 10px 0px 0px;
+    border-radius: 5px;
+    .image-wrapper {
+      img {
+        width: 100%;
+        border-radius: 5px 5px 0px 0px;
+      }
+    }
+    .details-wrapper {
+      padding: 20px 18px 6px 18px;
+      border-bottom: 1px solid #e7e7e7;
+      &.life {
+        padding: 6px 18px;
+      }
+      .type-wrapper {
+        height: 25px;
+        line-height: 25px;
+        span {
+          color: #555;
+          padding: 3px;
+          font-size: 11px;
+          border: 1px solid #555;
+        }
+      }
+      .title-wrapper {
+        div {
+          font-size: 25px;
+          line-height: 25px;
+        }
+      }
+      .address-wrapper {
+        color: #b4b3b3;
+        div {
+          font-size: 18px;
+          line-height: 18px;
+        }
+      }
+      .hashtag-wrapper {
+        color: #b4b3b3;
+        div {
+          font-size: 13px;
+          line-height: 13px;
+        }
+      }
+      .writtenby-wrapper {
+        color: #b4b3b3;
+        div {
+          font-size: 13px;
+          line-height: 13px;
+        }
+      }
+      .upvote-and-scrap-wrapper {
+        .upvote-wrapper, .scrap-wrapper, div:nth-child(2) {
+          display: inline-block;
+          color: #b4b3b3;
+          div {
+            font-size: 13px;
+            height: 13px;
+            line-height: 13px;
+          }
+        }
+      }
+      .type-wrapper, .title-wrapper, .address-wrapper, .writtenby-wrapper, .hashtag-wrapper {
+        margin-bottom: 6px;
+      }
+      .upvote-and-scrap-wrapper {
+        margin-bottom: 0px;
+      }
     }
     .satisfaction-wrapper {
+      padding: 18px;
+      text-align: center;
       .star-container {
         display: inline-block;
+        margin: 0px 10px;
         div {
-          width: 30px;
-          img.star {
-            height: 100%;
+          img {
+            height: 22px;
           }
         }
       }
