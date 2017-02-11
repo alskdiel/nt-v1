@@ -15,8 +15,13 @@ myApp.controller('MainCtrl', [
   function($scope, $http) {
     $scope.my_info = {};
 
-    initController();
 
+    $scope.uploadImage = function() {
+      $('#form-cover-img').submit();
+    }
+
+
+    initController();
 
     function initController() {
       var input_type = window.location.pathname;
@@ -45,6 +50,7 @@ myApp.controller('MainCtrl', [
         .then(function(data, status, headers, config) {
           if(data.data.ret) {
             $scope.my_info = data.data.my_info;
+            $scope.is_mypage = data.data.is_mypage;
           } else {
             alert("user not accessible");
           }
@@ -60,6 +66,7 @@ myApp.controller('MainCtrl', [
         .then(function(data, status, headers, config) {
           if(data.data.ret) {
             $scope.my_info = data.data.my_info;
+            $scope.is_mypage = data.data.is_mypage;
           } else {
             alert("user not accessible");
           }
@@ -75,11 +82,14 @@ myApp.controller('MainCtrl', [
         .then(function(data, status, headers, config) {
           if(data.data.ret) {
             $scope.my_info = data.data.my_info;
+            $scope.is_mypage = data.data.is_mypage;
           } else {
             alert("user not accessible");
           }
         });
     }
+
+
   }
 ]);
 
@@ -155,7 +165,7 @@ myApp.controller('PinCtrl', [
         var review_id = input[2];
         if(from === "user_reviews_h") {
           getUserReviews_H(review_id);
-        } else {
+        } else if(from === "user_reviews_l"){
           getUserReviews_L(review_id);
         }
       }
@@ -236,7 +246,7 @@ myApp.controller('ShowCtrl', [
 
   function($scope, $http, $timeout, $uibModalInstance, data) {
 
-    var ROOT_PATH = "http://localhost:3000/"
+    // var ROOT_PATH = "http://localhost:3000/"
     var current_img_tab;
     $scope.image_url = data.image_url;
 
@@ -265,7 +275,7 @@ myApp.controller('ShowCtrl', [
       } else {
         current_img_tab--;
       }
-      $scope.current_img = ROOT_PATH+$scope.image_url[current_img_tab];
+      $scope.current_img = $scope.image_url[current_img_tab];
     }
 
     $scope.to_next_image = function() {
@@ -274,7 +284,7 @@ myApp.controller('ShowCtrl', [
       } else {
         current_img_tab = 0;
       }
-      $scope.current_img = ROOT_PATH+$scope.image_url[current_img_tab];
+      $scope.current_img = $scope.image_url[current_img_tab];
     }
 
     $scope.getUserReviews = function() {
@@ -370,7 +380,7 @@ myApp.controller('ShowCtrl', [
 
     function initImagePath() {
       current_img_tab = 0;
-      $scope.current_img = ROOT_PATH + $scope.image_url[current_img_tab];
+      $scope.current_img = $scope.image_url[current_img_tab];
     }
 
     function setStarScore(satisfaction) {
@@ -411,7 +421,7 @@ myApp.controller('ShowLifeCtrl', [
 
   function($scope, $http, $timeout, $uibModalInstance, data) {
 
-    var ROOT_PATH = "http://localhost:3000/"
+    // var ROOT_PATH = "http://localhost:3000/"
     $scope.image_url = data.image_url;
 
     $scope.id = data.id;
@@ -512,7 +522,7 @@ myApp.controller('ShowLifeCtrl', [
 
     function initImagePath() {
       if($scope.image_url) {
-        $scope.image_url = ROOT_PATH + $scope.image_url;
+        $scope.image_url = $scope.image_url;
       }
     }
 

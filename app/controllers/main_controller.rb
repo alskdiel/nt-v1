@@ -15,8 +15,6 @@ class MainController < ApplicationController
 
     begin
       while true
-        puts i
-        puts j
         if houses[i].created_at > lives[j].created_at
           @reviews.push(houses[i])
           i += 1

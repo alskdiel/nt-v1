@@ -35,13 +35,26 @@ class User < ActiveRecord::Base
   end
 
   def nickname
-    return UserInfo.where(user_id: self.id).take.nickname
+    return self.user_info.nickname
+  end
+
+  def sex
+    if self.user_info.sex == 0
+      return true
+    else
+      return false
+    end
+  end
+
+  def cover_image
+    return self.user_info.cover_image.url
   end
 
   def info_brief
     info = {
       nickname: self.nickname,
-      cnt_post: self.review_houses.count + self.review_lifes.count
+      isMale: self.sex,
+      cover_image: self.cover_image
     }
 
     return info

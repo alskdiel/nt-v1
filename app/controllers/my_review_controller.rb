@@ -15,8 +15,6 @@ class MyReviewController < ApplicationController
 
     begin
       while true
-        puts i
-        puts j
         if houses[i].created_at > lives[j].created_at
           @reviews.push(houses[i])
           i += 1
@@ -39,8 +37,14 @@ class MyReviewController < ApplicationController
 
     return render json: {
       ret: true,
+      is_mypage: true,
       my_info: my_info
     }
+  end
+
+  def change_cover_img
+    current_user.user_info.update(cover_image: params[:image])
+    redirect_to "/my_reviews#my_reviews"
   end
 
   def user_reviews_h
@@ -53,8 +57,11 @@ class MyReviewController < ApplicationController
 
     my_info = User.find(user_id).info_brief
 
+    is_mypage = (current_user.id == user_id)
+
     return render json: {
       ret: true,
+      is_mypage: is_mypage,
       my_info: my_info
     }
   end
@@ -73,8 +80,6 @@ class MyReviewController < ApplicationController
 
     begin
       while true
-        puts i
-        puts j
         if houses[i].created_at > lives[j].created_at
           @reviews.push(houses[i])
           i += 1
@@ -102,8 +107,11 @@ class MyReviewController < ApplicationController
 
     my_info = User.find(user_id).info_brief
 
+    is_mypage = (current_user.id == user_id)
+
     return render json: {
       ret: true,
+      is_mypage: is_mypage,
       my_info: my_info
     }
   end
@@ -122,8 +130,6 @@ class MyReviewController < ApplicationController
 
     begin
       while true
-        puts i
-        puts j
         if houses[i].created_at > lives[j].created_at
           @reviews.push(houses[i])
           i += 1

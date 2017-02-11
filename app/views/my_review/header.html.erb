@@ -1,30 +1,29 @@
 <div class="my-review-header">
   <div class="cover-image-wrapper">
-    <div class="img"></div>
+    <img ng-src="{{my_info.cover_image}}"/>
   </div>
-  <div class="user-info-wrapper">
-    <div class="nickname">{{my_info.nickname}}</div>
-    <div class="subscribe-btn">구독하기</div>
-  </div>
-  <div class="user-intro-wrapper">
-    <div class="social-container">
-      <div class="following">
-        <div>0</div>
-        <div>Following</div>
-      </div>
-      <div class="follower">
-        <div>0</div>
-        <div>Follower</div>
-      </div>
-      <div class="post">
-        <div>{{my_info.cnt_post}}</div>
-        <div>Post</div>
-      </div>
+  <div class="user-brief">
+    <div class="picture-wrapper" ng-if="my_info.isMale">
+      <%= image_tag 'my_page/male.jpeg' %>
     </div>
-    <div class="intro-container">
-      <div class="intro">
-        아 이제 마지막이다
+    <div class="picture-wrapper" ng-if="!my_info.isMale">
+      <%= image_tag 'my_page/female.jpeg' %>
+    </div>
+    <div class="nickname">{{my_info.nickname}}</div>
+    <div class="change-cover" ng-if="is_mypage">
+      <form id="form-cover-img" action="/change_cover_img" method="post" enctype="multipart/form-data">
+      <label for="cover-img">
+
+      <div class="button-wrapper">
+        <div class="img-wrapper">
+          <%= image_tag 'my_page/camera.png' %>
+        </div>
+        <div>커버사진 변경</div>
       </div>
+
+      </label>
+      <input type="file" id="cover-img" name="image" onchange="angular.element(this).scope().uploadImage()">
+      <input type="hidden" name="authenticity_token" value="QGthAE0W7zBgRqvzsphx7J05/bXasa8bpotEkFjwctIqEBfabdK1rN6B8wlcupH4ElpoBt2n9KwRY2it813Whw==">
     </div>
   </div>
 </div>

@@ -33,6 +33,8 @@ Rails.application.routes.draw do
   get "get_my_reviews" => "my_review#get_my_reviews"
   get "get_my_review_info" => "my_review#get_my_review_info"
 
+  post "change_cover_img" => "my_review#change_cover_img"
+
   get "user_reviews_h/:id" => "my_review#user_reviews_h"
   get "get_user_reviews_H/:id" => "my_review#get_user_reviews_H"
   get "get_user_review_info_H/:id" => "my_review#get_user_review_info_H"
