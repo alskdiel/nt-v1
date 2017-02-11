@@ -11,27 +11,25 @@ class MyReviewController < ApplicationController
     @reviews = []
 
     i = 0
-    if houses.present?
-      houses.each do |house|
-        begin
-          while house.created_at < lives[i].created_at do
-            @reviews.push(lives[i])
-            i += 1
-          end
-        rescue
+    j = 0
+
+    begin
+      while true
+        puts i
+        puts j
+        if houses[i].created_at > lives[j].created_at
+          @reviews.push(houses[i])
+          i += 1
+        else
+          @reviews.push(lives[j])
+          j += 1
         end
-        @reviews.push(house)
       end
-    else
-      lives.each do |life|
-        begin
-          while life.created_at < houses[i].created_at do
-            @reviews.push(houses[i])
-            i += 1
-          end
-        rescue
-        end
-        @reviews.push(life)
+    rescue
+      if houses[i].present?
+        @reviews.push(houses[i])
+      else
+        @reviews.push(lives[j])
       end
     end
   end
@@ -71,27 +69,25 @@ class MyReviewController < ApplicationController
     @reviews = []
 
     i = 0
-    if houses.present?
-      houses.each do |house|
-        begin
-          while house.created_at < lives[i].created_at do
-            @reviews.push(lives[i])
-            i += 1
-          end
-        rescue
+    j = 0
+
+    begin
+      while true
+        puts i
+        puts j
+        if houses[i].created_at > lives[j].created_at
+          @reviews.push(houses[i])
+          i += 1
+        else
+          @reviews.push(lives[j])
+          j += 1
         end
-        @reviews.push(house)
       end
-    else
-      lives.each do |life|
-        begin
-          while life.created_at < houses[i].created_at do
-            @reviews.push(houses[i])
-            i += 1
-          end
-        rescue
-        end
-        @reviews.push(life)
+    rescue
+      if houses[i].present?
+        @reviews.push(houses[i])
+      else
+        @reviews.push(lives[j])
       end
     end
   end
@@ -122,28 +118,25 @@ class MyReviewController < ApplicationController
     @reviews = []
 
     i = 0
+    j = 0
 
-    if houses.present?
-      houses.each do |house|
-        begin
-          while house.created_at < lives[i].created_at do
-            @reviews.push(lives[i])
-            i += 1
-          end
-        rescue
+    begin
+      while true
+        puts i
+        puts j
+        if houses[i].created_at > lives[j].created_at
+          @reviews.push(houses[i])
+          i += 1
+        else
+          @reviews.push(lives[j])
+          j += 1
         end
-        @reviews.push(house)
       end
-    else
-      lives.each do |life|
-        begin
-          while life.created_at < houses[i].created_at do
-            @reviews.push(houses[i])
-            i += 1
-          end
-        rescue
-        end
-        @reviews.push(life)
+    rescue
+      if houses[i].present?
+        @reviews.push(houses[i])
+      else
+        @reviews.push(lives[j])
       end
     end
   end
