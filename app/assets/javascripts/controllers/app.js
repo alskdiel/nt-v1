@@ -20,10 +20,20 @@ myApp.controller('MainCtrl', [
 
     function initController() {
       var input_type = window.location.pathname;
-      if(input_type === "/my_reviews") {
-        getMyReviewInfo();
-      } else if(input_type === "/user_reviews") {
-        // getUserReviews();
+
+      if(input_type !== "/" && input_type !== "/review_houses" && input_type !== "/review_lives") {
+        if(input_type === "/my_reviews") {
+          getMyReviewInfo();
+        } else {
+          var input = input_type.split("/");
+          var from = input[1];
+          var review_id = input[2];
+          if(from === "user_reviews_h") {
+            getUserReviewInfo_H(review_id);
+          } else {
+            getUserReviewInfo_L(review_id);
+          }
+        }
       }
     }
 
@@ -33,7 +43,36 @@ myApp.controller('MainCtrl', [
         url: '/get_my_review_info.json'
       })
         .then(function(data, status, headers, config) {
-          console.log(data);
+          if(data.data.ret) {
+            $scope.my_info = data.data.my_info;
+          } else {
+            alert("user not accessible");
+          }
+        });
+    }
+
+    function getUserReviewInfo_H(id) {
+      var url = '/get_user_review_info_H/' + id + '.json'
+      $http({
+        method: 'get',
+        url: url
+      })
+        .then(function(data, status, headers, config) {
+          if(data.data.ret) {
+            $scope.my_info = data.data.my_info;
+          } else {
+            alert("user not accessible");
+          }
+        });
+    }
+
+    function getUserReviewInfo_L(id) {
+      var url = '/get_user_review_info_L/' + id + '.json'
+      $http({
+        method: 'get',
+        url: url
+      })
+        .then(function(data, status, headers, config) {
           if(data.data.ret) {
             $scope.my_info = data.data.my_info;
           } else {
@@ -110,8 +149,15 @@ myApp.controller('PinCtrl', [
         getLifeReviews();
       } else if(input_type === "/my_reviews") {
         getMyReviews();
-      } else if(input_type === "/user_reviews") {
-        getUserReviews();
+      } else {
+        var input = input_type.split("/");
+        var from = input[1];
+        var review_id = input[2];
+        if(from === "user_reviews_h") {
+          getUserReviews_H(review_id);
+        } else {
+          getUserReviews_L(review_id);
+        }
       }
     }
 
@@ -151,7 +197,28 @@ myApp.controller('PinCtrl', [
         url: '/get_my_reviews.json'
       })
         .then(function(data, status, headers, config) {
-          console.log(data);
+          $scope.reviews = data.data.reviews;
+        });
+    }
+
+    function getUserReviews_H(id) {
+      var url = '/get_user_reviews_H/' + id + '.json'
+      $http({
+        method: 'get',
+        url: url
+      })
+        .then(function(data, status, headers, config) {
+          $scope.reviews = data.data.reviews;
+        });
+    }
+
+    function getUserReviews_L(id) {
+      var url = '/get_user_reviews_L/' + id + '.json'
+      $http({
+        method: 'get',
+        url: url
+      })
+        .then(function(data, status, headers, config) {
           $scope.reviews = data.data.reviews;
         });
     }
@@ -168,7 +235,6 @@ myApp.controller('ShowCtrl', [
   'data',
 
   function($scope, $http, $timeout, $uibModalInstance, data) {
-    console.log(data);
 
     var ROOT_PATH = "http://localhost:3000/"
     var current_img_tab;
@@ -211,6 +277,10 @@ myApp.controller('ShowCtrl', [
       $scope.current_img = ROOT_PATH+$scope.image_url[current_img_tab];
     }
 
+    $scope.getUserReviews = function() {
+      window.location.href = "/user_reviews_h/" + $scope.id;
+    }
+
     $scope.upvote = function() {
       var url = "/upvote_H/"+$scope.id;
       $http({
@@ -218,7 +288,6 @@ myApp.controller('ShowCtrl', [
         url: url,
       })
         .then(function(data, status, headers, config) {
-          console.log(data);
           if(data.data.current_user) {
             if(data.data.has_upvoted) {
               $scope.upvote_and_scrap.cnt_upvotes++;
@@ -239,7 +308,6 @@ myApp.controller('ShowCtrl', [
         url: url,
       })
         .then(function(data, status, headers, config) {
-          console.log(data);
           if(data.data.current_user) {
             if(data.data.has_scraped) {
               $scope.upvote_and_scrap.cnt_scraps++;
@@ -261,7 +329,6 @@ myApp.controller('ShowCtrl', [
                 comment: $scope.comment_writting }
       })
         .then(function(data, status, headers, config) {
-          console.log(data);
           if(data.data.current_user) {
             getComments();
           } else {
@@ -277,7 +344,6 @@ myApp.controller('ShowCtrl', [
         url: url,
       })
         .then(function(data, status, headers, config) {
-          console.log(data);
           if(data.data.current_user) {
             if(data.data.has_upvoted) {
               comment.upvote_count++;
@@ -298,9 +364,7 @@ myApp.controller('ShowCtrl', [
         url: url,
       })
         .then(function(data, status, headers, config) {
-          console.log(data);
           $scope.comments = data.data.comments
-          console.log($scope.comments);
         });
     }
 
@@ -346,7 +410,6 @@ myApp.controller('ShowLifeCtrl', [
   'data',
 
   function($scope, $http, $timeout, $uibModalInstance, data) {
-    console.log(data);
 
     var ROOT_PATH = "http://localhost:3000/"
     $scope.image_url = data.image_url;
@@ -367,6 +430,10 @@ myApp.controller('ShowLifeCtrl', [
       initImagePath();
     });
 
+    $scope.getUserReviews = function() {
+      window.location.href = "/user_reviews_l/" + $scope.id;
+    }
+
     $scope.upvote = function() {
       var url = "/upvote_L/"+$scope.id;
       $http({
@@ -374,7 +441,6 @@ myApp.controller('ShowLifeCtrl', [
         url: url,
       })
         .then(function(data, status, headers, config) {
-          console.log(data);
           if(data.data.current_user) {
             if(data.data.has_upvoted) {
               $scope.upvote_and_scrap.cnt_upvotes++;
@@ -395,7 +461,6 @@ myApp.controller('ShowLifeCtrl', [
         url: url,
       })
         .then(function(data, status, headers, config) {
-          console.log(data);
           if(data.data.current_user) {
             if(data.data.has_scraped) {
               $scope.upvote_and_scrap.cnt_scraps++;
@@ -417,7 +482,6 @@ myApp.controller('ShowLifeCtrl', [
                 comment: $scope.comment_writting }
       })
         .then(function(data, status, headers, config) {
-          console.log(data);
           if(data.data.current_user) {
             getComments();
           } else {
@@ -433,7 +497,6 @@ myApp.controller('ShowLifeCtrl', [
         url: url,
       })
         .then(function(data, status, headers, config) {
-          console.log(data);
           if(data.data.current_user) {
             if(data.data.has_upvoted) {
               comment.upvote_count++;
@@ -460,9 +523,7 @@ myApp.controller('ShowLifeCtrl', [
         url: url,
       })
         .then(function(data, status, headers, config) {
-          console.log(data);
           $scope.comments = data.data.comments
-          console.log($scope.comments);
         });
     }
 
