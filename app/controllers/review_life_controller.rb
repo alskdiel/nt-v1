@@ -2,7 +2,7 @@ class ReviewLifeController < ApplicationController
 
   def index
     # @reviews = ReviewLife.all
-    render "pinterest_ui/index"
+    render "main/index"
     # binding pry
   end
 
