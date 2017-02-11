@@ -1,22 +1,8 @@
-<div class="index-container" ng-controller="PinCtrl">
-  <div class="content-wrapper">
-    <div class="title">살아본 놈이 제일 잘 안다</div>
-
-    <div masonry>
-      <div class="masonry-brick" ng-repeat="review in reviews" ng-click="getCardDetail(review)">
-        <div class="card-wrapper">
-          <div ng-include src="'pinterest_card.html'" ng-if="review.is_house_review"></div>
-          <div ng-include src="'pinterest_card_life.html'" ng-if="!review.is_house_review"></div>
-        </div>
-      </div>
+<div masonry ng-controller="PinCtrl">
+  <div class="masonry-brick" ng-repeat="review in reviews" ng-click="getCardDetail(review)">
+    <div class="card-wrapper">
+      <div ng-include src="'pinterest_card.html'" ng-if="review.is_house_review"></div>
+      <div ng-include src="'pinterest_card_life.html'" ng-if="!review.is_house_review"></div>
     </div>
-
   </div>
-</div>
-
-<div class="show-container">
-  <%= render template: "pinterest_ui/_pinterest_card" %>
-  <%= render template: "pinterest_ui/_pinterest_card_life" %>
-  <%= render template: "review_houses/_show_modal" %>
-  <%= render template: "review_life/_show_modal" %>
 </div>

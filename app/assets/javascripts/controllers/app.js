@@ -70,7 +70,9 @@ myApp.controller('PinCtrl', [
     }
 
     function initController() {
-    var input_type = window.location.pathname;
+      var input_type = window.location.pathname;
+
+        console.log('xx');
       if(input_type === "/") {
         getAllReviews();
       } else if(input_type === "/review_houses") {
@@ -82,7 +84,6 @@ myApp.controller('PinCtrl', [
       } else if(input_type === "/user_reviews") {
         getUserReviews();
       }
-
     }
 
     function getAllReviews() {
@@ -122,8 +123,8 @@ myApp.controller('PinCtrl', [
       })
         .then(function(data, status, headers, config) {
           $scope.reviews = data.data;
-          $('.main-container .sub-navbar').css('display', 'none');
-          $('.main-container .index-container .content-wrapper .title').css('display', 'none');
+          // $('.main-container .sub-navbar').css('display', 'none');
+          // $('.main-container .index-container .content-wrapper .title').css('display', 'none');
           // hide sub-nav
           // hide 살아본놈이 제일 잘 안다
         });

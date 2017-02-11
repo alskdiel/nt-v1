@@ -1,0 +1,15 @@
+<%= render template: "layouts/sub_navbar" %>
+
+<div class="index-container">
+  <div class="content-wrapper">
+    <div class="title">살아본 놈이 제일 잘 안다</div>
+    <%= render template: "pinterest_ui/index" %>
+  </div>
+</div>
+
+<div class="show-container">
+  <%= render template: "pinterest_ui/_pinterest_card" %>
+  <%= render template: "pinterest_ui/_pinterest_card_life" %>
+  <%= render template: "review_houses/_show_modal" %>
+  <%= render template: "review_life/_show_modal" %>
+</div>
