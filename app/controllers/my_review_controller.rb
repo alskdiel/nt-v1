@@ -44,7 +44,7 @@ class MyReviewController < ApplicationController
 
   def change_cover_img
     current_user.user_info.update(cover_image: params[:image])
-    redirect_to "/my_reviews#my_reviews"
+    redirect_to action: 'my_reviews'
   end
 
   def user_reviews_h
