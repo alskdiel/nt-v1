@@ -11,15 +11,29 @@ class MainController < ApplicationController
     @reviews = []
 
     i = 0
-    houses.each do |house|
-      begin
-        while house.created_at < lives[i].created_at do
-          @reviews.push(lives[i])
-          i += 1
+
+    if houses.present?
+      houses.each do |house|
+        begin
+          while house.created_at < lives[i].created_at do
+            @reviews.push(lives[i])
+            i += 1
+          end
+        rescue
         end
-      rescue
+        @reviews.push(house)
       end
-      @reviews.push(house)
+    else
+      lives.each do |life|
+        begin
+          while life.created_at < houses[i].created_at do
+            @reviews.push(houses[i])
+            i += 1
+          end
+        rescue
+        end
+        @reviews.push(life)
+      end
     end
 
     # return render json: { ret: true,
