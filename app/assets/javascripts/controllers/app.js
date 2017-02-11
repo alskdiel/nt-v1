@@ -9,7 +9,38 @@ myApp.config([
 
 myApp.controller('MainCtrl', [
   '$scope',
-  function($scope) {
+  '$http',
+
+
+  function($scope, $http) {
+    $scope.my_info = {};
+
+    initController();
+
+
+    function initController() {
+      var input_type = window.location.pathname;
+      if(input_type === "/my_reviews") {
+        getMyReviewInfo();
+      } else if(input_type === "/user_reviews") {
+        // getUserReviews();
+      }
+    }
+
+    function getMyReviewInfo() {
+      $http({
+        method: 'get',
+        url: '/get_my_review_info.json'
+      })
+        .then(function(data, status, headers, config) {
+          console.log(data);
+          if(data.data.ret) {
+            $scope.my_info = data.data.my_info;
+          } else {
+            alert("user not accessible");
+          }
+        });
+    }
   }
 ]);
 
@@ -71,8 +102,6 @@ myApp.controller('PinCtrl', [
 
     function initController() {
       var input_type = window.location.pathname;
-
-        console.log('xx');
       if(input_type === "/") {
         getAllReviews();
       } else if(input_type === "/review_houses") {
@@ -122,11 +151,8 @@ myApp.controller('PinCtrl', [
         url: '/get_my_reviews.json'
       })
         .then(function(data, status, headers, config) {
-          $scope.reviews = data.data;
-          // $('.main-container .sub-navbar').css('display', 'none');
-          // $('.main-container .index-container .content-wrapper .title').css('display', 'none');
-          // hide sub-nav
-          // hide 살아본놈이 제일 잘 안다
+          console.log(data);
+          $scope.reviews = data.data.reviews;
         });
     }
   }

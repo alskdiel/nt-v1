@@ -38,4 +38,13 @@ class User < ActiveRecord::Base
     return UserInfo.where(user_id: self.id).take.nickname
   end
 
+  def info_brief
+    info = {
+      nickname: self.nickname,
+      cnt_post: self.review_houses.count + self.review_lifes.count
+    }
+
+    return info
+  end
+
 end

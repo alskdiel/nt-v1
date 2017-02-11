@@ -21,7 +21,15 @@ class MyReviewController < ApplicationController
       end
       @reviews.push(house)
     end
+  end
 
+  def get_my_review_info
+    my_info = current_user.info_brief
+
+    return render json: {
+      ret: true,
+      my_info: my_info
+    }
   end
 
 end

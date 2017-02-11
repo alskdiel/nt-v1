@@ -31,6 +31,7 @@ Rails.application.routes.draw do
 
   get "my_reviews" => "my_review#my_reviews"
   get "get_my_reviews" => "my_review#get_my_reviews"
+  get "get_my_review_info" => "my_review#get_my_review_info"
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
