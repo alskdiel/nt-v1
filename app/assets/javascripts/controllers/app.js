@@ -14,7 +14,7 @@ myApp.controller('MainCtrl', [
 ]);
 
 
-myApp.controller('IndexCtrl', [
+myApp.controller('PinCtrl', [
   '$scope',
   '$http',
   '$timeout',
@@ -77,6 +77,10 @@ myApp.controller('IndexCtrl', [
         getOneroomReviews();
       } else if(input_type === "/review_lives") {
         getLifeReviews();
+      } else if(input_type === "/my_reviews") {
+        getMyReviews();
+      } else if(input_type === "/user_reviews") {
+        getUserReviews();
       }
 
     }
@@ -108,6 +112,20 @@ myApp.controller('IndexCtrl', [
       })
         .then(function(data, status, headers, config) {
           $scope.reviews = data.data;
+        });
+    }
+
+    function getMyReviews() {
+      $http({
+        method: 'get',
+        url: '/get_my_reviews.json'
+      })
+        .then(function(data, status, headers, config) {
+          $scope.reviews = data.data;
+          $('.main-container .sub-navbar').css('display', 'none');
+          $('.main-container .index-container .content-wrapper .title').css('display', 'none');
+          // hide sub-nav
+          // hide 살아본놈이 제일 잘 안다
         });
     }
   }

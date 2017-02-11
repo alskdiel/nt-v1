@@ -48,6 +48,10 @@ init  = function() {
     openSignModal();
   });
 
+  $('.side-bar .body .user-info .nickname').on('click', function(){
+    window.location.href = "/my_reviews";
+  });
+
   $('.side-bar .body .user-info .sign-out').on('click', function(){
     signoutProcess();
   });
