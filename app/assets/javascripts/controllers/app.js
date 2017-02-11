@@ -30,7 +30,7 @@ myApp.controller('MainCtrl', [
           var review_id = input[2];
           if(from === "user_reviews_h") {
             getUserReviewInfo_H(review_id);
-          } else {
+          } else if(from === "user_reviews_l") {
             getUserReviewInfo_L(review_id);
           }
         }
