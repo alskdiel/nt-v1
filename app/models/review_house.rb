@@ -24,7 +24,7 @@ class ReviewHouse < ActiveRecord::Base
     residence = self.residence_satisfaction
     env = self.env_satisfaction
 
-    return ((price + residence + env) / 3).round
+    return ((price + residence + env) / 3.0).round
   end
 
   def image_url
