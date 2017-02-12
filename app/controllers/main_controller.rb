@@ -1,6 +1,7 @@
 class MainController < ApplicationController
 
   def index
+    @mode = "all"
     render "main/index"
   end
 

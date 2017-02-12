@@ -2,6 +2,7 @@ class ReviewLifeController < ApplicationController
 
   def index
     # @reviews = ReviewLife.all
+    @mode = "life"
     render "main/index"
     # binding pry
   end

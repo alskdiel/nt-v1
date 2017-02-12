@@ -1,8 +1,18 @@
 <div class="sub-navbar">
-  <div class="hot">HOT</div>
-  <div class="new">NEW</div>
-  <div class="best">BEST</div>
-  <div class="all">모두보기</div>
-  <div class="house">원룸리뷰</div>
-  <div class="life">생활피드</div>
+  <div class="hot">Hot</div>
+  <div class="new selected">New</div>
+  <div class="best">Best</div>
+  <% if @mode == "all" %>
+    <div class="all selected">모두보기</div>
+    <div class="house">원룸리뷰</div>
+    <div class="life">생활피드</div>
+  <% elsif @mode == "oneroom" %>
+    <div class="all">모두보기</div>
+    <div class="house selected">원룸리뷰</div>
+    <div class="life">생활피드</div>
+  <% elsif @mode == "life" %>
+    <div class="all">모두보기</div>
+    <div class="house">원룸리뷰</div>
+    <div class="life selected">생활피드</div>
+  <% end %>
 </div>

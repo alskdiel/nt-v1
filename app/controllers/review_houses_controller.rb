@@ -5,6 +5,7 @@ class ReviewHousesController < ApplicationController
   # GET /review_houses.json
   def index
     # @reviews = ReviewHouse.all
+    @mode = "oneroom"
     render "main/index"
     # binding pry
   end

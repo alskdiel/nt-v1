@@ -8,8 +8,26 @@ body {
       margin-top: 120px;
       .sub-navbar {
         background: #fff;
+        padding: 19px 15px 1px 15px;
         div {
+          color: #50265e;
+          opacity: 0.45;
+          font-size: 25px;
+          line-height: 25px;
+          text-align: center;
           display: inline-block;
+          padding: 6px 18px 26px 18px;
+          margin: 0px 5px;
+          &.selected {
+            opacity: 1;
+            border-bottom: 3px solid #502652;
+          }
+        }
+        div:first-child {
+          margin: 0px;
+        }
+        div:nth-child(3) {
+          margin-right: 20px;
         }
       }
     }
