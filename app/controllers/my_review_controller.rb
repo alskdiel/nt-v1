@@ -107,7 +107,11 @@ class MyReviewController < ApplicationController
 
     my_info = User.find(user_id).info_brief
 
-    is_mypage = (current_user.id == user_id)
+    if user_signed_in?
+      is_mypage = (current_user.id == user_id)
+    else
+      is_mypage = false
+    end
 
     return render json: {
       ret: true,

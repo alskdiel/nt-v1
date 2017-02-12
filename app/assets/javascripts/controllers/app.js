@@ -20,6 +20,17 @@ myApp.controller('MainCtrl', [
       $('#form-cover-img').submit();
     }
 
+    $scope.getHotReviews = function() {
+      alert("hot");
+    }
+
+    $scope.getNewReviews = function() {
+      alert("new");
+    }
+
+    $scope.getBestReviews = function() {
+      alert("best");
+    }
 
     initController();
 
