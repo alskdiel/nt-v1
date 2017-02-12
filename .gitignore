@@ -8,6 +8,7 @@
 /.bundle
 
 /config/environments/*
+/public/system/*
 
 # Ignore the default SQLite database.
 /db/*.sqlite3
