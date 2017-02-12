@@ -42,6 +42,11 @@ Rails.application.routes.draw do
   get "user_reviews_l/:id" => "my_review#user_reviews_l"
   get "get_user_reviews_L/:id" => "my_review#get_user_reviews_L"
   get "get_user_review_info_L/:id" => "my_review#get_user_review_info_L"
+
+  get "users/user_signed_in" => "main#user_signed_in"
+
+  get "my_scraps" => "my_review#my_scraps"
+  get "get_my_scraps" => "my_review#get_my_scraps"
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

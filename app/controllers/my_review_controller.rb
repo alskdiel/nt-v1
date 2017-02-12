@@ -47,6 +47,14 @@ class MyReviewController < ApplicationController
     redirect_to action: 'my_reviews'
   end
 
+  def my_scraps
+    render "my_review/my_scrap"
+  end
+
+  def get_my_scraps
+    @reviews = current_user.scraps
+  end
+
   def user_reviews_h
     render "my_review/user_review"
   end

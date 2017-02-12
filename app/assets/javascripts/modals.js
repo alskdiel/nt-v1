@@ -291,7 +291,7 @@ var modal_function = function () {
       if(!content) {
         alert("내용을 입력해주세요.");
       } else {
-        $f.submit();
+        $form.submit();
       }
     }
   });

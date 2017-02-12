@@ -52,6 +52,10 @@ init  = function() {
     window.location.href = "/my_reviews";
   });
 
+  $('.side-bar .body .scrap').on('click', function(){
+    checkUserSignedIn();
+  });
+
   $('.side-bar .body .user-info .sign-out').on('click', function(){
     signoutProcess();
   });
@@ -59,6 +63,30 @@ init  = function() {
   $('.side-bar .followings').on('click', function(){
     $("#modal-test").modal();
   });
+
+  function checkUserSignedIn() {
+    $.ajax({
+      url: 'users/user_signed_in',
+      type: 'get',
+      dataType: 'json',
+      // data: $.param( $('Element or Expression') ),
+      complete: function (jqXHR, textStatus) {
+        // callback
+      },
+      success: function (data, textStatus, jqXHR) {
+        console.log(data);
+        if(data.user_signed_in) {
+          window.location.href = "/my_scraps";
+        } else {
+          alert("로그인 해주세요.");
+        }
+        // success callback
+      },
+      error: function (jqXHR, textStatus, errorThrown) {
+        // error callback
+      }
+    });
+  }
 
   function openWriteModal() {
     $("#modal-write").modal();

@@ -60,4 +60,44 @@ class User < ActiveRecord::Base
     return info
   end
 
+  def scraps
+    scrap_houses = self.scrap_houses.all.order("created_at DESC")
+    scrap_lives = self.scrap_lives.all.order("created_at DESC")
+
+    houses = []
+    lives = []
+
+    scrap_houses.each do |scrap_house|
+      houses.push(ReviewHouse.find(scrap_house.review_house_id))
+    end
+    scrap_lives.each do |scrap_life|
+      lives.push(ReviewLife.find(scrap_life.review_life_id))
+    end
+
+    reviews = []
+
+    i = 0
+    j = 0
+
+    begin
+      while true
+        if houses[i].created_at > lives[j].created_at
+          reviews.push(houses[i])
+          i += 1
+        else
+          reviews.push(lives[j])
+          j += 1
+        end
+      end
+    rescue
+      if houses[i].present?
+        reviews.push(houses[i])
+      else
+        reviews.push(lives[j])
+      end
+    end
+
+    return reviews
+  end
+
 end

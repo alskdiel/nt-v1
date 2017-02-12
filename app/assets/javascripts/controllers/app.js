@@ -37,20 +37,19 @@ myApp.controller('MainCtrl', [
     function initController() {
       var input_type = window.location.pathname;
 
-      if(input_type !== "/" && input_type !== "/review_houses" && input_type !== "/review_lives") {
-        if(input_type === "/my_reviews") {
-          getMyReviewInfo();
-        } else {
-          var input = input_type.split("/");
-          var from = input[1];
-          var review_id = input[2];
-          if(from === "user_reviews_h") {
-            getUserReviewInfo_H(review_id);
-          } else if(from === "user_reviews_l") {
-            getUserReviewInfo_L(review_id);
-          }
+      if(input_type === "/my_reviews") {
+        getMyReviewInfo();
+      } else {
+        var input = input_type.split("/");
+        var from = input[1];
+        var review_id = input[2];
+        if(from === "user_reviews_h") {
+          getUserReviewInfo_H(review_id);
+        } else if(from === "user_reviews_l") {
+          getUserReviewInfo_L(review_id);
         }
       }
+
     }
 
     function getMyReviewInfo() {
@@ -170,6 +169,8 @@ myApp.controller('PinCtrl', [
         getLifeReviews();
       } else if(input_type === "/my_reviews") {
         getMyReviews();
+      } else if(input_type === "/my_scraps") {
+        getMyScraps();
       } else {
         var input = input_type.split("/");
         var from = input[1];
@@ -216,6 +217,16 @@ myApp.controller('PinCtrl', [
       $http({
         method: 'get',
         url: '/get_my_reviews.json'
+      })
+        .then(function(data, status, headers, config) {
+          $scope.reviews = data.data.reviews;
+        });
+    }
+
+    function getMyScraps() {
+      $http({
+        method: 'get',
+        url: '/get_my_scraps.json'
       })
         .then(function(data, status, headers, config) {
           $scope.reviews = data.data.reviews;
