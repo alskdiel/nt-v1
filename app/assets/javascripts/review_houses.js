@@ -34,10 +34,10 @@ var review_houses_function = function() {
   });
 
   function setDuration() {
-    var $s_year = $write_form.find('.duration').find('.duration-start').find('.years');
-    var $e_year = $write_form.find('.duration').find('.duration-end').find('.years');
-    var $s_month = $write_form.find('.duration').find('.duration-start').find('.months');
-    var $e_month = $write_form.find('.duration').find('.duration-end').find('.months');
+    var $s_year = $write_form.find('.duration').find('.duration-start').find('.dur-wrapper').find('.years');
+    var $e_year = $write_form.find('.duration').find('.duration-end').find('.dur-wrapper').find('.years');
+    var $s_month = $write_form.find('.duration').find('.duration-start').find('.dur-wrapper').find('.months');
+    var $e_month = $write_form.find('.duration').find('.duration-end').find('.dur-wrapper').find('.months');
 
     var today = new Date().getFullYear();
     for(var i=today; i>1899; i--) {
@@ -96,12 +96,12 @@ var review_houses_function = function() {
   }
 
   function setDurationData($start, $end) {
-    var start_year = $write_form.find('.duration').find('.duration-start').find('.years').val();
-    var start_month = $write_form.find('.duration').find('.duration-start').find('.months').val();
+    var start_year = $write_form.find('.duration').find('.duration-start').find('.dur-wrapper').find('.years').val();
+    var start_month = $write_form.find('.duration').find('.duration-start').find('.dur-wrapper').find('.months').val();
     $start.val(start_year+"-"+start_month+"-1");
 
-    var end_year = $write_form.find('.duration').find('.duration-end').find('.years').val();
-    var end_month = $write_form.find('.duration').find('.duration-end').find('.months').val();
+    var end_year = $write_form.find('.duration').find('.duration-end').find('.dur-wrapper').find('.years').val();
+    var end_month = $write_form.find('.duration').find('.duration-end').find('.dur-wrapper').find('.months').val();
     $end.val(end_year+"-"+end_month+"-1");
   }
 

@@ -115,6 +115,10 @@ var modal_function = function () {
     }
   });
 
+  $('#modal-write .modal-dialog .modal-content .modal-title .close-wrapper').on('click', function() {
+    $("#modal-write").modal('hide');
+  });
+
   function checkPwd(str) {
     if (str.length < 8) {
       return { msg: "8~16자 영문, 숫자를 혼합해주세요.",
@@ -278,12 +282,19 @@ var modal_function = function () {
   });
 
   $('#modal-write-lifefeed .modal-content .modal-footer .submit').on('click', function() {
-    $("#form-life").submit();
+    var $form = $(this).parent().parent();
+    var title = $form.children('.modal-body').children('.title').children('input').val();
+    var content = $form.children('.modal-body').children('.content').children('textarea').val();
+    if(!title) {
+      alert("제목을 입력해주세요.");
+    } else {
+      if(!content) {
+        alert("내용을 입력해주세요.");
+      } else {
+        $f.submit();
+      }
+    }
   });
 }
 
-
-
-// $(document).on('ready', modal_function);
-// $(document).on('turbolinks:change', modal_function);
 $(document).on('turbolinks:load', modal_function);

@@ -110,7 +110,9 @@
     <div class="modal-content">
       <div class="modal-title">
         <div>글쓰기</div>
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <div class="close-wrapper">
+          <%= image_tag 'buttons/close.png', class: "cancel" %>
+        </div>
       </div>
       <div class="modal-body">
         <%= image_tag 'write/button-oneroom_review.png', class: "oneroom" %>
@@ -125,17 +127,20 @@
     <div class="modal-content">
       <form id="form-life" action="/review_lifes" method="post" enctype="multipart/form-data">
         <input type="hidden" name="authenticity_token" value="QGthAE0W7zBgRqvzsphx7J05/bXasa8bpotEkFjwctIqEBfabdK1rN6B8wlcupH4ElpoBt2n9KwRY2it813Whw==">
-        <div class="modal-header">
-        </div>
         <div class="modal-body">
           <div class="title">
             <input type="text" placeholder="제목" name="review_life[title]"/>
           </div>
           <div class="hashtag">
-            <input type="text" placeholder="해시태그" name="hashtag"/>
+            <input type="text" placeholder="해시태그 - #내집#탐방" name="hashtag"/>
           </div>
           <div class="image-file">
-            <input type="file" name="review_life[image]"/>
+            <label for="write-life-img">
+              <div class="button-wrapper">
+                <div>사진 업로드</div>
+              </div>
+            </label>
+            <input type="file" id="write-life-img" name="review_life[image]"/>
           </div>
           <div class="content">
             <textarea placeholder="글쓰기" name="review_life[content]"/></textarea>

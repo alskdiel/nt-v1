@@ -214,13 +214,23 @@
   }
   &#modal-write {
     .modal-dialog {
+      margin-top: 200px;
       .modal-content {
         width: 632.5px;
         height: 360px;
         border-radius: 0px;
         .modal-title {
-          height: 80px;
+          font-size: 34px;
+          line-height: 34px;
+          color: #50265e;
+          padding: 30px 24px;
           background: #f4ca66;
+          div {
+            display: inline-block;
+            &.close-wrapper {
+              float: right;
+            }
+          }
         }
         .modal-body {
           padding: 45px 78px;
@@ -239,6 +249,7 @@
   }
   &#modal-write-lifefeed {
     .modal-dialog {
+      margin-top: 100px;
       .modal-content {
         width: 640px;
         padding: 66px 22px;
@@ -253,6 +264,10 @@
             width: 100%;
             input, textarea {
               width: 100%;
+              border: 1px solid #ccc;
+              padding: 22px 24px;
+              color: #4d4d4d;
+              font-size: 27px;
             }
             textarea {
               resize: none;
@@ -260,7 +275,25 @@
             }
           }
           .image-file {
-          
+            label {
+              font-size: 27px;
+              line-height: 27px;
+              background: #dc534c;
+              color: #fff;
+              padding: 22px 24px;
+              font-weight: normal;
+            }
+            input[type="file"] {
+              position: absolute;
+              width: 1px;
+              height: 1px;
+              padding: 0;
+              margin: -1px;
+              overflow: hidden;
+              clip: rect(0,0,0,0);
+              border: 0;
+            }
+
           }
           .title, .hashtag, .image-file {
             margin-bottom: 23px;
@@ -268,7 +301,16 @@
         }
         .modal-footer {
           border: 0px;
-          padding: 0px;
+          padding: 0px 180px;
+          margin-top: 53px;
+          .button.submit {
+            text-align: center;
+            background: #f4ca66;
+            font-size: 27px;
+            line-height: 27px;
+            color: #fff;
+            padding: 16px 50px;
+          }
         }
       }
     }

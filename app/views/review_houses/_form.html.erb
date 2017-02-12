@@ -8,11 +8,16 @@
       <div class="address">
         <input type="text" placeholder="주소 ex) 서울시 마포구 망원동 479-94" name="review_house[address]"/>
       </div>
-      <div class="image">
-        <input type="file" name="pic_house[]" multiple/>
-      </div>
       <div class="duration">
         <%= render template: "review_houses/_duration" %>
+      </div>
+      <div class="image">
+        <label for="write-img">
+          <div class="button-wrapper">
+            <div>사진업로드</div>
+          </div>
+        </label>
+        <input type="file" id="write-img" name="pic_house[]"/>
       </div>
       <div class="satisfactions">
         <%= render template: "review_houses/_satisfactions" %>
@@ -23,7 +28,6 @@
       <div class="pros-and-cons">
         <%= render template: "review_houses/_pros_and_cons" %>
       </div>
-
       <div class="actions">
         <div class="btn submit">게시하기</div>
       </div>
