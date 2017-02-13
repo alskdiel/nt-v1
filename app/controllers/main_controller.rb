@@ -37,59 +37,60 @@ class MainController < ApplicationController
 
 
   def search_item
-    @param_arr = params[:params].split("&")
+    param_arr = params[:params].split("&")
     @reviews = []
 
 
     if params[:type] == "house"
 
     else params[:type] == "life"
-      isPossible = false
+      isPossible = true
 
-      @hash_id_arr = []
-      @param_arr.each do |param|
+      hash_id_arr = []
+      param_arr.each do |param|
         tag = HashTag.where(keyword: param).take
         if tag.present?
-          @hash_id_arr.push(tag.id)
-          isPossible = true
+          hash_id_arr.push(tag.id)
+        else
+          isPossible = false
         end
       end
 
       if isPossible
-        @hash_ref_arr = []
-        @hash_id_arr.each do |id|
-          @hash_ref_arr.push(HashTagRef.where(hash_tag_id: id).pluck(:review_life_id))
+        hash_ref_arr = []
+        hash_id_arr.each do |id|
+          hash_ref_arr.push(HashTagRef.where(hash_tag_id: id).pluck(:review_life_id))
         end
 
-        @toret = []
-        if @hash_ref_arr[0].present?
+        toret = []
+        if hash_ref_arr[0].present?
 
-          @checker = Array.new(@hash_ref_arr.size)
+          checker = Array.new(hash_ref_arr.size)
 
-          @hash_ref_arr[0].each do |x|
+          hash_ref_arr[0].each do |x|
             i = 0
 
-            @hash_ref_arr.each do |ref|
+            hash_ref_arr.each do |ref|
               if ref.include? x
-                @checker[i] = true
+                checker[i] = true
               else
-                @checker[i] = false
+                checker[i] = false
               end
               i += 1
             end
 
-            @c = true
-            @checker.each do |x|
-              @c = @c && x
+            c = true
+            checker.each do |x|
+              c = c && x
             end
 
-            if @c
-              @toret.push(x)
+            if c
+              toret.push(x)
             end
 
           end
 
-          @toret.each do |review_id|
+          toret.each do |review_id|
             @reviews.push(ReviewLife.find(review_id))
           end
         else
