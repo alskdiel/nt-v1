@@ -56,10 +56,11 @@ body {
             width: 100%;
             height: 100%;
             background: #fff;
-            .search-img-wrapper, .search-input-wrapper {
+            .search-img-wrapper, .search-input-wrapper, .search-type-wrapper {
               height: 100%;
               display: inline-block;
               background: #fff;
+              vertical-align: top;
             }
             .search-img-wrapper {
               padding: 6px;
@@ -68,7 +69,7 @@ body {
               }
             }
             .search-input-wrapper {
-              width: calc(100% - 35px);
+              width: calc(100% - 210px);
               input {
                 width: 100%;
                 height: 100%;
@@ -80,6 +81,26 @@ body {
                 -o-box-sizing: border-box;
                 -ms-box-sizing: border-box;
                 box-sizing: border-box;
+              }
+            }
+            .search-type-wrapper {
+              display: inline-block;
+              float: right;
+              div {
+                background: #f0efee;
+                font-size: 17px;
+                color: #50265e;
+                padding: 6px 28px;
+                &.selected {
+                  background: #dc534c;
+                  color: #fff;
+                }
+              }
+              .house {
+                float: left;
+              }
+              .life {
+                float: right;
               }
             }
           }

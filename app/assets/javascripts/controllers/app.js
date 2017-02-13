@@ -6,6 +6,65 @@ myApp.config([
   }
 ]);
 
+myApp.controller('NavCtrl', [
+  '$scope',
+  '$http',
+
+  function($scope, $http) {
+    var search_type = 'house';
+    $scope.search_keywords;
+
+    $scope.setSearchType = function($event, type) {
+      $scope.search_keywords = "";
+      var $type_wrapper = angular.element($event.currentTarget).parent();
+      if(type === 'house') {
+        $type_wrapper.find('.life').removeClass('selected');
+        $type_wrapper.find('.house').addClass('selected');
+        $type_wrapper.parent().find('.search-input-wrapper').find('.search').attr('placeholder', 'search');
+      } else {
+        $type_wrapper.find('.house').removeClass('selected');
+        $type_wrapper.find('.life').addClass('selected');
+        $type_wrapper.parent().find('.search-input-wrapper').find('.search').attr('placeholder', '#내집#탐방#좋아요');
+      }
+      search_type = type;
+    }
+
+    $scope.search = function() {
+      var params_str;
+      if(search_type === 'house') {
+        params_str = searchHouse($scope.search_keywords);
+      } else {
+        params_str = searchLife($scope.search_keywords);
+      }
+
+      var uri = "/search/"+params_str;
+      encodeURI(uri);
+
+      window.location.href = uri;
+    }
+
+    function searchHouse(keywords) {
+      var params_str = $scope.search_keywords;
+      params_str = params_str.toLowerCase();
+      params_str = params_str.replace(" ", "&");
+      params_str = 'house='+params_str;
+
+      return params_str;
+    }
+
+    function searchLife(keywords) {
+      var keywords_str = $scope.search_keywords;
+      keywords_str = keywords_str.toLowerCase();
+      keywords_str = keywords_str.replace(" ", "");
+      var params = keywords_str.split("#");
+      var params_str = params.join("&");
+      params_str = 'life='+params_str.substr(1, params_str.length);
+
+      return params_str;
+    }
+}
+
+]);
 
 myApp.controller('MainCtrl', [
   '$scope',
@@ -160,7 +219,7 @@ myApp.controller('PinCtrl', [
     }
 
     function initController() {
-      var input_type = window.location.pathname;
+      var input_type = decodeURI(window.location.pathname);
       if(input_type === "/") {
         getAllReviews();
       } else if(input_type === "/review_houses") {
@@ -173,12 +232,19 @@ myApp.controller('PinCtrl', [
         getMyScraps();
       } else {
         var input = input_type.split("/");
+        console.log(input);
         var from = input[1];
-        var review_id = input[2];
-        if(from === "user_reviews_h") {
-          getUserReviews_H(review_id);
-        } else if(from === "user_reviews_l"){
-          getUserReviews_L(review_id);
+        if(from === "search") {
+          var type = input[2].substring(0, 4);
+          var params_str = input[2].substring(5, input[2].length);
+          getSearchedReviews(type, params_str);
+        } else {
+          var review_id = input[2];
+          if(from === "user_reviews_h") {
+            getUserReviews_H(review_id);
+          } else if(from === "user_reviews_l"){
+            getUserReviews_L(review_id);
+          }
         }
       }
     }
@@ -252,6 +318,21 @@ myApp.controller('PinCtrl', [
       })
         .then(function(data, status, headers, config) {
           $scope.reviews = data.data.reviews;
+        });
+    }
+
+    function getSearchedReviews(type, params) {
+      data = {
+        type: type,
+        params: params
+      }
+      $http({
+        method: 'post',
+        url: '/get_searched_reviews.json',
+        data: data
+      })
+        .then(function(data, status, headers, config) {
+          $scope.reviews = data.data;
         });
     }
   }

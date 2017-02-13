@@ -47,6 +47,9 @@ Rails.application.routes.draw do
 
   get "my_scraps" => "my_review#my_scraps"
   get "get_my_scraps" => "my_review#get_my_scraps"
+
+  get "search/:param" => "main#index"
+  post "get_searched_reviews" => "main#search_item"
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

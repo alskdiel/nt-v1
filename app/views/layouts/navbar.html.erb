@@ -1,4 +1,4 @@
-<div class="nav-bar">
+<div class="nav-bar" ng-controller="NavCtrl">
   <div class="nav-logo">
     <%= image_tag 'navbar/logo.png', class: "logo" %>
   </div>
@@ -8,7 +8,11 @@
         <%= image_tag 'navbar/search.png' %>
       </div>
       <div class="search-input-wrapper">
-        <input type="text" class="search" placeholder="search"/>
+        <input type="text" class="search" placeholder="search" ng-keydown="$event.which === 13 && search()" ng-model="search_keywords"/>
+      </div>
+      <div class="search-type-wrapper">
+        <div class="house selected" ng-click="setSearchType($event, 'house')">원룸</div>
+        <div class="life" ng-click="setSearchType($event, 'oneroom')">생활</div>
       </div>
     </div>
   </div>
