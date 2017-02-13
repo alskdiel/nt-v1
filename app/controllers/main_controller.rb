@@ -40,8 +40,15 @@ class MainController < ApplicationController
     param_arr = params[:params].split("&")
     @reviews = []
 
-
     if params[:type] == "house"
+      @queries = []
+
+      param_arr.each do |param|
+        @queries.push('(title LIKE "%' + param + '%" OR address LIKE "%' + param + '%")')
+      end
+
+      @query = @queries.join(" AND ");
+      @reviews = ReviewHouse.where(@query)
 
     else params[:type] == "life"
       isPossible = true

@@ -39,7 +39,6 @@ myApp.controller('NavCtrl', [
 
       var uri = "/search/"+params_str;
       encodeURI(uri);
-
       window.location.href = uri;
     }
 
@@ -47,7 +46,7 @@ myApp.controller('NavCtrl', [
       var params_str = $scope.search_keywords;
       params_str = params_str.toLowerCase();
       params_str = params_str.replace(" ", "&");
-      params_str = 'house='+params_str;
+      params_str = 'house?='+params_str;
 
       return params_str;
     }
@@ -58,7 +57,7 @@ myApp.controller('NavCtrl', [
       keywords_str = keywords_str.replace(" ", "");
       var params = keywords_str.split("#");
       var params_str = params.join("&");
-      params_str = 'life='+params_str.substr(1, params_str.length);
+      params_str = 'life?='+params_str.substr(1, params_str.length);
 
       return params_str;
     }
@@ -232,11 +231,14 @@ myApp.controller('PinCtrl', [
         getMyScraps();
       } else {
         var input = input_type.split("/");
+        console.log(input_type)
         console.log(input);
         var from = input[1];
         if(from === "search") {
-          var type = input[2].substring(0, 4);
-          var params_str = input[2].substring(5, input[2].length);
+          var type = input[2];
+          var params_str = decodeURI(window.location.search);
+          params_str = params_str.substring(2, params_str.length);
+
           getSearchedReviews(type, params_str);
         } else {
           var review_id = input[2];
