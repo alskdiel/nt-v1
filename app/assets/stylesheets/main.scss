@@ -1,4 +1,17 @@
+@font-face{
+  font-family: "BMJUA";
+  src: asset-url("BMJUA_otf.otf");
+}
+
+@font-face{
+  font-family: "NANUMGOTHIC";
+  src: asset-url("NanumBarunGothicOTF-YetHangul.otf");
+}
+
 body {
+  div {
+    font-family: NANUMGOTHIC;
+  }
   img {
     vertical-align: top;
   }
