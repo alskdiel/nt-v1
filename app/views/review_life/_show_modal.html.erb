@@ -51,24 +51,49 @@
           <div class="new">NEW</div>
         </div>
         <div class="comment-wrapper" ng-repeat="comment in comments track by $index">
-          <div class="comment-left">
-            <div class="comment-header">
-              <div class="nickname">{{comment.written_by}}</div>
-              <div class="created-at">{{comment.created_at}}</div>
+          <div class="comment-inner-wrapper">
+            <div class="comment-left">
+              <div class="comment-header">
+                <div class="nickname">{{comment.written_by}}</div>
+                <div class="created-at">{{comment.created_at}}</div>
+              </div>
+              <div class="comment-body">
+                <div class="content">{{comment.content}}</div>
+              </div>
             </div>
-            <div class="comment-body">
-              <div class="content">{{comment.content}}</div>
-              <div class="show-subcomments">
+            <div class="comment-right">
+              <div class="upvote" ng-click="upvote_comment(comment)">
+                <%= image_tag 'show/button-good.png' %>
               </div>
-              <div class="write-subcomments">
-              </div>
+              <div class="upvote-count">{{comment.upvote_count}}</div>
             </div>
           </div>
-          <div class="comment-right">
-            <div class="upvote" ng-click="upvote_comment(comment)">
-              <%= image_tag 'show/button-good.png' %>
+          <div class="subcomment-wrapper">
+            <div class="subcomment-header">
+              <div class="btn-show" ng-click="showSubComments(comment)">
+                <div>답글 {{comment.subcomment_cnt}}개</div>
+                <div class="arrow upper"></div>
+              </div>
+              <div class="devider">|</div>
+              <div class="btn-write" ng-click="writeSubComment(comment)">답글쓰기</div>
             </div>
-            <div class="upvote-count">{{comment.upvote_count}}</div>
+            <div class="subcomment-body">
+              <div class="write-subcomment" ng-if="comment.write_sub">
+                <textarea ng-model="comment.subcomment_writting"></textarea>
+                <div class="submit-subcomment" ng-click="submit_subcomment(comment)">등록</div>
+              </div>
+              <div class="show-subcomment" ng-if="comment.show_sub">
+                <div class="subcomments" ng-repeat="subcomment in comment.subcomments">
+                  <div class="sub-header">
+                    <div class="nickname">{{subcomment.written_by}}</div>
+                    <div class="created-at">{{subcomment.created_at}}</div>
+                  </div>
+                  <div class="sub-body">
+                    <div class="content">{{subcomment.content}}</div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>

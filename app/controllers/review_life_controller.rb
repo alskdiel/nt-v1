@@ -77,6 +77,17 @@ class ReviewLifeController < ApplicationController
     end
   end
 
+  def submit_subcomment
+    if user_signed_in?
+      comment_life_id = params[:comment_life_id]
+      content = params[:comment]
+      SubcommentLife.create(comment_life_id: comment_life_id, user_id: current_user.id, content: content)
+      return render json: { current_user: true }
+    else
+      return render json: { current_user: false }
+    end
+  end
+
   def get_comments
     review_life_id = params[:id]
     if user_signed_in?

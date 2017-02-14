@@ -114,6 +114,17 @@ class ReviewHousesController < ApplicationController
     end
   end
 
+  def submit_subcomment
+    if user_signed_in?
+      comment_house_id = params[:comment_house_id]
+      content = params[:comment]
+      SubcommentHouse.create(comment_house_id: comment_house_id, user_id: current_user.id, content: content)
+      return render json: { current_user: true }
+    else
+      return render json: { current_user: false }
+    end
+  end
+
   def get_comments
     review_house_id = params[:id]
     if user_signed_in?

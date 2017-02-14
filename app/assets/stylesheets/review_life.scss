@@ -127,53 +127,133 @@
               .comment-wrapper {
                 padding: 19px 20px 11px 20px;
                 border-bottom: 1px solid #e6e6e6;
-                .comment-left {
-                  display: inline-block;
-                  width: 700px;
-                  .comment-header {
-                    margin-bottom: 10px;
-                    div {
-                      display: inline-block;
-                      margin-right: 17px;
-                      &.nickname {
-                        font-size: 19px;
+                .comment-inner-wrapper {
+                  .comment-left {
+                    display: inline-block;
+                    width: 700px;
+                    .comment-header {
+                      margin-bottom: 10px;
+                      div {
+                        display: inline-block;
+                        margin-right: 17px;
+                        &.nickname {
+                          font-size: 19px;
+                        }
+                        &.created-at {
+                          color: #999;
+                          font-size: 13px;
+                        }
                       }
-                      &.created-at {
-                        color: #999;
-                        font-size: 13px;
+                    }
+                    .comment-body {
+                      margin-bottom: 20px;
+                      div {
+                        display: inline-block;
+                        &.content {
+                          font-size: 19px;
+                          color: #4d4d4d;
+                        }
                       }
                     }
                   }
-                  .comment-body {
-                    margin-bottom: 17px;
-                    div {
+                  .comment-right {
+                    vertical-align: top;
+                    display: inline-block;
+                    margin-left: 30px;
+                    height: 43px;
+                    line-height: 43px;
+                    .upvote {
+                      height: 100%;
+                      line-height: 50px;
                       display: inline-block;
-                      &.content {
-                        font-size: 19px;
-                        color: #4d4d4d;
+                      img {
+                        height: 100%;
                       }
+                    }
+                    .upvote-count {
+                      display: inline-block;
+                      font-size: 27px;
+                      color: #f4ca66;
+                      margin-left: 9px;
                     }
                   }
                 }
-                .comment-right {
-                  vertical-align: top;
-                  display: inline-block;
-                  margin-left: 30px;
-                  height: 43px;
-                  line-height: 43px;
-                  .upvote {
-                    height: 100%;
-                    line-height: 50px;
-                    display: inline-block;
-                    img {
-                      height: 100%;
+                .subcomment-wrapper {
+                  font-size: 19px;
+                  .subcomment-header {
+                    margin-bottom: 22px;
+                    div {
+                      color: #999;
+                      display: inline-block;
+                      .arrow {
+                        width: 0;
+                        height: 0;
+                        border-left: 6px solid transparent;
+                        border-right: 6px solid transparent;
+                        border-top: 9px solid #b2b1b1;
+                        margin-left: 7px;
+                        .upper {
+                          border-bottom: 9px solid #b2b1b1;
+                        }
+                      }
+                      &.devider {
+                        margin: 0px 11px;
+                        font-size: 14px;
+                      }
                     }
                   }
-                  .upvote-count {
-                    display: inline-block;
-                    font-size: 27px;
-                    color: #f4ca66;
-                    margin-left: 9px;
+                  .subcomment-body {
+                    .write-subcomment {
+                      margin-bottom: 11px;
+                      textarea {
+                        width: 708px;
+                        height: 59px;
+                        padding: 8px 10px;
+                        resize: none;
+                        border: 1px solid #b2b1b1;
+                      }
+                      .submit-subcomment {
+                        margin-left: 29px;
+                        display: inline-block;
+                        vertical-align: bottom;
+                        background: #f4ca66;
+                        color: #fff;
+                        padding: 6px 16px;
+                        font-size: 11px;
+                        line-height: 11px;
+                      }
+                    }
+                    .show-subcomment {
+                      .subcomments {
+                        padding: 0px 51px;
+                        margin-top: 11px;
+                        .sub-header {
+                          margin-bottom: 10px;
+                          div {
+                            display: inline-block;
+                            margin-right: 17px;
+                            &.nickname {
+                              font-size: 19px;
+                            }
+                            &.created-at {
+                              color: #999;
+                              font-size: 13px;
+                            }
+                          }
+                        }
+                        .sub-body {
+                          margin-bottom: 20px;
+                          div {
+                            display: inline-block;
+                            &.content {
+                              font-size: 19px;
+                              color: #4d4d4d;
+                            }
+                          }
+                        }
+                      }
+
+                    }
                   }
                 }
               }

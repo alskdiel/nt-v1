@@ -472,6 +472,32 @@ myApp.controller('ShowCtrl', [
         });
     }
 
+    var opened_subcomment = [];
+    $scope.showSubComments = function(comment) {
+      comment.show_sub = !comment.show_sub;
+      opened_subcomment.push(comment.id);
+    }
+
+    $scope.writeSubComment = function(comment) {
+      comment.write_sub = true;
+    }
+
+    $scope.submit_subcomment = function(comment) {
+      $http({
+        method: 'post',
+        url: 'new_subcomment_H',
+        data: { comment_house_id: comment.id,
+                comment: comment.subcomment_writting }
+      })
+        .then(function(data, status, headers, config) {
+          if(data.data.current_user) {
+            getComments();
+          } else {
+            alert("로그인 해 주세요");
+          }
+        });
+    }
+
     function getComments() {
       var url = "/get_comments_H/"+$scope.id+".json";
       $http({
@@ -480,6 +506,14 @@ myApp.controller('ShowCtrl', [
       })
         .then(function(data, status, headers, config) {
           $scope.comments = data.data.comments
+          for(var i=0; i<opened_subcomment.length; i++) {
+            for(var j=0; j<$scope.comments.length; j++) {
+              if($scope.comments[j].id == opened_subcomment[i]) {
+                $scope.comments[j].show_sub = true;
+                break;
+              }
+            }
+          }
         });
     }
 
@@ -625,6 +659,31 @@ myApp.controller('ShowLifeCtrl', [
         });
     }
 
+    var opened_subcomment = [];
+    $scope.showSubComments = function(comment) {
+      comment.show_sub = !comment.show_sub;
+      opened_subcomment.push(comment.id);
+    }
+
+    $scope.writeSubComment = function(comment) {
+      comment.write_sub = true;
+    }
+
+    $scope.submit_subcomment = function(comment) {
+      $http({
+        method: 'post',
+        url: 'new_subcomment_L',
+        data: { comment_life_id: comment.id,
+                comment: comment.subcomment_writting }
+      })
+        .then(function(data, status, headers, config) {
+          if(data.data.current_user) {
+            getComments();
+          } else {
+            alert("로그인 해 주세요");
+          }
+        });
+    }
     function initImagePath() {
       if($scope.image_url) {
         $scope.image_url = $scope.image_url;
@@ -639,6 +698,15 @@ myApp.controller('ShowLifeCtrl', [
       })
         .then(function(data, status, headers, config) {
           $scope.comments = data.data.comments
+          for(var i=0; i<opened_subcomment.length; i++) {
+            console.log(opened_subcomment[i])
+            for(var j=0; j<$scope.comments.length; j++) {
+              if($scope.comments[j].id == opened_subcomment[i]) {
+                $scope.comments[j].show_sub = true;
+                break;
+              }
+            }
+          }
         });
     }
 

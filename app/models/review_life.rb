@@ -50,9 +50,11 @@ class ReviewLife < ActiveRecord::Base
         id: comment.id,
         written_by: User.find(comment.user_id).nickname,
         content: comment.content,
-        created_at: comment.created_at.strftime("%Y-%m-%d"),
+        created_at: comment.created_at.strftime("%Y-%m-%d %H:%M"),
         upvote_count: comment.upvotes,
-        has_upvoted: has_upvoted
+        has_upvoted: has_upvoted,
+        subcomment_cnt: comment.subcomment_lives.count,
+        subcomments: comment.subcomments
       })
     end
 
