@@ -27,6 +27,12 @@ Rails.application.routes.draw do
   get "get_comments_H/:id" => "review_houses#get_comments"
   get "get_comments_L/:id" => "review_life#get_comments"
 
+  post "delete_subcomment_H" => "review_houses#delete_subcomment"
+  post "delete_subcomment_L" => "review_life#delete_subcomment"
+
+  post "delete_comment_H" => "review_houses#delete_comment"
+  post "delete_comment_L" => "review_life#delete_comment"
+
   get "get_reviews" => "main#get_reviews"
   get "get_house_reviews" => "review_houses#get_reviews"
   get "get_life_reviews" => "review_life#get_reviews"

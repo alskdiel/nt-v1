@@ -449,6 +449,7 @@ myApp.controller('ShowCtrl', [
           } else {
             alert("로그인 해 주세요");
           }
+          $scope.comment_writting = "";
         });
     }
 
@@ -496,6 +497,40 @@ myApp.controller('ShowCtrl', [
             alert("로그인 해 주세요");
           }
         });
+    }
+
+    $scope.delete_comment = function(comment) {
+      if(confirm("삭제하시겠습니까?")) {
+        $http({
+          method: 'post',
+          url: 'delete_comment_H',
+          data: { comment_id: comment.id }
+        })
+          .then(function(data, status, headers, config) {
+            if(data.data.ret) {
+              getComments();
+            } else {
+              alert("invalid operation");
+            }
+          });
+      }
+    }
+
+    $scope.delete_subcomment = function(comment) {
+      if(confirm("삭제하시겠습니까?")) {
+        $http({
+          method: 'post',
+          url: 'delete_subcomment_H',
+          data: { subcomment_id: comment.id }
+        })
+          .then(function(data, status, headers, config) {
+            if(data.data.ret) {
+              getComments();
+            } else {
+              alert("invalid operation");
+            }
+          });
+      }
     }
 
     function getComments() {
@@ -636,6 +671,7 @@ myApp.controller('ShowLifeCtrl', [
           } else {
             alert("로그인 해 주세요");
           }
+          $scope.comment_writting = "";
         });
     }
 
@@ -684,6 +720,40 @@ myApp.controller('ShowLifeCtrl', [
           }
         });
     }
+
+    $scope.delete_comment = function(comment) {
+      if(confirm("삭제하시겠습니까?")) {
+        $http({
+          method: 'post',
+          url: 'delete_comment_L',
+          data: { comment_id: comment.id }
+        })
+          .then(function(data, status, headers, config) {
+            if(data.data.ret) {
+              getComments();
+            } else {
+              alert("invalid operation");
+            }
+          });
+      }
+    }
+    $scope.delete_subcomment = function(comment) {
+      if(confirm("삭제하시겠습니까?")) {
+        $http({
+          method: 'post',
+          url: 'delete_subcomment_L',
+          data: { subcomment_id: comment.id }
+        })
+          .then(function(data, status, headers, config) {
+            if(data.data.ret) {
+              getComments();
+            } else {
+              alert("invalid operation");
+            }
+          });
+      }
+    }
+
     function initImagePath() {
       if($scope.image_url) {
         $scope.image_url = $scope.image_url;

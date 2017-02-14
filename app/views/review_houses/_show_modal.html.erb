@@ -119,6 +119,7 @@
               <div class="comment-header">
                 <div class="nickname">{{comment.written_by}}</div>
                 <div class="created-at">{{comment.created_at}}</div>
+                <div class="btn-delete" ng-if="comment.auth" ng-click="delete_comment(comment)">삭제</div>
               </div>
               <div class="comment-body">
                 <div class="content">{{comment.content}}</div>
@@ -150,6 +151,7 @@
                   <div class="sub-header">
                     <div class="nickname">{{subcomment.written_by}}</div>
                     <div class="created-at">{{subcomment.created_at}}</div>
+                    <div class="btn-delete" ng-if="subcomment.auth" ng-click="delete_subcomment(subcomment)">삭제</div>
                   </div>
                   <div class="sub-body">
                     <div class="content">{{subcomment.content}}</div>

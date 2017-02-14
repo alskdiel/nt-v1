@@ -41,20 +41,26 @@ class ReviewLife < ActiveRecord::Base
     ret = []
 
     comments.each do |comment|
+      auth = false
       if current_user != nil
         has_upvoted = comment.has_upvoted?(current_user.id)
+        if current_user.id == comment.user_id
+          auth = true
+        end
       else
         has_upvoted = false
       end
+
       ret.push({
         id: comment.id,
+        auth: auth,
         written_by: User.find(comment.user_id).nickname,
         content: comment.content,
         created_at: comment.created_at.strftime("%Y-%m-%d %H:%M"),
         upvote_count: comment.upvotes,
         has_upvoted: has_upvoted,
         subcomment_cnt: comment.subcomment_lives.count,
-        subcomments: comment.subcomments
+        subcomments: comment.subcomments(current_user)
       })
     end
 

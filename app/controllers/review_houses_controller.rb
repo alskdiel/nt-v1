@@ -125,6 +125,34 @@ class ReviewHousesController < ApplicationController
     end
   end
 
+  def delete_comment
+    comment = CommentHouse.find(params[:comment_id])
+    if user_signed_in?
+      if current_user.id == comment.user_id
+        comment.delete
+        return render json: { ret: true }
+      else
+        return render json: { ret: false }
+      end
+    else
+      return render json: { ret: false }
+    end
+  end
+
+  def delete_subcomment
+    subcomment = SubcommentHouse.find(params[:subcomment_id])
+    if user_signed_in?
+      if current_user.id == subcomment.user_id
+        subcomment.delete
+        return render json: { ret: true }
+      else
+        return render json: { ret: false }
+      end
+    else
+      return render json: { ret: false }
+    end
+  end
+
   def get_comments
     review_house_id = params[:id]
     if user_signed_in?

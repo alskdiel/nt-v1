@@ -508,7 +508,7 @@
                         &.nickname {
                           font-size: 19px;
                         }
-                        &.created-at {
+                        &.created-at, &.btn-delte {
                           color: #999;
                           font-size: 13px;
                         }
@@ -603,7 +603,7 @@
                             &.nickname {
                               font-size: 19px;
                             }
-                            &.created-at {
+                            &.created-at, &.btn-delete {
                               color: #999;
                               font-size: 13px;
                             }
