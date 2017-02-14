@@ -1,13 +1,51 @@
 .map-container {
   height: 100%;
+  overflow: hidden;
   .map-wrapper {
+    display: inline-block;
     width: calc(100% - 350px);
     height: 100%;
+    overflow: hidden;
     #map {
       height: 100%;
       width: 100%;
-      // width: 500px;
-      // height: 400px;
+      overflow: inherit;
+    }
+  }
+  .review-container {
+    float: right;
+    width: 350px;
+    height: 100%;
+    overflow: hidden;
+    .review-map-header {
+      background: #fa5346;
+      .title {
+        font-size: 34px;
+        line-height: 34px;
+        padding: 11px 15px;
+        color: #fff;
+      }
+    }
+    .review-map-body {
+      height: calc(100% - 56px);
+      background: #fff;
+      overflow-y: scroll;
+      overflow-x: hidden;
+      .no-data {
+        text-align: center;
+        font-family: BMJUA;
+        padding: 50% 26px;
+        height: 100%;
+        font-size: 30px;
+        line-height: 30px;
+      }
+      .review-wrapper {
+        padding: 28px 62px;
+        .card-wrapper {
+          margin-bottom: 27px;
+          border: 1px solid #ddd;
+        }
+      }
     }
   }
 }

@@ -111,6 +111,17 @@ class MainController < ApplicationController
     render "review_map/index"
   end
 
+  def reviews_in_bound
+    # @reviews = ReviewHouse.all
+    bounds = params[:bounds]
+    min_lat = bounds[:ha]
+    max_lat = bounds[:ga]
+    min_lng = bounds[:ba]
+    max_lng = bounds[:fa]
+    @reviews = ReviewHouse.where("latitude >= ? AND latitude <= ? AND longtitude >= ? AND longtitude <= ?", min_lat, max_lat, min_lng, max_lng)
+    # binding pry
+  end
+
   def user_signed_in
     return render json: { user_signed_in: user_signed_in? }
   end
