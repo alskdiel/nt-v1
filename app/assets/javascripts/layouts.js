@@ -14,6 +14,9 @@ init  = function() {
     window.location.href = "/";
   });
 
+  $('.nav-bar .map').on('click', function(){
+    window.location.href = "/review_map";
+  });
   // $('.nav-bar .nav-search .search').on('keydown', function(key){
   //   if(key.keyCode == 13) {
   //     alert('aaa');
@@ -131,10 +134,5 @@ init  = function() {
   }
 }
 
-// $(document).ready(init);
-// $(document).on('page:load', init);
-// $(document).on('ready page:partial-load', init);
-// $(document).on('ready', init);
-// $(document).on('turbolinks:change', init);
 $(document).on('turbolinks:load', init);
 

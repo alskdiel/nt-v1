@@ -107,6 +107,10 @@ class MainController < ApplicationController
     end
   end
 
+  def review_map
+    render "review_map/index"
+  end
+
   def user_signed_in
     return render json: { user_signed_in: user_signed_in? }
   end

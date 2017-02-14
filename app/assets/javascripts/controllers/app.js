@@ -162,6 +162,96 @@ myApp.controller('MainCtrl', [
 ]);
 
 
+myApp.controller('MapCtrl', [
+  '$scope',
+  '$http',
+
+  function($scope, $http) {
+    console.log("mapctrl");
+    var container = document.getElementById('map');
+    var map;
+    var options;
+    var bounds;
+
+    initMapCtrl();
+
+    function initMapCtrl() {
+      var my_position = {
+        latitude: 33.583231,
+        longtitude: 126.900171,
+        level: 6
+      };
+
+      navigator.geolocation.getCurrentPosition(function(position) {
+        my_position.latitude = position.coords.latitude;
+        my_position.longtitude = position.coords.longitude;
+        my_position.level = 4;
+        initMap(my_position);
+      });
+    }
+
+    function initMap(my_position) {
+      options = {
+        center: new daum.maps.LatLng(my_position.latitude, my_position.longtitude),
+        level: my_position.level
+      };
+
+      map = new daum.maps.Map(container, options);
+      resizeMap();
+      bounds = map.getBounds();
+      console.log(bounds);
+
+
+
+      daum.maps.event.addListener(map, 'bounds_changed', function() {
+        bounds = map.getBounds();
+        console.log(bounds);
+      });
+
+
+      // tt();
+
+    }
+
+    var addr = ["서울시 마포구 망원동 479-94","경기도 고양시 덕양구 행신동 760-1","서울시 마포구 광성로4길 22-11","서울시 은평구 신사동 21-12","서울시 은평구 역촌동 대지빌딩","서울시 마포구 망원동 418-27","서울특별시 서대문구 13-49","서울시 서대문구 창천동 502-22","서울시 마포구 효창목길23","서울시 마포구 숭문16가길 26","서울시 마포구 서교동 474-15","경기 고양 덕양구 행신동 송악모노빌","서울시 서대문구 연희동 136-14","경기도 고양시 덕양구 행신동 743-8","서울시 마포구 서교동 343-22","서울시 마포구 서교동 473-17","서울시 마포구 망원로 2길 36","경기도 고양시 덕양구 화전동 575-11 글로벌시티","경기도 고양시 덕양구 행신동 지엘리치빌","경기도 고양시 덕양구 152번길 9","경기도 고양시 덕양구 송악모노빌","경기도 고양시 덕양구 행신동 722-8","서울시 서대문구 연희동 107-4","서울시 마포구 신수동 창천로 2길 37","서울시 서대문구 연희동 309-10","경기도 고양시 덕양구 화전동 중앙로 192번지","경기도 고양시 행신동 대흥프라자","경기도 고양시 덕양구 현천동 184-1","경기도 고양시 덕양구 행신동 756-3","경기도 고양시 덕양구 203-28번지","서울특별시 서대문구 홍은동 346-13","서울시 마포구 연남동 226-34","서울특별시 서대문구 남가좌동 5-150 드림캐슬3호점","서울시 은평구 응암동 755-33","서울특별시 서대문구 남가좌2동 9-57","서울시 서대운구 홍은동 408-14","서울시 서대문구 신촌로 119","서울시 서대문구 신촌로 7길 50-25","경기도 고양시 덕양구 용현로21 (송악모노빌)","경기도 고양시 덕양구 화전동 중앙로 152번길 20-5","서울시 마포구 노고산동 르메이에르타운1차","서울시 은평구 응암동 270-67번지","서울특별시 서대문구 홍은2동 325-8 번지","서울시 서대문구 홍은동 400-42","서울특별시 마포구 서교동 와우산로 162- 2","서울시 마포구 대흥동 22-3","서울시 마포구 신수동 93-31","서울시 마포구 광성로 4길 18-4","서울특별시 마포구 대흥동 174","서울시 마포구 노고산동 54-37","서울시 마포구 상암동 한화오벨리스크 2차","서울시 서대문구 창천동 29-43","서울시 마포구 노고산동 백범로 8","서울시 마포구 대흥동 22-44번지","서울시 마포구 대흥동 12-41 서희스타힐스","서울시 마포구 상수동 88-9","서울시 마포구 백범로 10","서울시 서대문구 신촌로 121","서울시 서대문구 창천동 르메이에르타운5","서울시 마포구 신수동 85-15","서울시 마포구 대흥동 34-2","서울시 마포구 노고산동 신촌포스빌","서울시 서대문구 홍은2동 406-3","서울시 서대문구 남가좌동 9-1","서울시 마포구 신수도 89-14","서울시 서대문구 신촌로 189","서울시 서대문구 창천동 90-49번지","서울시 마포구 노고산동","서울시 마포구 망원동 130-6","서대문구 이화여대 2길 4","서울시 서대문구 대신동 127-17","서울시 서대문구 합동 117","서울시 마포구","서울시 마포구 망원2동 424-6번지","서울시 동대문구 이문로86","서울시 은평구 응암동 111-44","서울시 서대문구 대현동 신촌자이엘라","서울시 대학동 251-446","서울시 마포구 망원동 471-33","서울시 마포구 망원1동","서울 구로구 오류동27-32","서울시 마포구 망원동 374-3","서울시 은평구 서오릉로 35","서울시 노원구 공릉동 683-14 한일휴니스빌","서울시 흑석동 204-27","서울시 서대문구 연희로 8길 28-9","서울시 금천구 독산동 149-28","서울시 서대문구 남가좌동 12-3","서울시 강서구 마곡서1로 115-1 헤리움 1차","서울시 마포구 동교동 149-10","서울시 구로구 공원로 11 대림역 포스큐","서울시 마포구 염리동 9-89","서울시 강서구 아너스빌","서울시 서대문구 남가좌동 12-3","서울시 은평구 응암동 117-42","서울시 서대문구 남가좌동 33-45","서울시 은평구 통일로67길 9","서울시 금천구 독산3동 990-7번지","서울시 마포구 성산동 251-20 대명풀하우스","서울시 서대문구 홍은동 398-2 빌레드유니","경기도 고양시 덕양구 행신동 1093-7","서울시 금천구 독산동 149-28","서울시 서대문구 홍은동 325-8","서울시 서대문구 남가좌동 324-27","경기도 고양시 덕양구 현천동 183","서울시 은평구 신사동 1-72번지","서울시 서대문구 북가좌동 366-25"];
+    console.log(addr);
+    function tt() {
+      var geocoder = new daum.maps.services.Geocoder();
+
+      var callback = function(status, result) {
+        if (status === daum.maps.services.Status.OK) {
+          console.log(result);
+        } else {
+          console.log('not found');
+        }
+      };
+
+      for(var i=0; i<addr.length; i++){
+        geocoder.addr2coord(addr[i], callback);
+      }
+    }
+    // bound changed
+
+
+    function resizeMap() {
+      $('.main-container').css('height', '100%');
+      var mapContainer = document.getElementById('map');
+      var mapWrapper = document.getElementById('map-wrapper');
+      var width = getComputedStyle(mapWrapper).width;
+      var height = getComputedStyle(mapWrapper).height;
+
+      mapContainer.style.width = width;
+      mapContainer.style.height = height;
+      relayout();
+    }
+
+    function relayout() {
+      map.relayout();
+    }
+
+  }
+]);
+
 myApp.controller('PinCtrl', [
   '$scope',
   '$http',

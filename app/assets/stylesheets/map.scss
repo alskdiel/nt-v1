@@ -1,0 +1,13 @@
+.map-container {
+  height: 100%;
+  .map-wrapper {
+    width: calc(100% - 350px);
+    height: 100%;
+    #map {
+      height: 100%;
+      width: 100%;
+      // width: 500px;
+      // height: 400px;
+    }
+  }
+}

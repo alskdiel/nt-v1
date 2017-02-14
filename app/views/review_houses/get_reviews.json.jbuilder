@@ -8,4 +8,6 @@ json.array! @reviews do |review|
   json.cnt_upvotes review.cnt_upvotes
   json.cnt_scraps review.cnt_scraps
   json.avr_satis review.avr_satis
+  json.latitude review.latitude
+  json.longtitude review.longtitude
 end

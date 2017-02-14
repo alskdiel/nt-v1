@@ -221,7 +221,7 @@ class ReviewHousesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def review_house_params
-      params.require(:review_house).permit(:title, :address, :start_time, :end_time, :price_satisfaction, :residence_satisfaction, :env_satisfaction, :price_review, :residence_review, :env_review)
+      params.require(:review_house).permit(:title, :address, :latitude, :longtitude, :start_time, :end_time, :price_satisfaction, :residence_satisfaction, :env_satisfaction, :price_review, :residence_review, :env_review)
     end
 
 end

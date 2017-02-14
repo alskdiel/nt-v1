@@ -11,6 +11,7 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
   root "main#index"
+  get "review_map" => "main#review_map"
   get "review_lives" => "review_life#index"
   get "review_lives/:id" => "review_life#show"
   post "review_lifes" => "review_life#create"

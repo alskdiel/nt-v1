@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170211160551) do
+ActiveRecord::Schema.define(version: 20170214150914) do
 
   create_table "comment_houses", force: :cascade do |t|
     t.integer  "review_house_id"
@@ -74,6 +74,8 @@ ActiveRecord::Schema.define(version: 20170211160551) do
     t.text     "env_review",             null: false
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
+    t.float    "latitude"
+    t.float    "longtitude"
   end
 
   create_table "review_lives", force: :cascade do |t|

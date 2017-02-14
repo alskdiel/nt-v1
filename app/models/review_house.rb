@@ -12,7 +12,8 @@ class ReviewHouse < ActiveRecord::Base
   end
 
   def thumb_nail
-    return PicHouse.where(review_house_id: self.id).take.image.url
+    return self.pic_houses.first.image.url
+    # return PicHouse.where(review_house_id: self.id).take.image.url
   end
 
   def written_by
@@ -28,7 +29,8 @@ class ReviewHouse < ActiveRecord::Base
   end
 
   def image_url
-    pics = PicHouse.where(review_house_id: self.id)
+    pics = self.pic_houses
+    # pics = PicHouse.where(review_house_id: self.id)
     urls = []
     pics.each do |pic|
       urls.push(pic.image.url)
@@ -55,11 +57,13 @@ class ReviewHouse < ActiveRecord::Base
   end
 
   def cnt_upvotes
-    UpvoteHouse.where(review_house_id: self.id).count
+    return self.upvote_houses.count
+    # UpvoteHouse.where(review_house_id: self.id).count
   end
 
   def cnt_scraps
-    ScrapHouse.where(review_house_id: self.id).count
+    return self.scrap_houses.count
+    # ScrapHouse.where(review_house_id: self.id).count
   end
 
   def comments (current_user = nil)
