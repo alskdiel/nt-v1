@@ -119,9 +119,12 @@
                   font-size: 27px;
                   width: 69px;
                   text-align: center;
-                  border-bottom: 3px solid #000;
                   margin-right: 22px;
-
+                  opacity: 0.45;
+                  &.selected {
+                    border-bottom: 3px solid #000;
+                    opacity: 1;
+                  }
                 }
               }
               .comment-wrapper {

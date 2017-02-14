@@ -353,6 +353,7 @@ myApp.controller('ShowCtrl', [
 
     // var ROOT_PATH = "http://localhost:3000/"
     var current_img_tab;
+    var sort_by = 'hot';
     $scope.image_url = data.image_url;
 
     $scope.id = data.id;
@@ -533,6 +534,41 @@ myApp.controller('ShowCtrl', [
       }
     }
 
+    $scope.sort_comment = function($event, sort_by_param) {
+      var $type_wrapper = angular.element($event.currentTarget).parent();
+      if(sort_by_param === 'hot') {
+        $type_wrapper.find('.new').removeClass('selected');
+        $type_wrapper.find('.hot').addClass('selected');
+        sortCommentsByHot($scope.comments);
+      } else {
+        $type_wrapper.find('.hot').removeClass('selected');
+        $type_wrapper.find('.new').addClass('selected');
+        sortCommentsByNew($scope.comments);
+      }
+      sort_by = sort_by_param
+      initSubcommentStatus($scope.comments);
+    }
+
+    function initSubcommentStatus(comments) {
+      opened_subcomment = [];
+      for(var i=0; i<comments.length; i++) {
+        comments[i].show_sub = false;
+        comments[i].write_sub = false;
+      }
+    }
+
+    function sortCommentsByHot(comments) {
+      comments.sort(function (a, b) {
+        return a.upvote_count > b.upvote_count ? -1 : a.upvote_count < b.upvote_count ? 1 : 0;
+      });
+    }
+
+    function sortCommentsByNew(comments) {
+      comments.sort(function (a, b) {
+        return a.created_at > b.created_at ? -1 : a.created_at < b.created_at ? 1 : 0;
+      });
+    }
+
     function getComments() {
       var url = "/get_comments_H/"+$scope.id+".json";
       $http({
@@ -541,6 +577,11 @@ myApp.controller('ShowCtrl', [
       })
         .then(function(data, status, headers, config) {
           $scope.comments = data.data.comments
+          if(sort_by === 'hot') {
+            sortCommentsByHot($scope.comments);
+          } else {
+            sortCommentsByNew($scope.comments);
+          }
           for(var i=0; i<opened_subcomment.length; i++) {
             for(var j=0; j<$scope.comments.length; j++) {
               if($scope.comments[j].id == opened_subcomment[i]) {
@@ -608,6 +649,7 @@ myApp.controller('ShowLifeCtrl', [
     $scope.comments = [];
 
     $scope.comment_writting = "";
+    var sort_by = 'hot'
 
     $timeout(function() {
       getComments();
@@ -753,6 +795,40 @@ myApp.controller('ShowLifeCtrl', [
           });
       }
     }
+    $scope.sort_comment = function($event, sort_by_param) {
+      var $type_wrapper = angular.element($event.currentTarget).parent();
+      if(sort_by_param === 'hot') {
+        $type_wrapper.find('.new').removeClass('selected');
+        $type_wrapper.find('.hot').addClass('selected');
+        sortCommentsByHot($scope.comments);
+      } else {
+        $type_wrapper.find('.hot').removeClass('selected');
+        $type_wrapper.find('.new').addClass('selected');
+        sortCommentsByNew($scope.comments);
+      }
+      sort_by = sort_by_param;
+      initSubcommentStatus($scope.comments);
+    }
+
+    function initSubcommentStatus(comments) {
+      opened_subcomment = [];
+      for(var i=0; i<comments.length; i++) {
+        comments[i].show_sub = false;
+        comments[i].write_sub = false;
+      }
+    }
+
+    function sortCommentsByHot(comments) {
+      comments.sort(function (a, b) {
+        return a.upvote_count > b.upvote_count ? -1 : a.upvote_count < b.upvote_count ? 1 : 0;
+      });
+    }
+
+    function sortCommentsByNew(comments) {
+      comments.sort(function (a, b) {
+        return a.created_at > b.created_at ? -1 : a.created_at < b.created_at ? 1 : 0;
+      });
+    }
 
     function initImagePath() {
       if($scope.image_url) {
@@ -768,6 +844,11 @@ myApp.controller('ShowLifeCtrl', [
       })
         .then(function(data, status, headers, config) {
           $scope.comments = data.data.comments
+          if(sort_by === 'hot') {
+            sortCommentsByHot($scope.comments);
+          } else {
+            sortCommentsByNew($scope.comments);
+          }
           for(var i=0; i<opened_subcomment.length; i++) {
             console.log(opened_subcomment[i])
             for(var j=0; j<$scope.comments.length; j++) {

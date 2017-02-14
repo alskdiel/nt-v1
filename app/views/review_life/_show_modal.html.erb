@@ -47,8 +47,8 @@
       </div>
       <div class="list-container">
         <div class="sort-by">
-          <div class="hot">HOT</div>
-          <div class="new">NEW</div>
+          <div class="hot selected" ng-click="sort_comment($event, 'hot')">HOT</div>
+          <div class="new" ng-click="sort_comment($event, 'new')">NEW</div>
         </div>
         <div class="comment-wrapper" ng-repeat="comment in comments track by $index">
           <div class="comment-inner-wrapper">
