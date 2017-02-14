@@ -273,12 +273,21 @@ var modal_function = function () {
   }
 
   $('#modal-write .modal-content .modal-body .oneroom').on('click', function() {
-    window.location.href = "/review_houses/new";
+    $("#modal-write-info").modal();
   });
 
   $('#modal-write .modal-content .modal-body .living').on('click', function() {
     $("#modal-write").modal('hide');
     $("#modal-write-lifefeed").modal();
+  });
+
+  $('#modal-write-info .modal-content .modal-footer .button-wrapper .btn.agree').on('click', function() {
+    window.location.href = "/review_houses/new";
+  });
+
+  $('#modal-write-info .modal-content .modal-footer .button-wrapper .btn.disagree').on('click', function() {
+    $("#modal-write").modal('hide');
+    $("#modal-write-info").modal('hide');
   });
 
   $('#modal-write-lifefeed .modal-content .modal-footer .submit').on('click', function() {

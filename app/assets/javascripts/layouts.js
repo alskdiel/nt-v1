@@ -33,7 +33,7 @@ init  = function() {
   });
 
   $('.nav-bar .write').on('click', function(){
-    openWriteModal();
+    checkUserSignedIn("write");
   });
 
   $('.nav-bar .menu').on('click', function(){
@@ -53,18 +53,15 @@ init  = function() {
   });
 
   $('.side-bar .body .scrap').on('click', function(){
-    checkUserSignedIn();
+    checkUserSignedIn("scrap");
   });
 
   $('.side-bar .body .user-info .sign-out').on('click', function(){
     signoutProcess();
   });
 
-  $('.side-bar .followings').on('click', function(){
-    $("#modal-test").modal();
-  });
 
-  function checkUserSignedIn() {
+  function checkUserSignedIn(type) {
     $.ajax({
       url: 'users/user_signed_in',
       type: 'get',
@@ -74,9 +71,12 @@ init  = function() {
         // callback
       },
       success: function (data, textStatus, jqXHR) {
-        console.log(data);
         if(data.user_signed_in) {
-          window.location.href = "/my_scraps";
+          if(type === "scrap") {
+            window.location.href = "/my_scraps";
+          } else if(type === "write") {
+            openWriteModal();
+          }
         } else {
           alert("로그인 해주세요.");
         }

@@ -247,6 +247,61 @@
       }
     }
   }
+  &#modal-write-info {
+    .modal-dialog {
+      margin-top: 100px;
+      .modal-content {
+        width: 632px;
+        border-radius: 0px;
+        .modal-title {
+          padding: 23px 30px;
+          div {
+            line-height: 34px;
+            font-size: 34px;
+            color: #50265e;
+          }
+        }
+        .modal-body {
+          padding: 40px 36px;
+          font-size: 20px;
+          line-height: 20px;
+          ol {
+            padding-left: 30px;
+            margin-bottom: 0px;
+            li {
+              margin-bottom: 30px;
+              font-size: 20px;
+              line-height: 20px;
+              font-family: NANUMGOTHIC;
+            }
+          }
+        }
+        .modal-footer {
+          border-top: none;
+          padding: 43px 36px 23px 36px;
+          .button-wrapper {
+            float: right;
+            .btn {
+              font-size: 22px;
+              line-height: 23px;
+              text-align: center;
+              border-radius: 0px;
+              color: #fff;
+              &.disagree {
+                background: #f4ca66;
+                padding: 18px 64px;
+                margin-right: 14px;
+              }
+              &.agree {
+                background: #dc534c;
+                padding: 18px 23px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
   &#modal-write-lifefeed {
     .modal-dialog {
       margin-top: 100px;
