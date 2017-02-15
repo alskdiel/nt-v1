@@ -165,9 +165,9 @@ myApp.controller('MainCtrl', [
 myApp.controller('MapCtrl', [
   '$scope',
   '$http',
+  '$uibModal',
 
-  function($scope, $http) {
-    console.log("mapctrl");
+  function($scope, $http, $uibModal) {
     $('.main-container').css('height', '100%');
     var container = document.getElementById('map');
     var map;
@@ -289,6 +289,23 @@ myApp.controller('MapCtrl', [
       map.relayout();
     }
 
+    $scope.getCardDetail = function(review) {
+      var url = "/review_houses/"+review.id+".json";
+      $http({
+        method: 'get',
+        url: url,
+      })
+        .then(function(data, status, headers, config) {
+          var modalInstance = $uibModal.open({
+            windowClass: 'modal-dialog-show',
+            controller: 'ShowCtrl',
+            templateUrl: 'showModal.html',
+            resolve: {
+              data: data.data
+            }
+          });
+        });
+    }
   }
 ]);
 
@@ -361,8 +378,6 @@ myApp.controller('PinCtrl', [
         getMyScraps();
       } else {
         var input = input_type.split("/");
-        console.log(input_type)
-        console.log(input);
         var from = input[1];
         if(from === "search") {
           var type = input[2];
@@ -980,7 +995,6 @@ myApp.controller('ShowLifeCtrl', [
             sortCommentsByNew($scope.comments);
           }
           for(var i=0; i<opened_subcomment.length; i++) {
-            console.log(opened_subcomment[i])
             for(var j=0; j<$scope.comments.length; j++) {
               if($scope.comments[j].id == opened_subcomment[i]) {
                 $scope.comments[j].show_sub = true;
