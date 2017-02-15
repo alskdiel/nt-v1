@@ -25,6 +25,44 @@ class ReviewLifeController < ApplicationController
     # return render json: { review: review.to_json }
   end
 
+  def edit
+    review_life = ReviewLife.find(params[:id])
+
+    image = params[:review_life][:image]
+    if image.present?
+      review_life.image = image
+    end
+
+    review_life.update(title: params[:review_life][:title], content: params[:review_life][:content])
+    review_life.save
+
+    prev_hash_tag_refs = HashTagRef.where(review_life_id: review_life.id)
+
+    prev_hash_tag_refs.each do |ref|
+      ref.delete
+    end
+
+    hashtag_str = params[:hashtag]
+    hashtag_str.downcase!
+    hashtag_str.delete! "\ "
+
+    hashtags_tmp = hashtag_str.split("#")
+    hashtags = []
+
+    hashtags_tmp.each do |hashtag|
+      if hashtag != "" && !hashtags.include?(hashtag)
+        hashtags.push(hashtag)
+        current_tag = HashTag.where(keyword: hashtag).take
+        if !current_tag.present?
+          current_tag = HashTag.create(keyword: hashtag)
+        end
+        HashTagRef.create(hash_tag_id: current_tag.id, review_life_id: review_life.id)
+      end
+    end
+
+    redirect_to root_path
+  end
+
   def create
     review_life = current_user.review_lifes.new(review_life_params)
     review_life.save

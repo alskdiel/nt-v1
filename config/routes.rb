@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   get "review_lives" => "review_life#index"
   get "review_lives/:id" => "review_life#show"
   post "review_lifes" => "review_life#create"
+  post "review_lifes/:id" => "review_life#edit"
   post "upvote_H/:id" => "review_houses#upvote"
   post "scrap_H/:id" => "review_houses#scrap"
   post "upvote_L/:id" => "review_life#upvote"

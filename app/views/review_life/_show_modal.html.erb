@@ -2,7 +2,7 @@
   <div class="content-wrapper show-modal-life">
     <div class="content-header">
       <div class="edit-container" ng-if="auth">
-        <div class="btn-edit">
+        <div class="btn-edit" ng-click="edit_review()">
           <%= image_tag 'show/edit.png' %>
         </div>
         <div class="btn-delete" ng-click="delete_review()">

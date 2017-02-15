@@ -840,6 +840,13 @@ myApp.controller('ShowLifeCtrl', [
       }
     }
 
+    $scope.edit_review = function() {
+      setModalDataToEdit();
+      $("#modal-write-lifefeed").modal();
+      $uibModalInstance.close();
+    }
+
+
     $scope.upvote = function() {
       var url = "/upvote_L/"+$scope.id;
       $http({
@@ -1040,5 +1047,15 @@ myApp.controller('ShowLifeCtrl', [
         });
     }
 
+    function setModalDataToEdit() {
+      var title = $scope.title;
+      var hash_tag = $scope.hash_tags;
+      var content = $scope.content;
+      $("#modal-write-lifefeed").find('.modal-dialog').find('.modal-content').find('#form-life').find('.modal-body').find('.title').find('input').val(title);
+      $("#modal-write-lifefeed").find('.modal-dialog').find('.modal-content').find('#form-life').find('.modal-body').find('.hashtag').find('input').val(hash_tag);
+      $("#modal-write-lifefeed").find('.modal-dialog').find('.modal-content').find('#form-life').find('.modal-body').find('.content').find('textarea').val(content);
+
+      $("#modal-write-lifefeed").find('.modal-dialog').find('.modal-content').find('#form-life').attr('action', '/review_lifes/'+$scope.id);
+    }
   }
 ]);

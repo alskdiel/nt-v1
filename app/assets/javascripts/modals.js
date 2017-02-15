@@ -281,6 +281,14 @@ var modal_function = function () {
     $("#modal-write-lifefeed").modal();
   });
 
+  $('#modal-write-lifefeed').on('hidden.bs.modal', function (){
+    $("#modal-write-lifefeed").find('.modal-dialog').find('.modal-content').find('#form-life').find('.modal-body').find('.title').find('input').val('');
+    $("#modal-write-lifefeed").find('.modal-dialog').find('.modal-content').find('#form-life').find('.modal-body').find('.hashtag').find('input').val('');
+    $("#modal-write-lifefeed").find('.modal-dialog').find('.modal-content').find('#form-life').find('.modal-body').find('.content').find('textarea').val('');
+    $("#modal-write-lifefeed").find('.modal-dialog').find('.modal-content').find('#form-life').find('.modal-body').find('.image-file').find('input').val('');
+    $("#modal-write-lifefeed").find('.modal-dialog').find('.modal-content').find('#form-life').attr('action', '/review_lifes');
+  });
+
   $('#modal-write-info .modal-content .modal-footer .button-wrapper .btn.agree').on('click', function() {
     window.location.href = "/review_houses/new";
   });
