@@ -11,6 +11,14 @@ class ReviewHouse < ActiveRecord::Base
     return true
   end
 
+  def auth (current_user = nil)
+    if current_user != nil
+      return current_user.id == self.user_id
+    else
+      return false
+    end
+  end
+
   def thumb_nail
     begin
       return self.pic_houses.first.image.url

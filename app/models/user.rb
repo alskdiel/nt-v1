@@ -76,26 +76,14 @@ class User < ActiveRecord::Base
 
     reviews = []
 
-    i = 0
-    j = 0
-
-    begin
-      while true
-        if houses[i].created_at > lives[j].created_at
-          reviews.push(houses[i])
-          i += 1
-        else
-          reviews.push(lives[j])
-          j += 1
-        end
-      end
-    rescue
-      if houses[i].present?
-        reviews.push(houses[i])
-      else
-        reviews.push(lives[j])
-      end
+    houses.each do |house|
+      reviews.push(house)
     end
+    lives.each do |life|
+      reviews.push(life)
+    end
+
+    reviews.sort_by! { |review| review.created_at }
 
     return reviews
   end

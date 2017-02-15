@@ -1,5 +1,5 @@
-# json.partial! "review_houses/review_house", review_house: @review_house
 json.id @review.id
+json.auth @auth
 json.image_url @review.image_url
 json.title @review.title
 json.written_by @review.written_by

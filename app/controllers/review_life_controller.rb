@@ -15,6 +15,7 @@ class ReviewLifeController < ApplicationController
 
   def show
     @review = ReviewLife.find(params[:id])
+    @auth = @review.auth(current_user)
     if user_signed_in?
       @upvote = current_user.has_upvoted_L?(params[:id])
       @scrap = current_user.has_scraped_L?(params[:id])
@@ -47,6 +48,19 @@ class ReviewLifeController < ApplicationController
     end
 
     redirect_to root_path
+  end
+
+  def destroy
+    review_id = params[:id]
+    review = ReviewLife.find(review_id)
+    if review.present?
+      if current_user.id == review.user_id
+        review.delete
+        return render json: { ret: true }
+      end
+    end
+
+    return render json: { ret: false }
   end
 
   def upvote

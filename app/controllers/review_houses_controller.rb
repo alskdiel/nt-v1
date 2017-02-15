@@ -21,6 +21,7 @@ class ReviewHousesController < ApplicationController
   # GET /review_houses/1.json
   def show
     @review = ReviewHouse.find(params[:id])
+    @auth = @review.auth(current_user)
     if user_signed_in?
       @upvote = current_user.has_upvoted_H?(params[:id])
       @scrap = current_user.has_scraped_H?(params[:id])
@@ -100,11 +101,16 @@ class ReviewHousesController < ApplicationController
   # DELETE /review_houses/1
   # DELETE /review_houses/1.json
   def destroy
-    @review_house.destroy
-    respond_to do |format|
-      format.html { redirect_to review_houses_url, notice: 'Review house was successfully destroyed.' }
-      format.json { head :no_content }
+    review_id = params[:id]
+    review = ReviewHouse.find(review_id)
+    if review.present?
+      if current_user.id == review.user_id
+        review.delete
+        return render json: { ret: true }
+      end
     end
+
+    return render json: { ret: false }
   end
 
   def submit_comment

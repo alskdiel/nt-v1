@@ -12,6 +12,14 @@ class ReviewLife < ActiveRecord::Base
     return false
   end
 
+  def auth (current_user = nil)
+    if current_user != nil
+      return current_user.id == self.user_id
+    else
+      return false
+    end
+  end
+
   def thumb_nail
     if self.image.url != '/images/original/missing.png'
       return self.image.url

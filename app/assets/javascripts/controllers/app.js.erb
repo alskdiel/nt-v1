@@ -505,6 +505,7 @@ myApp.controller('ShowCtrl', [
     $scope.image_url = data.image_url;
 
     $scope.id = data.id;
+    $scope.auth = data.auth;
     $scope.title = data.title;
     $scope.written_by = data.written_by;
     $scope.address = data.address;
@@ -523,22 +524,37 @@ myApp.controller('ShowCtrl', [
       initImagePath();
     });
 
-    $scope.to_prev_image = function() {
-      if(current_img_tab === 0) {
-        current_img_tab = $scope.image_url.length - 1;
-      } else {
-        current_img_tab--;
-      }
-      $scope.current_img = $scope.image_url[current_img_tab];
-    }
+    // $scope.to_prev_image = function() {
+    //   if(current_img_tab === 0) {
+    //     current_img_tab = $scope.image_url.length - 1;
+    //   } else {
+    //     current_img_tab--;
+    //   }
+    //   $scope.current_img = $scope.image_url[current_img_tab];
+    // }
+    //
+    // $scope.to_next_image = function() {
+    //   if(current_img_tab < $scope.image_url.length-1) {
+    //     current_img_tab++;
+    //   } else {
+    //     current_img_tab = 0;
+    //   }
+    //   $scope.current_img = $scope.image_url[current_img_tab];
+    // }
 
-    $scope.to_next_image = function() {
-      if(current_img_tab < $scope.image_url.length-1) {
-        current_img_tab++;
-      } else {
-        current_img_tab = 0;
+    $scope.delete_review = function() {
+      if(confirm("삭제하시겠습니까?")) {
+        var url = "/delete_H/"+$scope.id;
+        $http({
+          method: 'post',
+          url: url,
+        })
+          .then(function(data, status, headers, config) {
+            if(data.data.ret) {
+              window.location.href = "/";
+            }
+          });
       }
-      $scope.current_img = $scope.image_url[current_img_tab];
     }
 
     $scope.getUserReviews = function() {
@@ -788,6 +804,7 @@ myApp.controller('ShowLifeCtrl', [
     $scope.image_url = data.image_url;
 
     $scope.id = data.id;
+    $scope.auth = data.auth;
     $scope.title = data.title;
     $scope.written_by = data.written_by;
     $scope.hash_tags = data.hash_tags;
@@ -806,6 +823,21 @@ myApp.controller('ShowLifeCtrl', [
 
     $scope.getUserReviews = function() {
       window.location.href = "/user_reviews_l/" + $scope.id;
+    }
+
+    $scope.delete_review = function() {
+      if(confirm("삭제하시겠습니까?")) {
+        var url = "/delete_L/"+$scope.id;
+        $http({
+          method: 'post',
+          url: url,
+        })
+          .then(function(data, status, headers, config) {
+            if(data.data.ret) {
+              window.location.href = "/";
+            }
+          });
+      }
     }
 
     $scope.upvote = function() {

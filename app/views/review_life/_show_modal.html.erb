@@ -1,6 +1,17 @@
 <script type="text/ng-template" id="showLifeModal.html">
   <div class="content-wrapper show-modal-life">
     <div class="content-header">
+
+      <div class="edit-container" ng-if="auth">
+        <div class="btn-edit">
+          <div>수정</div>
+        </div>
+        <div class="btn-delete">
+          <div ng-click="delete_review()">삭제</div>
+        </div>
+      </div>
+
+
       <div class="title-container">
         <div class="title">{{title}}</div>
       </div>
