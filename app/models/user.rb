@@ -83,7 +83,7 @@ class User < ActiveRecord::Base
       reviews.push(life)
     end
 
-    reviews.sort_by! { |review| review.created_at }
+    @reviews.sort_by! { |review| review.created_at }.reverse!
 
     return reviews
   end

@@ -96,7 +96,7 @@ class MyReviewController < ApplicationController
       @reviews.push(life)
     end
 
-    @reviews.sort_by! { |review| review.created_at }
+    @reviews.sort_by! { |review| review.created_at }.reverse!
   end
 
   def user_reviews_l
@@ -125,7 +125,7 @@ class MyReviewController < ApplicationController
   def get_user_reviews_L
     review_id = params[:id]
     user_id = ReviewLife.find(review_id).user_id
-    
+
     houses = User.find(user_id).review_houses.all.order("created_at DESC")
     lives = User.find(user_id).review_lifes.all.order("created_at DESC")
 
@@ -137,7 +137,7 @@ class MyReviewController < ApplicationController
       @reviews.push(life)
     end
 
-    @reviews.sort_by! { |review| review.created_at }
+    @reviews.sort_by! { |review| review.created_at }.reverse!
 
   end
 

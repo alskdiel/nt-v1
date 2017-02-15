@@ -18,7 +18,7 @@ class MainController < ApplicationController
       @reviews.push(life)
     end
 
-    @reviews.sort_by! { |review| review.created_at }
+    @reviews.sort_by! { |review| review.created_at }.reverse!
 
   end
 
