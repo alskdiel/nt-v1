@@ -1,7 +1,8 @@
 var review_houses_function = function() {
+
   // write functions
   var $write_form = $('.write-container').find('.content-wrapper');
-  setDuration();
+  // setDuration();
 
   var price_satisfaction;
   var residence_satisfaction;
@@ -127,24 +128,24 @@ var review_houses_function = function() {
   }
 
 
-  function setDuration() {
-    var $s_year = $write_form.find('.duration').find('.duration-start').find('.dur-wrapper').find('.years');
-    var $e_year = $write_form.find('.duration').find('.duration-end').find('.dur-wrapper').find('.years');
-    var $s_month = $write_form.find('.duration').find('.duration-start').find('.dur-wrapper').find('.months');
-    var $e_month = $write_form.find('.duration').find('.duration-end').find('.dur-wrapper').find('.months');
-
-    var today = new Date().getFullYear();
-    for(var i=today; i>1899; i--) {
-      $s_year.append("<option value="+i+">"+i+"</option>");
-      $e_year.append("<option value="+i+">"+i+"</option>");
-    }
-
-    var MONTH = 12;
-    for(var i=1; i<=MONTH; i++) {
-      $s_month.append("<option value="+i+">"+i+"</option>");
-      $e_month.append("<option value="+i+">"+i+"</option>");
-    }
-  }
+  // function setDuration() {
+  //   var $s_year = $write_form.find('.duration').find('.duration-start').find('.dur-wrapper').find('.years');
+  //   var $e_year = $write_form.find('.duration').find('.duration-end').find('.dur-wrapper').find('.years');
+  //   var $s_month = $write_form.find('.duration').find('.duration-start').find('.dur-wrapper').find('.months');
+  //   var $e_month = $write_form.find('.duration').find('.duration-end').find('.dur-wrapper').find('.months');
+  //
+  //   var today = new Date().getFullYear();
+  //   for(var i=today; i>1899; i--) {
+  //     $s_year.append("<option value="+i+">"+i+"</option>");
+  //     $e_year.append("<option value="+i+">"+i+"</option>");
+  //   }
+  //
+  //   var MONTH = 12;
+  //   for(var i=1; i<=MONTH; i++) {
+  //     $s_month.append("<option value="+i+">"+i+"</option>");
+  //     $e_month.append("<option value="+i+">"+i+"</option>");
+  //   }
+  // }
 
   function setStarScore($this, $star_container, type) {
     var score = 0;
@@ -200,9 +201,15 @@ var review_houses_function = function() {
   }
 
   function setSatisfactionData($price, $residence, $environment) {
-    $price.val(price_satisfaction);
-    $residence.val(residence_satisfaction);
-    $environment.val(environment_satisfaction);
+    if(price_satisfaction) {
+      $price.val(price_satisfaction);
+    }
+    if(residence_satisfaction) {
+      $residence.val(residence_satisfaction);
+    }
+    if(environment_satisfaction) {
+      $environment.val(environment_satisfaction);
+    }
   }
 
 }

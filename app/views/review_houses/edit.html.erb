@@ -1,6 +1,38 @@
-<h1>Editing Review House</h1>
-
-<%= render 'form' %>
-
-<%= link_to 'Show', @review_house %> |
-<%= link_to 'Back', review_houses_path %>
+<div class="write-container">
+  <form id="form-write" action="/update_review_houses/<%= @review.id %>" method="post" enctype="multipart/form-data">
+    <input type="hidden" name="authenticity_token" value="QGthAE0W7zBgRqvzsphx7J05/bXasa8bpotEkFjwctIqEBfabdK1rN6B8wlcupH4ElpoBt2n9KwRY2it813Whw==">
+    <div class="content-wrapper">
+      <div class="title">
+        <input type="text" placeholder="제목" name="review_house[title]" value="<%= @review.title %>"/>
+      </div>
+      <div class="address">
+        <input type="hidden" name="review_house[latitude]" id="latitude" value="<%= @review.latitude %>">
+        <input type="hidden" name="review_house[longtitude]" id="longtitude" value="<%= @review.longtitude %>">
+        <input type="text" placeholder="주소 ex) 서울시 마포구 망원동 479-94" name="review_house[address]" value="<%= @review.address %>"/>
+      </div>
+      <div class="duration">
+        <%= render template: "review_houses/edit/_duration" %>
+      </div>
+      <div class="image">
+        <label for="write-img">
+          <div class="button-wrapper">
+            <div>사진업로드</div>
+          </div>
+        </label>
+        <input type="file" id="write-img" name="pic_house[]"/>
+      </div>
+      <div class="satisfactions">
+        <%= render template: "review_houses/edit/_satisfactions" %>
+      </div>
+      <div class="reviews">
+        <%= render template: "review_houses/edit/_reviews" %>
+      </div>
+      <div class="pros-and-cons">
+        <%= render template: "review_houses/edit/_pros_and_cons" %>
+      </div>
+      <div class="actions">
+        <div class="btn submit">게시하기</div>
+      </div>
+    </div>
+  </form>
+</div>

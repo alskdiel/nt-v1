@@ -1,0 +1,59 @@
+<div>거주기간: </div>
+<div class="duration-start">
+  <input type="hidden" name="review_house[start_time]" id="start" value="<%= @start_time %>"/>
+  <div class="dur-wrapper">
+    <select class="years">
+      <% while @this_year >= @min_year %>
+        <% if @this_year == @start_time_y %>
+          <option value="<%= @this_year %>" selected><%= @this_year %></option>
+        <% else %>
+          <option value="<%= @this_year %>"><%= @this_year %></option>
+        <% end %>
+        <% @this_year -= 1 %>
+      <% end %>
+    </select>
+    <div class="arrow"></div>
+  </div>
+  <div class="dur-wrapper">
+    <select class="months">
+      <% for i in 1..12 %>
+        <% if i == @start_time_m %>
+          <option value="<%= i %>" selected><%= i %></option>
+        <% else %>
+          <option value="<%= i %>"><%= i %></option>
+        <% end %>
+      <% end %>
+    </select>
+    <div class="arrow"></div>
+  </div>
+</div>
+<div class="floating">~</div>
+<div class="duration-end">
+  <input type="hidden" name="review_house[end_time]" id="end" value="<%= @end_time %>"/>
+  <div class="dur-wrapper">
+    <select class="years">
+      <% @this_year = Time.now.year %>
+      <% while @this_year >= @min_year %>
+        <% if @this_year == @end_time_y %>
+          <option value="<%= @this_year %>" selected><%= @this_year %></option>
+        <% else %>
+          <option value="<%= @this_year %>"><%= @this_year %></option>
+        <% end %>
+        <% @this_year -= 1 %>
+      <% end %>
+    </select>
+    <div class="arrow"></div>
+  </div>
+  <div class="dur-wrapper">
+    <select class="months">
+      <% for i in 1..12 %>
+        <% if i == @end_time_m %>
+          <option value="<%= i %>" selected><%= i %></option>
+        <% else %>
+          <option value="<%= i %>"><%= i %></option>
+        <% end %>
+      <% end %>
+    </select>
+    <div class="arrow"></div>
+  </div>
+</div>

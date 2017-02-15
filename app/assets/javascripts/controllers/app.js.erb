@@ -557,6 +557,10 @@ myApp.controller('ShowCtrl', [
       }
     }
 
+    $scope.edit_review = function() {
+      window.location.href = "/review_houses/" + $scope.id + "/edit";
+    }
+
     $scope.getUserReviews = function() {
       window.location.href = "/user_reviews_h/" + $scope.id;
     }

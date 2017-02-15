@@ -1,0 +1,78 @@
+<div class="price">
+  <input type="hidden" name="review_house[price_satisfaction]" id="price" value="<%= @review.price_satisfaction %>">
+  <div class="title">가격만족도</div>
+  <div class="stars">
+    <div class="score first">
+      <%= image_tag 'write/star-grey.png', class: @star_price[0][:grey] %>
+      <%= image_tag 'write/star-purple.png', class: @star_price[0][:purple] %>
+    </div>
+    <div class="score second">
+      <%= image_tag 'write/star-grey.png', class: @star_price[1][:grey] %>
+      <%= image_tag 'write/star-purple.png', class: @star_price[1][:purple] %>
+    </div>
+    <div class="score third">
+      <%= image_tag 'write/star-grey.png', class: @star_price[2][:grey] %>
+      <%= image_tag 'write/star-purple.png', class: @star_price[2][:purple] %>
+    </div>
+    <div class="score fourth">
+      <%= image_tag 'write/star-grey.png', class: @star_price[3][:grey] %>
+      <%= image_tag 'write/star-purple.png', class: @star_price[3][:purple] %>
+    </div>
+    <div class="score fifth">
+      <%= image_tag 'write/star-grey.png', class: @star_price[4][:grey] %>
+      <%= image_tag 'write/star-purple.png', class: @star_price[4][:purple] %>
+    </div>
+  </div>
+</div>
+<div class="residence">
+  <input type="hidden" name="review_house[residence_satisfaction]" id="residence" value="<%= @review.residence_satisfaction %>">
+  <div class="title">주거지만족도</div>
+  <div class="stars">
+    <div class="score first">
+      <%= image_tag 'write/star-grey.png', class: @star_residence[0][:grey] %>
+      <%= image_tag 'write/star-purple.png', class: @star_residence[0][:purple] %>
+    </div>
+    <div class="score second">
+      <%= image_tag 'write/star-grey.png', class: @star_residence[1][:grey] %>
+      <%= image_tag 'write/star-purple.png', class: @star_residence[1][:purple] %>
+    </div>
+    <div class="score third">
+      <%= image_tag 'write/star-grey.png', class: @star_residence[2][:grey] %>
+      <%= image_tag 'write/star-purple.png', class: @star_residence[2][:purple] %>
+    </div>
+    <div class="score fourth">
+      <%= image_tag 'write/star-grey.png', class: @star_residence[3][:grey] %>
+      <%= image_tag 'write/star-purple.png', class: @star_residence[3][:purple] %>
+    </div>
+    <div class="score fifth">
+      <%= image_tag 'write/star-grey.png', class: @star_residence[4][:grey] %>
+      <%= image_tag 'write/star-purple.png', class: @star_residence[4][:purple] %>
+    </div>
+  </div>
+</div>
+<div class="environment">
+  <input type="hidden" name="review_house[env_satisfaction]" id="environment" value="<%= @review.env_satisfaction %>">
+  <div class="title">주거환경만족도</div>
+  <div class="stars">
+    <div class="score first">
+      <%= image_tag 'write/star-grey.png', class: @star_env[0][:grey] %>
+      <%= image_tag 'write/star-purple.png', class: @star_env[0][:purple] %>
+    </div>
+    <div class="score second">
+      <%= image_tag 'write/star-grey.png', class: @star_env[1][:grey] %>
+      <%= image_tag 'write/star-purple.png', class: @star_env[1][:purple] %>
+    </div>
+    <div class="score third">
+      <%= image_tag 'write/star-grey.png', class: @star_env[2][:grey] %>
+      <%= image_tag 'write/star-purple.png', class: @star_env[2][:purple] %>
+    </div>
+    <div class="score fourth">
+      <%= image_tag 'write/star-grey.png', class: @star_env[3][:grey] %>
+      <%= image_tag 'write/star-purple.png', class: @star_env[3][:purple] %>
+    </div>
+    <div class="score fifth">
+      <%= image_tag 'write/star-grey.png', class: @star_env[4][:grey] %>
+      <%= image_tag 'write/star-purple.png', class: @star_env[4][:purple] %>
+    </div>
+  </div>
+</div>

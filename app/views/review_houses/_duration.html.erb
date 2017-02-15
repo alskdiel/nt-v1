@@ -2,11 +2,20 @@
 <div class="duration-start">
   <input type="hidden" name="review_house[start_time]" id="start"/>
   <div class="dur-wrapper">
-    <select class="years"></select>
+    <select class="years">
+      <% while @this_year >= @min_year %>
+        <option value="<%= @this_year %>"><%= @this_year %></option>
+        <% @this_year -= 1 %>
+      <% end %>
+    </select>
     <div class="arrow"></div>
   </div>
   <div class="dur-wrapper">
-    <select class="months"></select>
+    <select class="months">
+      <% for i in 1..12 %>
+        <option value="<%= i %>"><%= i %></option>
+      <% end %>
+    </select>
     <div class="arrow"></div>
   </div>
 </div>
@@ -14,11 +23,21 @@
 <div class="duration-end">
   <input type="hidden" name="review_house[end_time]" id="end"/>
   <div class="dur-wrapper">
-    <select class="years"></select>
+    <select class="years">
+      <% @this_year = Time.now.year %>
+      <% while @this_year >= @min_year %>
+        <option value="<%= @this_year %>"><%= @this_year %></option>
+        <% @this_year -= 1 %>
+      <% end %>
+    </select>
     <div class="arrow"></div>
   </div>
   <div class="dur-wrapper">
-    <select class="months"></select>
+    <select class="months">
+      <% for i in 1..12 %>
+        <option value="<%= i %>"><%= i %></option>
+      <% end %>
+    </select>
     <div class="arrow"></div>
   </div>
 </div>

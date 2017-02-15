@@ -14,6 +14,8 @@ Rails.application.routes.draw do
   get "review_map" => "main#review_map"
   post "get_reviews_in_bound" => "main#reviews_in_bound"
 
+  post "update_review_houses/:id" => "review_houses#update"
+
   get "review_lives" => "review_life#index"
   get "review_lives/:id" => "review_life#show"
   post "review_lifes" => "review_life#create"
