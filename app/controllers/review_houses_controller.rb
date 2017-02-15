@@ -45,8 +45,12 @@ class ReviewHousesController < ApplicationController
     review_house = current_user.review_houses.new(review_house_params)
     review_house.save
 
-    params[:pic_house].each do |image|
-      pic_house = review_house.pic_houses.create(:image => image)
+    pics = params[:pic_house]
+
+    if pics.present?
+      pics.each do |image|
+        pic_house = review_house.pic_houses.create(:image => image)
+      end
     end
 
     pros = params[:pros]
