@@ -12,7 +12,11 @@ class ReviewHouse < ActiveRecord::Base
   end
 
   def thumb_nail
-    return self.pic_houses.first.image.url
+    begin
+      return self.pic_houses.first.image.url
+    rescue
+      return '/images/original/missing.png'
+    end
     # return PicHouse.where(review_house_id: self.id).take.image.url
   end
 

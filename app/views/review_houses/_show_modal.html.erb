@@ -71,18 +71,18 @@
     </div>
 
     <div class="p-a-c-container">
-      <div class="pros">
+      <div class="cons">
         <div class="title">단점</div>
-        <div class="pros-content-wrapper" ng-repeat="pro in pros_and_cons.pros track by $index">
+        <div class="cons-content-wrapper" ng-repeat="con in pros_and_cons.cons track by $index">
           <%= image_tag 'show/check-red.png' %>
-          <div class="content">{{pro}}</div>
+          <div class="content">{{con}}</div>
         </div>
       </div>
-      <div class="cons">
+      <div class="pros">
         <div class="title">장점</div>
-        <div class="cons-content-wrapper" ng-repeat="con in pros_and_cons.cons track by $index">
+        <div class="pros-content-wrapper" ng-repeat="pro in pros_and_cons.pros track by $index">
           <%= image_tag 'show/check-yellow.png' %>
-          <div class="content">{{con}}</div>
+          <div class="content">{{pro}}</div>
         </div>
       </div>
     </div>
