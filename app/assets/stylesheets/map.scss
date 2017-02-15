@@ -42,8 +42,72 @@
       .review-wrapper {
         padding: 28px 62px;
         .card-wrapper {
-          margin-bottom: 27px;
+          margin-bottom: 22px;
           border: 1px solid #ddd;
+          .image-wrapper {
+            max-height: 216px;
+          }
+          .details-wrapper {
+            padding: 16px 13px 5px 13px;
+            .type-wrapper {
+              height: 20px;
+              line-height: 20px;
+              span {
+                padding: 2px;
+                font-size: 9px;
+              }
+            }
+            .title-wrapper {
+              div {
+                font-size: 20px;
+                line-height: 20px;
+              }
+            }
+            .address-wrapper {
+              div {
+                font-size: 13px;
+                line-height: 13px;
+              }
+            }
+            .hashtag-wrapper {
+              div {
+                font-size: 10px;
+                line-height: 10px;
+              }
+            }
+            .writtenby-wrapper {
+              div {
+                font-size: 10px;
+                line-height: 10px;
+              }
+            }
+            .upvote-and-scrap-wrapper {
+              .upvote-wrapper, .scrap-wrapper, div:nth-child(2) {
+                div {
+                  font-size: 10px;
+                  height: 10px;
+                  line-height: 10px;
+                }
+              }
+            }
+            .type-wrapper, .title-wrapper, .address-wrapper, .writtenby-wrapper, .hashtag-wrapper {
+              margin-bottom: 6px;
+            }
+            .upvote-and-scrap-wrapper {
+              margin-bottom: 0px;
+            }
+          }
+          .satisfaction-wrapper {
+            padding: 13px;
+            .star-container {
+              margin: 0px 8px;
+              div {
+                img {
+                  height: 18px;
+                }
+              }
+            }
+          }
         }
       }
     }
