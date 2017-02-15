@@ -257,6 +257,19 @@
               width: 100%;
             }
           }
+          .edit-container {
+            margin: 7px 0px;
+            padding: 0px 20px;
+            text-align: right;
+            height: 36px;
+            div {
+              display: inline-block;
+              height: 100%;
+              img {
+                height: 100%;
+              }
+            }
+          }
           .details-container {
             padding: 50px 20px 23px 20px;
             .title-container {

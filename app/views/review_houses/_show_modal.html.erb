@@ -8,10 +8,10 @@
 
     <div class="edit-container" ng-if="auth">
       <div class="btn-edit">
-        <div>수정</div>
+        <%= image_tag 'show/edit.png' %>
       </div>
-      <div class="btn-delete">
-        <div ng-click="delete_review()">삭제</div>
+      <div class="btn-delete" ng-click="delete_review()">
+        <%= image_tag 'show/delete.png' %>
       </div>
     </div>
 

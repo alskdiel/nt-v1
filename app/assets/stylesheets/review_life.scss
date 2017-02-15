@@ -8,6 +8,17 @@
         .content-wrapper.show-modal-life {
           .content-header {
             padding: 0px 20px 23px 20px;
+            .edit-container {
+              text-align: right;
+              height: 36px;
+              div {
+                height: 100%;
+                display: inline-block;
+                img {
+                  height: 100%;
+                }
+              }
+            }
             .title-container {
               font-size: 54px;
               line-height: 54px;
