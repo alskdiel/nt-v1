@@ -606,20 +606,22 @@ myApp.controller('ShowCtrl', [
     }
 
     $scope.submit_comment = function() {
-      $http({
-        method: 'post',
-        url: 'new_comment_H',
-        data: { review_house_id: $scope.id,
-                comment: $scope.comment_writting }
-      })
-        .then(function(data, status, headers, config) {
-          if(data.data.current_user) {
-            getComments();
-          } else {
-            alert("로그인 해 주세요");
-          }
-          $scope.comment_writting = "";
-        });
+      if($scope.comment_writting) {
+        $http({
+          method: 'post',
+          url: 'new_comment_H',
+          data: { review_house_id: $scope.id,
+                  comment: $scope.comment_writting }
+        })
+          .then(function(data, status, headers, config) {
+            if(data.data.current_user) {
+              getComments();
+            } else {
+              alert("로그인 해 주세요");
+            }
+            $scope.comment_writting = "";
+          });
+      }
     }
 
     $scope.upvote_comment = function(comment) {
@@ -659,19 +661,21 @@ myApp.controller('ShowCtrl', [
     }
 
     $scope.submit_subcomment = function(comment) {
-      $http({
-        method: 'post',
-        url: 'new_subcomment_H',
-        data: { comment_house_id: comment.id,
-                comment: comment.subcomment_writting }
-      })
-        .then(function(data, status, headers, config) {
-          if(data.data.current_user) {
-            getComments();
-          } else {
-            alert("로그인 해 주세요");
-          }
-        });
+      if(comment.subcomment_writting) {
+        $http({
+          method: 'post',
+          url: 'new_subcomment_H',
+          data: { comment_house_id: comment.id,
+                  comment: comment.subcomment_writting }
+        })
+          .then(function(data, status, headers, config) {
+            if(data.data.current_user) {
+              getComments();
+            } else {
+              alert("로그인 해 주세요");
+            }
+          });
+      }
     }
 
     $scope.delete_comment = function(comment) {
@@ -898,20 +902,22 @@ myApp.controller('ShowLifeCtrl', [
     }
 
     $scope.submit_comment = function() {
-      $http({
-        method: 'post',
-        url: 'new_comment_L',
-        data: { review_life_id : $scope.id,
-                comment: $scope.comment_writting }
-      })
-        .then(function(data, status, headers, config) {
-          if(data.data.current_user) {
-            getComments();
-          } else {
-            alert("로그인 해 주세요");
-          }
-          $scope.comment_writting = "";
-        });
+      if($scope.comment_writting) {
+        $http({
+          method: 'post',
+          url: 'new_comment_L',
+          data: { review_life_id : $scope.id,
+                  comment: $scope.comment_writting }
+        })
+          .then(function(data, status, headers, config) {
+            if(data.data.current_user) {
+              getComments();
+            } else {
+              alert("로그인 해 주세요");
+            }
+            $scope.comment_writting = "";
+          });
+      }
     }
 
     $scope.upvote_comment = function(comment) {
@@ -951,19 +957,21 @@ myApp.controller('ShowLifeCtrl', [
     }
 
     $scope.submit_subcomment = function(comment) {
-      $http({
-        method: 'post',
-        url: 'new_subcomment_L',
-        data: { comment_life_id: comment.id,
-                comment: comment.subcomment_writting }
-      })
-        .then(function(data, status, headers, config) {
-          if(data.data.current_user) {
-            getComments();
-          } else {
-            alert("로그인 해 주세요");
-          }
-        });
+      if(comment.subcomment_writting) {
+        $http({
+          method: 'post',
+          url: 'new_subcomment_L',
+          data: { comment_life_id: comment.id,
+                  comment: comment.subcomment_writting }
+        })
+          .then(function(data, status, headers, config) {
+            if(data.data.current_user) {
+              getComments();
+            } else {
+              alert("로그인 해 주세요");
+            }
+          });
+      }
     }
 
     $scope.delete_comment = function(comment) {
