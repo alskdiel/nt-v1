@@ -6,19 +6,20 @@ body {
     width: 100%;
     .content-container {
       height: calc(100% - 120px);
-      margin-top: 120px;
+      margin-top: 85px;
       .sub-navbar {
         background: #fff;
-        padding: 19px 15px 1px 15px;
+        padding: 0px 15px;
         div {
           color: #50265e;
           opacity: 0.45;
-          font-size: 25px;
-          line-height: 25px;
+          font-size: 14px;
+          line-height: 14px;
           text-align: center;
           display: inline-block;
-          padding: 6px 18px 26px 18px;
+          padding: 12px 18px;
           margin: 0px 5px;
+          cursor: pointer;
           &.selected {
             opacity: 1;
             border-bottom: 3px solid #502652;
@@ -36,14 +37,14 @@ body {
       z-index: 2;
       position: fixed;
       width: 100%;
-      height: 120px;
+      height: 85px;
       background: #f4ca66;
       padding: 0px 45px;
       div {
         display: inline-block;
         &.nav-logo {
           height: 100%;
-          margin-right: 26px;
+          margin-right: 27px;
           float: left;
           img {
             height: 100%;
@@ -51,8 +52,8 @@ body {
         }
         &.nav-search {
           height: 100%;
-          padding: 45px 0px;
-          width: calc(100% - 420px);
+          padding: 28px 0px;
+          width: calc(100% - 376px);
           .search-wrapper {
             width: 100%;
             height: 100%;
@@ -108,7 +109,7 @@ body {
         }
         &.nav-buttons {
           height: 100%;
-          padding: 40px 0px;
+          padding: 22px 0px;
           float: right;
           img {
             height: 40px;
@@ -122,7 +123,7 @@ body {
     }
   }
   .side-bar {
-    padding-bottom: 31px;
+    padding-bottom: 41px;
     overflow-y: scroll;
     width: 0px;
     position: fixed;
@@ -137,37 +138,47 @@ body {
     .header {
       text-align: right;
       .cancel-wrapper {
-        padding: 21px 16px;
+        padding: 14px 16px;
         .cancel {
           height: 27px;
         }
       }
     }
     .body {
-      font-size: 25px;
-      line-height: 25px;
+      font-size: 19px;
+      line-height: 19px;
       .side-btn {
-        padding: 27px;
+        cursor: pointer;
+        padding: 21px 27px;
         background: #fff;
         text-overflow: ellipsis;
         white-space: nowrap;
         overflow: hidden;
         &.nickname {
+          font-size: 21px;
+          line-height: 21px;
           text-align: center;
           padding-bottom: 22px;
         }
         &.settings, &.sign-out {
           height: 53px;
-          line-height: 22px;
-          font-size: 22px;
-          padding: 0px 41px 21px 41px;
+          font-size: 19px;
+          line-height: 25px;
+          padding: 0px 41px;
           div {
             display: inline-block;
             vertical-align: middle;
           }
           img {
-            height: 100%;
+            height: 31px;;
             margin-right: 17px;
+          }
+        }
+        &.sign-out {
+          padding: 0px 45px;
+          line-height: 27px;
+          img {
+            margin-right: 12px;
           }
         }
       }
@@ -184,7 +195,7 @@ body {
         padding-bottom: 39px;
       }
       .margin-bottom {
-        margin-bottom: 31.5px;
+        margin-bottom: 25px;
       }
       .cs {
         div {
@@ -204,13 +215,12 @@ body {
         }
       }
       .cs-detail {
-        padding: 17px 54px 34px 54px;
+        padding: 0px 54px;
+        padding-bottom: 10px;
         background: #fff;
         display: none;
         .ds {
           padding: 17px 0px;
-          font-size: 23px;
-          line-height: 23px;
         }
       }
     }
