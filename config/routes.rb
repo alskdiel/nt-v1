@@ -69,6 +69,7 @@ Rails.application.routes.draw do
   post "get_searched_reviews" => "main#search_item"
 
   get "notice" => "main#notice"
+  get "qna" => "main#qna"
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

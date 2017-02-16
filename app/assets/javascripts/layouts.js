@@ -83,7 +83,7 @@ init  = function() {
   });
 
   $('.side-bar .body .cs-detail .qna').on('click', function(){
-    alert("qna")
+    window.location.href = "/qna";
   });
 
   $('.side-bar .body .cs-detail .terms').on('click', function(){

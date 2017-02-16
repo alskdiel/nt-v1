@@ -114,6 +114,11 @@ class MainController < ApplicationController
     @notice = Notice.paginate(:page => params[:page])
   end
 
+  def qna
+    # @notice = Notice.all
+    @notice = Notice.paginate(:page => params[:page])
+  end
+
   def user_signed_in
     return render json: { user_signed_in: user_signed_in? }
   end

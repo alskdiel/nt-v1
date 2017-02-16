@@ -204,17 +204,13 @@ body {
         }
       }
       .cs-detail {
-        padding: 34px 54px;
+        padding: 17px 54px 34px 54px;
         background: #fff;
         display: none;
         .ds {
-          margin-bottom: 34px;
+          padding: 17px 0px;
           font-size: 23px;
           line-height: 23px;
-          padding: 0px;
-          &:last-child {
-            margin-bottom: 0px;
-          }
         }
       }
     }
