@@ -9,6 +9,7 @@ gem 'sass-rails', '>= 3.2'
 gem 'sprockets-rails', :require => 'sprockets/railtie'
 gem 'angularjs-rails'
 gem 'angular-ui-bootstrap-rails'
+gem 'will_paginate', '~> 3.1.0'
 
 gem "letter_opener", :group => :development
 # gem 'mailcatcher'

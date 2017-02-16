@@ -2,6 +2,29 @@
   <div class="notice-wrapper">
     <div class="noti-header">공지사항</div>
     <div class="noti-body">
+      <table>
+        <tr>
+          <td>내용</td>
+          <td>등록일</td>
+        </tr>
+        <% @notice.each do |notice| %>
+        <tr>
+          <td colspan="2">
+            <table class="inner-table">
+              <tr class="noti-component-title">
+                <td class="title"><%= notice.title %></td>
+                <td class="created_at"><%= notice.created_at.strftime("%Y.%m.%d") %></td>
+              </tr>
+              <tr class="noti-component-content hide">
+                <td colspan="2" class="content"><%= notice.content %></td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+        <% end %>
+      </table>
+      <%= will_paginate @notice %>
+    </div>
   </div>
 
   </div>

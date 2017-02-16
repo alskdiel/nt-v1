@@ -9,6 +9,75 @@
       line-height: 80px;
       margin-bottom: 78px;
     }
+    .noti-body {
+      table {
+        width: 100%;
+        font-size: 16px;
+        tr {
+          height: 59px;
+          &:first-child {
+            text-align: center;
+            background: #fafafa;
+            td:first-child {
+              width: 70%;
+            }
+          }
+          .inner-table {
+            width: 100%;
+            border-bottom: 1px solid #ddd;
+            tr {
+              text-align: left;
+              background: #fff;
+              td {
+                padding: 0px 30px;
+                &.created_at {
+                  text-align: center;
+                }
+                &.content {
+                  padding: 18px 53px;
+                }
+              }
+              &.hide {
+                display: none;
+              }
+            }
+          }
+        }
+      }
+      .pagination {
+        width: 100%;
+        text-align: center;
+        color: #b2b1b1;
+        height: 34px;
+        line-height: 34px;
+        a:hover {
+          background-color: #fff;
+          color: inherit;
+        }
+        a, span {
+          font-size: 16px;
+          line-height: 16px;
+          color: #b2b1b1;
+          margin: 0px 4px;
+          padding: 8px 12px;
+          border: 1px solid #b2b1b1;
+        }
+        .arrow {
+          display: inline-block;
+        }
+        .current {
+          font-size: 16px;
+          line-height: 16px;
+          color: #fff;
+          background: #555;
+          font-style: normal;
+          margin: 0px 4px;
+          padding: 8px 12px;
+          border: 1px solid #b2b1b1;
+        }
+
+      }
+    }
   }
 
 }

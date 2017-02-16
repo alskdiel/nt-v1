@@ -21,3 +21,6 @@
 
 en:
   hello: "Hello world"
+  will_paginate:
+    previous_label: <div class="arrow"><</div>
+    next_label: <div class="arrow">></div>

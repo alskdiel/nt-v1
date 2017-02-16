@@ -110,7 +110,8 @@ class MainController < ApplicationController
   end
 
   def notice
-    render "main/notice"
+    # @notice = Notice.all
+    @notice = Notice.paginate(:page => params[:page])
   end
 
   def user_signed_in
