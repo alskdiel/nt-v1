@@ -23,7 +23,7 @@ class ReviewHouse < ActiveRecord::Base
     begin
       return self.pic_houses.first.image.url
     rescue
-      return '/images/original/missing.png'
+      return '/images/original/house_missing.jpeg'
     end
     # return PicHouse.where(review_house_id: self.id).take.image.url
   end
@@ -43,11 +43,15 @@ class ReviewHouse < ActiveRecord::Base
   def image_url
     pics = self.pic_houses
     # pics = PicHouse.where(review_house_id: self.id)
-    urls = []
-    pics.each do |pic|
-      urls.push(pic.image.url)
+    if pics.present?
+      urls = []
+      pics.each do |pic|
+        urls.push(pic.image.url)
+      end
+      return urls
+    else
+      return ['/images/original/house_missing.jpeg']
     end
-    return urls
   end
 
   def pros
