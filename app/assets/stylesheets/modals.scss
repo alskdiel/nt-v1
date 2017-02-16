@@ -1,4 +1,9 @@
 .modal {
+  .modal-dialog {
+    margin-top: 200px;
+  }
+}
+.modal {
   &#modal-sign-in {
     .modal-dialog {
       .modal-content {
@@ -8,16 +13,21 @@
           padding: 0px 0px 20px 0px;
           .modal-title {
             height: 80.5px;
+            line-height: 80.5px;
             padding: 0px 30.5px;
             background: #f4ca66;
             div {
               display: inline-block;
-              line-height: 80.5px;
               font-size: 30px;
               color: #50265a;
             }
             .close {
               line-height: 80.5px;
+              text-shadow: none;
+              opacity: 1;
+              img {
+                vertical-align: middle;
+              }
             }
           }
           .content-wrapper {
@@ -30,9 +40,11 @@
             .email-container, .password-container {
               margin-bottom: 40px;
               div {
+                line-height: 24px;
                 margin-bottom: 15px;
               }
               input {
+                line-height: 24px;
                 width: 100%;
                 padding: 12px 21px;
                 border-radius: 10px;
@@ -44,12 +56,14 @@
               div {
                 display: inline-block;
                 font-size: 18px;
+                line-height: 18px;
               }
             }
             .sign-in-btn-container, .sign-up-btn-container {
               margin-bottom: 31px;
               .my-btn {
                 font-size: 26px;
+                line-height: 26px;
                 text-align: center;
                 padding: 19px 0px;
                 border-radius: 10px;
@@ -66,12 +80,14 @@
               .sign-up-info {
                 margin-bottom: 15.5px;
                 font-size: 24px;
+                line-height: 24px;
               }
             }
             .forgot-container {
               div {
                 display: inline-block;
                 font-size: 24px;
+                line-height: 24px;
                 &.find-pw {
                   text-decoration: underline;
                 }
@@ -82,6 +98,7 @@
             .sign-up-main {
               display: block;
               font-size: 26px;
+              line-height: 26px;
               padding-top: 93.5px;
               .email-container, .password-container {
                 div {
@@ -89,6 +106,7 @@
                 }
                 span {
                   font-size: 13px;
+                  line-height: 13px;
                   color: #ed1c24;
                   position: relative;
                   float: right;
@@ -96,6 +114,7 @@
                   margin-right: 21px;
                 }
                 input {
+                  line-height: 26px;
                   border: 1px solid #bbb;
                   padding: 12px 21px;
                   border-radius: 10px;
@@ -112,6 +131,7 @@
                 margin-bottom: 75px;
               }
               .btn-next {
+                line-height: 26px;
                 font-size: 26px;
                 text-align: center;
                 padding: 19px 0px;
@@ -122,11 +142,13 @@
               }
             }
             .sign-up-sub {
+              line-height: 26px;
               font-size: 26px;
               display: none;
               padding-top: 30px;
               .nickname-container {
                 span {
+                  line-height: 13px;
                   font-size: 13px;
                   color: #ed1c24;
                   position: relative;
@@ -173,6 +195,7 @@
                 }
                 .radio-container {
                   font-size: 24px;
+                  line-height: 24px;
                   input {
                     margin: 0px 10px;
                     &:nth-child(2) {
@@ -184,6 +207,7 @@
               }
               .btn-confirm {
                 font-size: 26px;
+                line-height: 26px;
                 text-align: center;
                 padding: 19px 0px;
                 border-radius: 10px;
@@ -191,21 +215,26 @@
                 color: #fff;
                 margin-bottom: 15.5px;
               }
-              // .birth-container {
-              //   div {
-              //     margin-bottom: 12px;
-              //     .birth {
-              //       border: 1px solid #bbb;
-              //       padding: 12px 21px;
-              //       border-radius: 10px;
-              //       width: 100%;
-              //     }
-              //   }
-              //   margin-bottom: 42px;
-              // }
             }
             .sign-up-fin {
               display: none;
+              padding: 50px 30.5px;
+              .info-container {
+                padding: 50px 67px;
+                div {
+                  text-align: center;
+                  font-size: 30px;
+                  line-height: 30px;
+                }
+              }
+              .btn-okay {
+                background: #f4ca66;
+                text-align: center;
+                color: #fff;
+                font-size: 30px;
+                line-height: 30px;
+                padding: 14px 0px;
+              }
             }
           }
         }

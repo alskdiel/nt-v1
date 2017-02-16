@@ -236,6 +236,7 @@ var modal_function = function () {
   }
 
   function signUpProcess(email, password, nickname, birth, occupation, sex) {
+    var info_text = email+" 으로 이메일이 발송되었습니다. 메일을 확인해주세요.";
     params = {
       user : { email: email,
                password: password },
@@ -255,11 +256,9 @@ var modal_function = function () {
       success: function (data, textStatus, jqXHR) {
         // success callback
         if(data.ret) {
-          // login successful
-          // window.location.reload(true);
-          // show info modal
           $('.modal-content #sign-up .sign-up-sub').css('display', 'none');
           $('.modal-content #sign-up .sign-up-fin').css('display', 'block');
+          $('.modal-content #sign-up .sign-up-fin').find('.info-container').find('.info-text').text(info_text);
 
         } else {
           alert("wrong info");

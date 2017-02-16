@@ -6,7 +6,9 @@
         <div id="sign-in">
           <div class="modal-title">
             <div>로그인</div>
-            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <div class="close" data-dismiss="modal">
+              <%= image_tag 'buttons/close.png', class: "cancel" %>
+            </div>
           </div>
           <div class="content-wrapper sign-in-main">
             <div class="email-container">
@@ -38,7 +40,9 @@
         <div id="sign-up">
           <div class="modal-title">
             <div>회원가입</div>
-            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <div class="close" data-dismiss="modal">
+              <%= image_tag 'buttons/close.png', class: "cancel" %>
+            </div>
           </div>
           <div class="content-wrapper sign-up-main">
             <div class="email-container">
@@ -92,7 +96,7 @@
           </div>
           <div class="content-wrapper sign-up-fin">
             <div class="info-container">
-              <div>인증 메일이 발송되었습니다. 메일을 확인해주세요</div>
+              <div class="info-text">인증 메일이 발송되었습니다. 메일을 확인해주세요</div>
             </div>
             <div class="btn-okay">
               <div>확인</div>
