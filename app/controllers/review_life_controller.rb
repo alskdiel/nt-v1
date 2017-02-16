@@ -26,37 +26,42 @@ class ReviewLifeController < ApplicationController
   end
 
   def edit
-    review_life = ReviewLife.find(params[:id])
+    if user_signed_in?
+      review_life = ReviewLife.find(params[:id])
 
-    image = params[:review_life][:image]
-    if image.present?
-      review_life.image = image
-    end
+      if current_user.id == review_life.user_id
 
-    review_life.update(title: params[:review_life][:title], content: params[:review_life][:content])
-    review_life.save
-
-    prev_hash_tag_refs = HashTagRef.where(review_life_id: review_life.id)
-
-    prev_hash_tag_refs.each do |ref|
-      ref.delete
-    end
-
-    hashtag_str = params[:hashtag]
-    hashtag_str.downcase!
-    hashtag_str.delete! "\ "
-
-    hashtags_tmp = hashtag_str.split("#")
-    hashtags = []
-
-    hashtags_tmp.each do |hashtag|
-      if hashtag != "" && !hashtags.include?(hashtag)
-        hashtags.push(hashtag)
-        current_tag = HashTag.where(keyword: hashtag).take
-        if !current_tag.present?
-          current_tag = HashTag.create(keyword: hashtag)
+        image = params[:review_life][:image]
+        if image.present?
+          review_life.image = image
         end
-        HashTagRef.create(hash_tag_id: current_tag.id, review_life_id: review_life.id)
+
+        review_life.update(title: params[:review_life][:title], content: params[:review_life][:content])
+        review_life.save
+
+        prev_hash_tag_refs = HashTagRef.where(review_life_id: review_life.id)
+
+        prev_hash_tag_refs.each do |ref|
+          ref.delete
+        end
+
+        hashtag_str = params[:hashtag]
+        hashtag_str.downcase!
+        hashtag_str.delete! "\ "
+
+        hashtags_tmp = hashtag_str.split("#")
+        hashtags = []
+
+        hashtags_tmp.each do |hashtag|
+          if hashtag != "" && !hashtags.include?(hashtag)
+            hashtags.push(hashtag)
+            current_tag = HashTag.where(keyword: hashtag).take
+            if !current_tag.present?
+              current_tag = HashTag.create(keyword: hashtag)
+            end
+            HashTagRef.create(hash_tag_id: current_tag.id, review_life_id: review_life.id)
+          end
+        end
       end
     end
 
@@ -64,24 +69,26 @@ class ReviewLifeController < ApplicationController
   end
 
   def create
-    review_life = current_user.review_lifes.new(review_life_params)
-    review_life.save
+    if user_signed_in?
+      review_life = current_user.review_lifes.new(review_life_params)
+      review_life.save
 
-    hashtag_str = params[:hashtag]
-    hashtag_str.downcase!
-    hashtag_str.delete! "\ "
+      hashtag_str = params[:hashtag]
+      hashtag_str.downcase!
+      hashtag_str.delete! "\ "
 
-    hashtags_tmp = hashtag_str.split("#")
-    hashtags = []
+      hashtags_tmp = hashtag_str.split("#")
+      hashtags = []
 
-    hashtags_tmp.each do |hashtag|
-      if hashtag != "" && !hashtags.include?(hashtag)
-        hashtags.push(hashtag)
-        current_tag = HashTag.where(keyword: hashtag).take
-        if !current_tag.present?
-          current_tag = HashTag.create(keyword: hashtag)
+      hashtags_tmp.each do |hashtag|
+        if hashtag != "" && !hashtags.include?(hashtag)
+          hashtags.push(hashtag)
+          current_tag = HashTag.where(keyword: hashtag).take
+          if !current_tag.present?
+            current_tag = HashTag.create(keyword: hashtag)
+          end
+          HashTagRef.create(hash_tag_id: current_tag.id, review_life_id: review_life.id)
         end
-        HashTagRef.create(hash_tag_id: current_tag.id, review_life_id: review_life.id)
       end
     end
 
@@ -89,16 +96,24 @@ class ReviewLifeController < ApplicationController
   end
 
   def destroy
-    review_id = params[:id]
-    review = ReviewLife.find(review_id)
-    if review.present?
+    if user_signed_in?
+      review_id = params[:id]
+      review = ReviewLife.find(review_id)
       if current_user.id == review.user_id
-        review.delete
-        return render json: { ret: true }
-      end
-    end
+        if review.present?
+          if current_user.id == review.user_id
+            review.delete
+            return render json: { ret: true }
+          end
+        end
 
-    return render json: { ret: false }
+        return render json: { ret: false }
+      else
+        redirect_to root_path
+      end
+    else
+      redirect_to root_path
+    end
   end
 
   def upvote

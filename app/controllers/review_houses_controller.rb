@@ -33,99 +33,110 @@ class ReviewHousesController < ApplicationController
 
   # GET /review_houses/new
   def new
-    @this_year = Time.now.year
-    @min_year = 1900
-    # @review_house = ReviewHouse.new
+    if user_signed_in?
+      @this_year = Time.now.year
+      @min_year = 1900
+    else
+      redirect_to root_path
+    end
   end
 
   # GET /review_houses/1/edit
   def edit
-    @this_year = Time.now.year
-    @min_year = 1900
+    if user_signed_in?
+      @this_year = Time.now.year
+      @min_year = 1900
 
-    @review = ReviewHouse.find(params[:id])
+      @review = ReviewHouse.find(params[:id])
+      if current_user.id == @review.user_id
 
-    @start_time = @review.start_time.strftime("%Y-%m")
-    @start_time_y = @start_time.split("-")[0].to_i
-    @start_time_m = @start_time.split("-")[1].to_i
+        @start_time = @review.start_time.strftime("%Y-%m")
+        @start_time_y = @start_time.split("-")[0].to_i
+        @start_time_m = @start_time.split("-")[1].to_i
 
-    @end_time = @review.end_time.strftime("%Y-%m")
-    @end_time_y = @end_time.split("-")[0].to_i
-    @end_time_m = @end_time.split("-")[1].to_i
+        @end_time = @review.end_time.strftime("%Y-%m")
+        @end_time_y = @end_time.split("-")[0].to_i
+        @end_time_m = @end_time.split("-")[1].to_i
 
-    @star_price_t = @review.price_satisfaction
-    @star_residence_t = @review.residence_satisfaction
-    @star_env_t = @review.env_satisfaction
-    @star_price = [
-      {grey: nil, purple: 'none'},
-      {grey: nil, purple: 'none'},
-      {grey: nil, purple: 'none'},
-      {grey: nil, purple: 'none'},
-      {grey: nil, purple: 'none'},
-    ]
-    @star_residence = [
-      {grey: nil, purple: 'none'},
-      {grey: nil, purple: 'none'},
-      {grey: nil, purple: 'none'},
-      {grey: nil, purple: 'none'},
-      {grey: nil, purple: 'none'},
-    ]
-    @star_env = [
-      {grey: nil, purple: 'none'},
-      {grey: nil, purple: 'none'},
-      {grey: nil, purple: 'none'},
-      {grey: nil, purple: 'none'},
-      {grey: nil, purple: 'none'},
-    ]
+        @star_price_t = @review.price_satisfaction
+        @star_residence_t = @review.residence_satisfaction
+        @star_env_t = @review.env_satisfaction
+        @star_price = [
+          {grey: nil, purple: 'none'},
+          {grey: nil, purple: 'none'},
+          {grey: nil, purple: 'none'},
+          {grey: nil, purple: 'none'},
+          {grey: nil, purple: 'none'},
+        ]
+        @star_residence = [
+          {grey: nil, purple: 'none'},
+          {grey: nil, purple: 'none'},
+          {grey: nil, purple: 'none'},
+          {grey: nil, purple: 'none'},
+          {grey: nil, purple: 'none'},
+        ]
+        @star_env = [
+          {grey: nil, purple: 'none'},
+          {grey: nil, purple: 'none'},
+          {grey: nil, purple: 'none'},
+          {grey: nil, purple: 'none'},
+          {grey: nil, purple: 'none'},
+        ]
 
-    for i in 0..@star_price_t-1
-      @star_price[i][:grey] = "none"
-      @star_price[i][:purple] = nil
+        for i in 0..@star_price_t-1
+          @star_price[i][:grey] = "none"
+          @star_price[i][:purple] = nil
+        end
+
+        for i in 0..@star_residence_t-1
+          @star_residence[i][:grey] = "none"
+          @star_residence[i][:purple] = nil
+        end
+
+        for i in 0..@star_env_t-1
+          @star_env[i][:grey] = "none"
+          @star_env[i][:purple] = nil
+        end
+
+        @cons = @review.cons
+        @pros = @review.pros
+        else
+
+        redirect_to root_path
+      end
+    else
+      redirect_to root_path
     end
-
-    for i in 0..@star_residence_t-1
-      @star_residence[i][:grey] = "none"
-      @star_residence[i][:purple] = nil
-    end
-
-    for i in 0..@star_env_t-1
-      @star_env[i][:grey] = "none"
-      @star_env[i][:purple] = nil
-    end
-
-    @cons = @review.cons
-    @pros = @review.pros
-
-    # binding pry
-    # render "review_houses/_form"
   end
 
   # POST /review_houses
   # POST /review_houses.json
   def create
-    review_house = current_user.review_houses.new(review_house_params)
-    review_house.save
+    if user_signed_in?
+      review_house = current_user.review_houses.new(review_house_params)
+      review_house.save
 
-    pics = params[:pic_house]
+      pics = params[:pic_house]
 
-    if pics.present?
-      pics.each do |image|
-        pic_house = review_house.pic_houses.create(:image => image)
+      if pics.present?
+        pics.each do |image|
+          pic_house = review_house.pic_houses.create(:image => image)
+        end
       end
-    end
 
-    pros = params[:pros]
-    cons = params[:cons]
+      pros = params[:pros]
+      cons = params[:cons]
 
-    pros.each do |key, value|
-      if value != ""
-        ProsAndCons.create(review_house_id: review_house.id, content_type: 1, content: value)
+      pros.each do |key, value|
+        if value != ""
+          ProsAndCons.create(review_house_id: review_house.id, content_type: 1, content: value)
+        end
       end
-    end
 
-    cons.each do |key, value|
-      if value != ""
-        ProsAndCons.create(review_house_id: review_house.id, content_type: 0, content: value)
+      cons.each do |key, value|
+        if value != ""
+          ProsAndCons.create(review_house_id: review_house.id, content_type: 0, content: value)
+        end
       end
     end
 
@@ -135,59 +146,63 @@ class ReviewHousesController < ApplicationController
   # PATCH/PUT /review_houses/1
   # PATCH/PUT /review_houses/1.json
   def update
-    review_id = params[:id]
-    review_house = ReviewHouse.find(review_id)
+    if user_signed_in?
+      review_id = params[:id]
+      review_house = ReviewHouse.find(review_id)
 
-    pics = params[:pic_house]
+      if current_user.id == review_house.user_id
+        pics = params[:pic_house]
 
-    if pics.present?
-      pics.each do |image|
-        pic_house = review_house.pic_houses.take
-        if pic_house.present?
-          pic_house.image = image
-        else
-          pic_house = review_house.pic_houses.create(:image => image)
+        if pics.present?
+          pics.each do |image|
+            pic_house = review_house.pic_houses.take
+            if pic_house.present?
+              pic_house.image = image
+            else
+              pic_house = review_house.pic_houses.create(:image => image)
+            end
+            pic_house.save
+          end
         end
-        pic_house.save
+
+        pncs = ProsAndCons.where(review_house_id: review_id)
+        pncs.each do |pnc|
+          pnc.delete
+        end
+
+        pros = params[:pros]
+        cons = params[:cons]
+
+        pros.each do |key, value|
+          if value != ""
+            ProsAndCons.create(review_house_id: review_house.id, content_type: 1, content: value)
+          end
+        end
+
+        cons.each do |key, value|
+          if value != ""
+            ProsAndCons.create(review_house_id: review_house.id, content_type: 0, content: value)
+          end
+        end
+
+
+        review_house.update(title: params[:review_house][:title],
+                            latitude: params[:review_house][:latitude],
+                            longtitude: params[:review_house][:longtitude],
+                            address: params[:review_house][:address],
+                            start_time: params[:review_house][:start_time],
+                            end_time: params[:review_house][:end_time],
+                            price_satisfaction: params[:review_house][:price_satisfaction],
+                            residence_satisfaction: params[:review_house][:residence_satisfaction],
+                            env_satisfaction: params[:review_house][:env_satisfaction],
+                            price_review: params[:review_house][:price_review],
+                            residence_review: params[:review_house][:residence_review],
+                            env_review: params[:review_house][:env_review],
+                           )
+        review_house.save
       end
+
     end
-
-    pncs = ProsAndCons.where(review_house_id: review_id)
-    pncs.each do |pnc|
-      pnc.delete
-    end
-
-    pros = params[:pros]
-    cons = params[:cons]
-
-    pros.each do |key, value|
-      if value != ""
-        ProsAndCons.create(review_house_id: review_house.id, content_type: 1, content: value)
-      end
-    end
-
-    cons.each do |key, value|
-      if value != ""
-        ProsAndCons.create(review_house_id: review_house.id, content_type: 0, content: value)
-      end
-    end
-
-
-    review_house.update(title: params[:review_house][:title],
-                        latitude: params[:review_house][:latitude],
-                        longtitude: params[:review_house][:longtitude],
-                        address: params[:review_house][:address],
-                        start_time: params[:review_house][:start_time],
-                        end_time: params[:review_house][:end_time],
-                        price_satisfaction: params[:review_house][:price_satisfaction],
-                        residence_satisfaction: params[:review_house][:residence_satisfaction],
-                        env_satisfaction: params[:review_house][:env_satisfaction],
-                        price_review: params[:review_house][:price_review],
-                        residence_review: params[:review_house][:residence_review],
-                        env_review: params[:review_house][:env_review],
-                       )
-    review_house.save
-
 
     redirect_to root_path
   end
@@ -195,16 +210,20 @@ class ReviewHousesController < ApplicationController
   # DELETE /review_houses/1
   # DELETE /review_houses/1.json
   def destroy
-    review_id = params[:id]
-    review = ReviewHouse.find(review_id)
-    if review.present?
-      if current_user.id == review.user_id
-        review.delete
-        return render json: { ret: true }
+    if user_signed_in?
+      review_id = params[:id]
+      review = ReviewHouse.find(review_id)
+      if review.present?
+        if current_user.id == review.user_id
+          review.delete
+          return render json: { ret: true }
+        end
       end
-    end
 
-    return render json: { ret: false }
+      return render json: { ret: false }
+    else
+      redirect_to root_path
+    end
   end
 
   def submit_comment

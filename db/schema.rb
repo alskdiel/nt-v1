@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170216060258) do
+ActiveRecord::Schema.define(version: 20170216085732) do
 
   create_table "comment_houses", force: :cascade do |t|
     t.integer  "review_house_id"
@@ -65,6 +65,15 @@ ActiveRecord::Schema.define(version: 20170216060258) do
     t.string   "content"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
+  end
+
+  create_table "qnas", force: :cascade do |t|
+    t.integer  "user_id"
+    t.string   "title"
+    t.text     "question"
+    t.text     "answer"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "review_houses", force: :cascade do |t|

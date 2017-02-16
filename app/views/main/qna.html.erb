@@ -3,42 +3,56 @@
     <div class="qna-header">문의하기</div>
     <div class="qna-body">
       <div class="reg-qna">
+      <% if user_signed_in? %>
         <form id="form-qna" action="/qna" method="post">
+          <input type="hidden" name="authenticity_token" value="QGthAE0W7zBgRqvzsphx7J05/bXasa8bpotEkFjwctIqEBfabdK1rN6B8wlcupH4ElpoBt2n9KwRY2it813Whw==">
           <div class="reg-left">
           <input type="text" placeholder="제목" name="qna[title]">
-          <textarea paceholder="문의사항을 입력해주세요" name="qna[content]"></textarea>
+          <textarea placeholder="문의사항을 입력해주세요" name="qna[question]"></textarea>
           </div>
           <div class="reg-right">
-          <div class="submit-button">
-            등록
-          </div>
+            <div class="submit-button">등록</div>
           </div>
         </form>
       </div>
-      <table>
-        <tr>
-          <td>내용</td>
-          <td>등록일</td>
-          <td>상태</td>
-        </tr>
-        <% @notice.each do |notice| %>
-        <tr>
-          <td colspan="3">
-            <table class="inner-table">
-              <tr class="noti-component-title">
-                <td class="title"><%= notice.title %></td>
-                <td class="created_at"><%= notice.created_at.strftime("%Y.%m.%d") %></td>
-                <td class="is-answered"><%= notice.is_answered%></td>
-              </tr>
-              <tr class="noti-component-content hide">
-                <td colspan="3" class="content"><%= notice.content %></td>
-              </tr>
-            </table>
-          </td>
-        </tr>
-        <% end %>
-      </table>
-      <%= will_paginate @notice %>
+        <table>
+          <tr>
+            <td>내용</td>
+            <td>등록일</td>
+            <td>상태</td>
+          </tr>
+          <% @qnas.each do |qna| %>
+          <tr>
+            <td colspan="3">
+              <table class="inner-table">
+                <tr class="qna-component-title">
+                  <td class="title"><%= qna.title %></td>
+                  <td class="created_at"><%= qna.created_at.strftime("%Y.%m.%d") %></td>
+                  <td class="is-answered"><%= qna.status %></td>
+                </tr>
+                <tr class="qna-component-content hide">
+                  <td colspan="3" class="content">
+                    <div>문의 내용</div>
+                    <div><%= qna.question %></div>
+                  </td>
+                </tr>
+                <% if qna.is_answered? %>
+                  <tr class="qna-component-content answer hide">
+                    <td colspan="3" class="content">
+                      <div>답변입니다</div>
+                      <div><%= qna.answer %></div>
+                    </td>
+                  </tr>
+                <% end %>
+              </table>
+            </td>
+          </tr>
+          <% end %>
+        </table>
+        <%= will_paginate @qnas %>
+      <% else %>
+        <div>로그인 해주세요.</div>
+      <% end %>
     </div>
   </div>
 

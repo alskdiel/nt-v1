@@ -11,6 +11,7 @@ class User < ActiveRecord::Base
   has_many :subcomment_lives
   has_many :upvote_comment_houses
   has_many :upvote_comment_lives
+  has_many :qnas
   has_one :user_info
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable

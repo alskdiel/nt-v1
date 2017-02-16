@@ -106,17 +106,27 @@ class MainController < ApplicationController
     min_lng = bounds[:ba]
     max_lng = bounds[:fa]
     @reviews = ReviewHouse.where("latitude >= ? AND latitude <= ? AND longtitude >= ? AND longtitude <= ?", min_lat, max_lat, min_lng, max_lng)
-    # binding pry
   end
 
   def notice
-    # @notice = Notice.all
     @notice = Notice.paginate(:page => params[:page])
   end
 
   def qna
-    # @notice = Notice.all
-    @notice = Notice.paginate(:page => params[:page])
+    @qnas = []
+    if user_signed_in?
+      @qnas = current_user.qnas.order("created_at DESC").paginate(:page => params[:page])
+    end
+  end
+
+  def create_qna
+    title = params[:qna][:title]
+    question = params[:qna][:question]
+    if user_signed_in?
+      current_user.qnas.create(title: title, question: question)
+    end
+
+    redirect_to action: 'qna'
   end
 
   def user_signed_in

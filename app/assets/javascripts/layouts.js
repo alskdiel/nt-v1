@@ -64,7 +64,6 @@ init  = function() {
   });
 
   $('.side-bar .body .cs').on('click', function(){
-    console.log('xxxx');
     var $this = $(this)
     var $arrow = $this.find('.arrow');
     if($arrow.hasClass("upper")) {
@@ -83,7 +82,7 @@ init  = function() {
   });
 
   $('.side-bar .body .cs-detail .qna').on('click', function(){
-    window.location.href = "/qna";
+    checkUserSignedIn("qna");
   });
 
   $('.side-bar .body .cs-detail .terms').on('click', function(){
@@ -109,6 +108,8 @@ init  = function() {
             window.location.href = "/my_scraps";
           } else if(type === "write") {
             openWriteModal();
+          } else if(type === "qna") {
+            window.location.href = "/qna";
           }
         } else {
           alert("로그인 해주세요.");
@@ -143,7 +144,7 @@ init  = function() {
 
   function signoutProcess() {
     $.ajax({
-      url: 'users/sign_out',
+      url: '/users/sign_out',
       type: 'DELETE',
       dataType: 'json',
       // data: $.param( $('Element or Expression') ),
@@ -153,7 +154,7 @@ init  = function() {
       success: function (data, textStatus, jqXHR) {
         console.log(data);
         if(data.ret) {
-          window.location.reload(true);
+          window.location.href = "/";
         }
         // success callback
       },

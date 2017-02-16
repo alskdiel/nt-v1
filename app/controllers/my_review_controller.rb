@@ -1,55 +1,52 @@
 class MyReviewController < ApplicationController
 
   def my_reviews
-    render "my_review/user_review"
+    if user_signed_in?
+      render "my_review/user_review"
+    else
+      redirect_to root_path
+    end
   end
 
   def get_my_reviews
-    houses = current_user.review_houses.all.order("created_at DESC")
-    lives = current_user.review_lifes.all.order("created_at DESC")
+    if user_signed_in?
+      houses = current_user.review_houses.all.order("created_at DESC")
+      lives = current_user.review_lifes.all.order("created_at DESC")
 
-    @reviews = []
-
-    i = 0
-    j = 0
-
-    begin
-      while true
-        if houses[i].created_at > lives[j].created_at
-          @reviews.push(houses[i])
-          i += 1
-        else
-          @reviews.push(lives[j])
-          j += 1
-        end
+      @reviews = []
+      houses.each do |house|
+        @reviews.push(house)
       end
-    rescue
-      begin
-        while true
-          if houses[i].present?
-            @reviews.push(houses[i])
-            i += 1
-          else
-            break
-          end
-        end
-      rescue
+      lives.each do |life|
+        @reviews.push(life)
       end
+
+      @reviews.sort_by! { |review| review.created_at }.reverse!
+    else
+      # redirect_to root_path
     end
   end
 
   def get_my_review_info
-    my_info = current_user.info_brief
+    if user_signed_in?
+      my_info = current_user.info_brief
 
-    return render json: {
-      ret: true,
-      is_mypage: true,
-      my_info: my_info
-    }
+      return render json: {
+        ret: true,
+        is_mypage: true,
+        my_info: my_info
+      }
+    else
+      return render json: {
+        ret: false
+      }
+    end
   end
 
   def change_cover_img
-    current_user.user_info.update(cover_image: params[:image])
+    if user_signed_in?
+      current_user.user_info.update(cover_image: params[:image])
+    end
     redirect_to action: 'my_reviews'
   end
 
