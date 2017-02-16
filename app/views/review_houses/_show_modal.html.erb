@@ -143,9 +143,9 @@
           </div>
           <div class="subcomment-wrapper">
             <div class="subcomment-header">
-              <div class="btn-show" ng-click="showSubComments(comment)">
+              <div class="btn-show" ng-click="showSubComments($event, comment)">
                 <div>답글 {{comment.subcomment_cnt}}개</div>
-                <div class="arrow upper"></div>
+                <div class="arrow"></div>
               </div>
               <div class="devider">|</div>
               <div class="btn-write" ng-click="writeSubComment(comment)">답글쓰기</div>

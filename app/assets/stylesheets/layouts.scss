@@ -122,6 +122,8 @@ body {
     }
   }
   .side-bar {
+    padding-bottom: 31px;
+    overflow-y: scroll;
     width: 0px;
     position: fixed;
     height: 100%;
@@ -183,6 +185,37 @@ body {
       }
       .margin-bottom {
         margin-bottom: 31.5px;
+      }
+      .cs {
+        div {
+          display: inline-block;
+          &.arrow {
+            margin-left: 130px;
+            width: 0;
+            height: 0;
+            border-left: 6px solid transparent;
+            border-right: 6px solid transparent;
+            border-top: 9px solid #b2b1b1;
+            &.upper {
+              border-bottom: 9px solid #b2b1b1;
+              border-top: none;
+            }
+          }
+        }
+      }
+      .cs-detail {
+        padding: 34px 54px;
+        background: #fff;
+        display: none;
+        .ds {
+          margin-bottom: 34px;
+          font-size: 23px;
+          line-height: 23px;
+          padding: 0px;
+          &:last-child {
+            margin-bottom: 0px;
+          }
+        }
       }
     }
   }

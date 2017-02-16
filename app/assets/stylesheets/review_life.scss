@@ -208,8 +208,9 @@
                         border-right: 6px solid transparent;
                         border-top: 9px solid #b2b1b1;
                         margin-left: 7px;
-                        .upper {
+                        &.upper {
                           border-bottom: 9px solid #b2b1b1;
+                          border-top: none;
                         }
                       }
                       &.devider {

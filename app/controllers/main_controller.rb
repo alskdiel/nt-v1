@@ -109,7 +109,12 @@ class MainController < ApplicationController
     # binding pry
   end
 
+  def notice
+    render "main/notice"
+  end
+
   def user_signed_in
     return render json: { user_signed_in: user_signed_in? }
   end
+
 end

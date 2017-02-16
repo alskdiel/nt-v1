@@ -63,6 +63,36 @@ init  = function() {
     signoutProcess();
   });
 
+  $('.side-bar .body .cs').on('click', function(){
+    console.log('xxxx');
+    var $this = $(this)
+    var $arrow = $this.find('.arrow');
+    if($arrow.hasClass("upper")) {
+      $arrow.removeClass("upper");
+      $this.addClass("border-bottom");
+      $this.parent().find(".cs-detail").css("display", "none");
+    } else {
+      $arrow.addClass("upper");
+      $this.removeClass("border-bottom");
+      $this.parent().find(".cs-detail").css("display", "block");
+    }
+  });
+
+  $('.side-bar .body .cs-detail .noti').on('click', function(){
+    window.location.href = "/notice";
+  });
+
+  $('.side-bar .body .cs-detail .qna').on('click', function(){
+    alert("qna")
+  });
+
+  $('.side-bar .body .cs-detail .terms').on('click', function(){
+    alert("terms")
+  });
+
+  $('.side-bar .body .cs-detail .policy').on('click', function(){
+    alert("policy")
+  });
 
   function checkUserSignedIn(type) {
     $.ajax({

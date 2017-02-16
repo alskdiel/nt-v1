@@ -67,6 +67,8 @@ Rails.application.routes.draw do
 
   get "search/:param" => "main#index"
   post "get_searched_reviews" => "main#search_item"
+
+  get "notice" => "main#notice"
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

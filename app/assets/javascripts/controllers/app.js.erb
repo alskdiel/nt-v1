@@ -643,7 +643,13 @@ myApp.controller('ShowCtrl', [
     }
 
     var opened_subcomment = [];
-    $scope.showSubComments = function(comment) {
+    $scope.showSubComments = function($event, comment) {
+      var $arrow = angular.element($event.currentTarget).find('.arrow');
+      if($arrow.hasClass('upper')) {
+        $arrow.removeClass('upper');
+      } else {
+        $arrow.addClass('upper');
+      }
       comment.show_sub = !comment.show_sub;
       opened_subcomment.push(comment.id);
     }
@@ -929,7 +935,13 @@ myApp.controller('ShowLifeCtrl', [
     }
 
     var opened_subcomment = [];
-    $scope.showSubComments = function(comment) {
+    $scope.showSubComments = function($event, comment) {
+      var $arrow = angular.element($event.currentTarget).find('.arrow');
+      if($arrow.hasClass('upper')) {
+        $arrow.removeClass('upper');
+      } else {
+        $arrow.addClass('upper');
+      }
       comment.show_sub = !comment.show_sub;
       opened_subcomment.push(comment.id);
     }
