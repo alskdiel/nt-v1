@@ -56,6 +56,16 @@ var modal_function = function () {
     window.location.reload(true);
   });
 
+  $('#modal-sign-in .modal-content .content-wrapper.sign-in-main .password-container input').on('keydown', function(key) {
+    if(key.keyCode == 13) {
+      var user_email = $(this).parent().parent().children('.email-container').children('.user-id').val();
+      var user_pw = $(this).parent().parent().children('.password-container').children('.user-pw').val();
+      var remember_me = $(this).parent().parent().children('.remember-container').children('.remember-me').is(':checked') ? 1: 0;
+
+      signInProcess(user_email, user_pw, remember_me);
+    }
+  });
+
   $('#modal-sign-in .modal-content .content-wrapper.sign-in-main .sign-in-btn').on('click', function() {
     var user_email = $(this).parent().parent().children('.email-container').children('.user-id').val();
     var user_pw = $(this).parent().parent().children('.password-container').children('.user-pw').val();
