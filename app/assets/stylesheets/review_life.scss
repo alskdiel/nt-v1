@@ -1,49 +1,59 @@
 .modal {
   &.modal-dialog-show-life {
     .modal-dialog {
-      width: 860px;
+      width: 806px;
+      margin-top: 3.5%;
       .modal-content {
         border-radius: 0px;
         padding: 23px 0px;
         .content-wrapper.show-modal-life {
           .content-header {
-            padding: 0px 20px 23px 20px;
+            padding: 0px 20px;
             .edit-container {
+              position: absolute;
+              right: 0;
+              margin: 7px 0px;
+              padding: 0px 20px;
               text-align: right;
               height: 36px;
               div {
-                height: 100%;
                 display: inline-block;
+                height: 100%;
                 img {
                   height: 100%;
+                  cursor: pointer;
                 }
               }
             }
             .title-container {
-              font-size: 54px;
-              line-height: 54px;
-              margin-bottom: 19px;
+              line-height: 45px;
+              font-size: 45px;
+              margin-bottom: 13px;
               .title {
                 font-family: BMJUA;
               }
             }
             .writtenby-container, .hashtag-container {
-              line-height: 27px;
-              font-size: 27px;
-              margin-bottom: 16px;
+              line-height: 19px;
+              font-size: 19px;
+              margin-bottom: 12px;
               div {
                 display: inline-block;
                 color: #999999;
+              }
+            }
+            .writtenby-container {
+              .written-by {
+                cursor: pointer;
+                color: #4d4d4d;
               }
             }
           }
           .content-body {
             border-top: 1px solid #e6e6e6;
             border-bottom: 1px solid #e6e6e6;
-            padding: 50px 20px;
+            padding: 24px 20px;
             .image-container {
-              padding: 0px 10px;
-              margin-bottom: 53px;
               text-align: center;
               img {
                 width: 100%;
@@ -51,9 +61,12 @@
             }
             .content-container {
               white-space: pre-wrap;
-              line-height: 30px;
-              font-size: 20px;
               background: #fff;
+              margin-top: -18px;
+              .content {
+                font-size: 19px;
+                line-height: 30px;
+              }
             }
           }
           .upvote-and-scrap-container {
@@ -72,6 +85,7 @@
                 height: 100%;
                 img {
                   height: 100%;
+                  cursor: pointer;
                 }
               }
             }
@@ -100,7 +114,7 @@
               .title {
                 border-bottom: 1px solid #000;
                 padding: 0px 20px 10px 20px;
-                font-size: 27px;
+                font-size: 19px;
                 line-height: 27px;
               }
               textarea {
@@ -108,29 +122,30 @@
                 width: calc(100% - 46px);
                 height: 160px;
                 margin: 24px 21px;
+                margin-bottom: 15px;
                 resize: none;
               }
               .button {
                 float: right;
                 margin-right: 25px;
-                width: 128px;
-                height: 57px;
-                line-height: 57px;
+                font-size: 20px;
+                line-height: 20px;
+                padding: 10px 31px;
                 text-align: center;
-                font-size: 30px;
                 background: #f4ca66;
                 color: #fff;
+                cursor: pointer;
               }
             }
             .list-container {
               .sort-by {
                 padding: 5px 20px 22px 20px;
                 div {
+                  cursor: pointer;
                   display: inline-block;
-                  height: 71px;
-                  line-height: 71px;
-                  font-size: 27px;
-                  width: 69px;
+                  font-size: 14px;
+                  line-height: 14px;
+                  padding: 13px 21px;
                   text-align: center;
                   margin-right: 22px;
                   opacity: 0.45;
@@ -141,18 +156,19 @@
                 }
               }
               .comment-wrapper {
-                padding: 19px 20px 11px 20px;
+                padding: 19px 20px 0px 20px;
                 border-bottom: 1px solid #e6e6e6;
                 .comment-inner-wrapper {
                   .comment-left {
                     display: inline-block;
-                    width: 700px;
+                    width: 655px;
                     .comment-header {
                       margin-bottom: 10px;
                       div {
                         display: inline-block;
                         margin-right: 17px;
                         &.nickname {
+                          font-weight: 500;
                           font-size: 19px;
                         }
                         &.created-at, &.btn-delete {
@@ -162,13 +178,13 @@
                       }
                     }
                     .comment-body {
-                      margin-bottom: 20px;
+                      margin-bottom: 10px;
                       div {
                         display: inline-block;
                         &.content {
                           white-space: pre-wrap;
-                          line-height: 19px;
-                          font-size: 19px;
+                          font-size: 16px;
+                          line-height: 22px;
                           color: #4d4d4d;
                         }
                       }
@@ -197,7 +213,8 @@
                   }
                 }
                 .subcomment-wrapper {
-                  font-size: 19px;
+                  font-size: 14px;
+                  line-height: 13px;
                   .subcomment-header {
                     margin-bottom: 22px;
                     div {
@@ -225,14 +242,14 @@
                     .write-subcomment {
                       margin-bottom: 11px;
                       textarea {
-                        width: 708px;
+                        width: 655px;
                         height: 59px;
                         padding: 8px 10px;
                         resize: none;
                         border: 1px solid #b2b1b1;
                       }
                       .submit-subcomment {
-                        margin-left: 29px;
+                        margin-left: 10px;
                         display: inline-block;
                         vertical-align: bottom;
                         background: #f4ca66;
@@ -245,7 +262,6 @@
                     .show-subcomment {
                       .subcomments {
                         padding: 0px 51px;
-                        margin-top: 11px;
                         .sub-header {
                           margin-bottom: 10px;
                           div {
@@ -253,6 +269,8 @@
                             margin-right: 17px;
                             &.nickname {
                               font-size: 19px;
+                              line-height: 19px;
+                              font-weight: 500;
                             }
                             &.created-at, &.btn-delete {
                               color: #999;
@@ -266,14 +284,13 @@
                             display: inline-block;
                             &.content {
                               white-space: pre-wrap;
-                              height: 19px;
-                              font-size: 19px;
+                              font-size: 16px;
+                              line-height: 22px;
                               color: #4d4d4d;
                             }
                           }
                         }
                       }
-
                     }
                   }
                 }

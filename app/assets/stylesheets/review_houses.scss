@@ -244,7 +244,8 @@
 .modal {
   &.modal-dialog-show {
     .modal-dialog {
-      width: 860px;
+      width: 806px;
+      margin-top: 3.5%;
       .modal-content {
         border-radius: 0px;
         padding: 23px 0px;
@@ -258,6 +259,8 @@
             }
           }
           .edit-container {
+            position: absolute;
+            right: 0;
             margin: 7px 0px;
             padding: 0px 20px;
             text-align: right;
@@ -267,26 +270,33 @@
               height: 100%;
               img {
                 height: 100%;
+                cursor: pointer;
               }
             }
           }
           .details-container {
             padding: 50px 20px 23px 20px;
             .title-container {
-              line-height: 54px;
-              font-size: 54px;
-              margin-bottom: 19px;
+              line-height: 45px;
+              font-size: 45px;
+              margin-bottom: 13px;
               .title {
                 font-family: BMJUA;
               }
             }
             .writtenby-container, .addr-container, .duration-container {
-              line-height: 27px;
-              font-size: 27px;
-              margin-bottom: 16px;
+              line-height: 19px;
+              font-size: 19px;
+              margin-bottom: 12px;
               div {
                 display: inline-block;
                 color: #999999;
+              }
+            }
+            .writtenby-container {
+              .written-by {
+                cursor: pointer;
+                color: #4d4d4d;
               }
             }
           }
@@ -299,8 +309,8 @@
               margin-top: 54px;
               .title {
                 font-family: BMJUA;
-                font-size: 53px;
-                line-height: 53px;
+                font-size: 45px;
+                line-height: 45px;
                 text-align: center;
                 margin-bottom: 10px;
               }
@@ -322,17 +332,18 @@
             }
             .detail-container {
               margin-top: 37px;
-              width: 55%;
               float: right;
-              padding-left: 22px;
+              padding-left: 0px;
               padding-right: 23px;
               .price, .residence, .environment {
                 height: 26px;
-                line-height: 26px;
+                line-height: 31px;
                 margin-bottom: 22px;
                 .title {
                   display: inline-block;
-                  font-size: 26px;
+                  font-size: 19px;
+                  line-height: 19px;
+                  font-weight: bold;
                 }
                 .stars {
                   float: right;
@@ -363,21 +374,22 @@
                 .title {
                   font-family: BMJUA;
                   height: 100%;
-                  line-height: 53px;
+                  line-height: 45px;
                   display: inline-block;
-                  font-size: 53px;
+                  font-size: 45px;
                 }
                 .info {
                   margin-left: 20px;
                   display: inline-block;
-                  font-size: 27px;
+                  font-size: 19px;
+                  line-height: 19px;
                   color: #999;
                 }
               }
               .content {
                 padding: 0px 17px;
-                line-height: 33px;
-                font-size: 27px;
+                line-height: 30px;
+                font-size: 19px;
                 color: #1a1a1a;
                 white-space: pre-wrap;
               }
@@ -393,22 +405,22 @@
               width: 50%;
               .title {
                 font-family: BMJUA;
-                height: 53px;
-                line-height: 53px;
+                height: 45px;
+                line-height: 45px;
                 text-align: center;
                 font-size: 53px;
                 margin-bottom: 25px;
               }
               .pros-content-wrapper, .cons-content-wrapper {
                 margin-bottom: 15px;
-                height: 33px;
+                height: 19px;
                 img {
                   height: 100%;
                 }
                 .content {
                   display: inline-block;
-                  line-height: 27px;
-                  font-size: 27px;
+                  line-height: 19px;
+                  font-size: 19px;
                 }
               }
             }
@@ -442,6 +454,7 @@
                 height: 100%;
                 img {
                   height: 100%;
+                  cursor: pointer;
                 }
               }
             }
@@ -470,7 +483,7 @@
               .title {
                 border-bottom: 1px solid #000;
                 padding: 0px 20px 10px 20px;
-                font-size: 27px;
+                font-size: 19px;
                 line-height: 27px;
               }
               textarea {
@@ -478,29 +491,30 @@
                 width: calc(100% - 46px);
                 height: 160px;
                 margin: 24px 21px;
+                margin-bottom: 15px;
                 resize: none;
               }
               .button {
                 float: right;
                 margin-right: 25px;
-                width: 128px;
-                height: 57px;
-                line-height: 57px;
+                font-size: 20px;
+                line-height: 20px;
+                padding: 10px 31px;
                 text-align: center;
-                font-size: 30px;
                 background: #f4ca66;
                 color: #fff;
+                cursor: pointer;
               }
             }
             .list-container {
               .sort-by {
                 padding: 5px 20px 22px 20px;
                 div {
+                  cursor: pointer;
                   display: inline-block;
-                  height: 71px;
-                  line-height: 71px;
-                  font-size: 27px;
-                  width: 69px;
+                  font-size: 14px;
+                  line-height: 14px;
+                  padding: 13px 21px;
                   text-align: center;
                   margin-right: 22px;
                   opacity: 0.45;
@@ -511,18 +525,19 @@
                 }
               }
               .comment-wrapper {
-                padding: 19px 20px 11px 20px;
+                padding: 19px 20px 0px 20px;
                 border-bottom: 1px solid #e6e6e6;
                 .comment-inner-wrapper {
                   .comment-left {
                     display: inline-block;
-                    width: 700px;
+                    width: 655px;
                     .comment-header {
                       margin-bottom: 10px;
                       div {
                         display: inline-block;
                         margin-right: 17px;
                         &.nickname {
+                          font-weight: 500;
                           font-size: 19px;
                         }
                         &.created-at, &.btn-delete {
@@ -532,13 +547,13 @@
                       }
                     }
                     .comment-body {
-                      margin-bottom: 20px;
+                      margin-bottom: 10px;
                       div {
                         display: inline-block;
                         &.content {
                           white-space: pre-wrap;
-                          height: 19px;
-                          font-size: 19px;
+                          font-size: 16px;
+                          line-height: 22px;
                           color: #4d4d4d;
                         }
                       }
@@ -567,7 +582,8 @@
                   }
                 }
                 .subcomment-wrapper {
-                  font-size: 19px;
+                  font-size: 14px;
+                  line-height: 13px;
                   .subcomment-header {
                     margin-bottom: 22px;
                     div {
@@ -595,14 +611,14 @@
                     .write-subcomment {
                       margin-bottom: 11px;
                       textarea {
-                        width: 708px;
+                        width: 655px;
                         height: 59px;
                         padding: 8px 10px;
                         resize: none;
                         border: 1px solid #b2b1b1;
                       }
                       .submit-subcomment {
-                        margin-left: 29px;
+                        margin-left: 10px;
                         display: inline-block;
                         vertical-align: bottom;
                         background: #f4ca66;
@@ -622,6 +638,8 @@
                             margin-right: 17px;
                             &.nickname {
                               font-size: 19px;
+                              line-height: 19px;
+                              font-weight: 500;
                             }
                             &.created-at, &.btn-delete {
                               color: #999;
@@ -634,9 +652,9 @@
                           div {
                             display: inline-block;
                             &.content {
+                              line-height: 22px;
                               white-space: pre-wrap;
-                              height: 19px;
-                              font-size: 19px;
+                              font-size: 16px;
                               color: #4d4d4d;
                             }
                           }
