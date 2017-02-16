@@ -48,6 +48,7 @@ body {
           float: left;
           img {
             height: 100%;
+            cursor: pointer;
           }
         }
         &.nav-search {
@@ -93,6 +94,7 @@ body {
                 font-size: 17px;
                 color: #50265e;
                 padding: 6px 28px;
+                cursor: pointer;
                 &.selected {
                   background: #dc534c;
                   color: #fff;
@@ -112,6 +114,7 @@ body {
           padding: 22px 0px;
           float: right;
           img {
+            cursor: pointer;
             height: 40px;
             margin-left: 30px;
             &.write {
@@ -166,11 +169,13 @@ body {
           line-height: 25px;
           padding: 0px 41px;
           div {
+            cursor: pointer;
             display: inline-block;
             vertical-align: middle;
           }
           img {
-            height: 31px;;
+            cursor: pointer;
+            height: 31px;
             margin-right: 17px;
           }
         }
