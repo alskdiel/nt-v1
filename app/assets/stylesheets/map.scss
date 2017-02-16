@@ -20,7 +20,7 @@
     .review-map-header {
       background: #fa5346;
       .title {
-        font-size: 34px;
+        font-size: 30px;
         line-height: 34px;
         padding: 11px 15px;
         color: #fff;
@@ -33,11 +33,13 @@
       overflow-x: hidden;
       .no-data {
         text-align: center;
-        font-family: BMJUA;
-        padding: 50% 26px;
-        height: 100%;
-        font-size: 30px;
-        line-height: 30px;
+        padding: 65% 26px;
+        font-size: 37px;
+        opacity: 0.7;
+        div {
+          font-family: BMJUA;
+          line-height: 50px;
+        }
       }
       .review-wrapper {
         padding: 28px 62px;
@@ -48,7 +50,7 @@
             max-height: 216px;
           }
           .details-wrapper {
-            padding: 16px 13px 5px 13px;
+            padding: 5px 13px;
             .type-wrapper {
               height: 20px;
               line-height: 20px;
@@ -61,18 +63,13 @@
               div {
                 font-size: 20px;
                 line-height: 20px;
+                font-weight: bold;
               }
             }
             .address-wrapper {
               div {
                 font-size: 13px;
                 line-height: 13px;
-              }
-            }
-            .hashtag-wrapper {
-              div {
-                font-size: 10px;
-                line-height: 10px;
               }
             }
             .writtenby-wrapper {
@@ -82,6 +79,7 @@
               }
             }
             .upvote-and-scrap-wrapper {
+              line-height: 10px;
               .upvote-wrapper, .scrap-wrapper, div:nth-child(2) {
                 div {
                   font-size: 10px;

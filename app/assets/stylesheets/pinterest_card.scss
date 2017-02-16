@@ -6,7 +6,6 @@
     background: #fff;
     border-radius: 5px;
     .image-wrapper {
-      // max-height: 270px;
       overflow: hidden;
       img {
         width: 100%;
@@ -31,6 +30,7 @@
       }
       .title-wrapper {
         div {
+          font-weight: bold;
           font-size: 25px;
           line-height: 25px;
         }
