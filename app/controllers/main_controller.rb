@@ -133,4 +133,26 @@ class MainController < ApplicationController
     return render json: { user_signed_in: user_signed_in? }
   end
 
+
+  def create_sample_data
+    phone_nums = [34330015,51440933,89670512,99927727,43009833,91815091,99839996,51748619,94328639,47313861,71285037,39060048,55140769,39590126,26636835,28183494,42424940,51093316,43986859,92219473,75524892,51748619,75745233,34889843,47592398,33777537,91147921,91189276,74401535]
+    i = 1;
+
+    phone_nums.each do |phone_num|
+      email = phone_num.to_s + "@findahouse.co.kr"
+      password = phone_num
+      user = User.new(email: email, password: password, password_confirmation: password)
+      user.skip_confirmation!
+      user.save
+
+      nickname = "내집탐방" + i.to_s
+      UserInfo.create(user_id: user.id, nickname: nickname)
+      i += 1
+    end
+
+    @mode = "all"
+
+    render "main/index"
+  end
+
 end

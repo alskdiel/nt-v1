@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root "main#index"
+  root "main#create_sample_data"
   get "review_map" => "main#review_map"
   post "get_reviews_in_bound" => "main#reviews_in_bound"
 
