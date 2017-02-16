@@ -10,6 +10,9 @@ body {
       .sub-navbar {
         background: #fff;
         padding: 0px 15px;
+        position: fixed;
+        width: 100%;
+        z-index: 2;
         div {
           color: #50265e;
           opacity: 0.45;
