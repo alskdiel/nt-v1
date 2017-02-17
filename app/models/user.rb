@@ -68,23 +68,36 @@ class User < ActiveRecord::Base
     houses = []
     lives = []
 
+
     scrap_houses.each do |scrap_house|
-      houses.push(ReviewHouse.find(scrap_house.review_house_id))
+      review_house = ReviewHouse.where(id: scrap_house.review_house_id).take
+      if review_house.present?
+        houses.push(review_house)
+      end
     end
     scrap_lives.each do |scrap_life|
-      lives.push(ReviewLife.find(scrap_life.review_life_id))
+      review_life = ReviewLife.where(id: scrap_life.review_life_id).take
+      if review_life.present?
+        lives.push(review_life)
+      end
     end
 
     reviews = []
 
-    houses.each do |house|
-      reviews.push(house)
+    if houses.present?
+      houses.each do |house|
+        reviews.push(house)
+      end
     end
-    lives.each do |life|
-      reviews.push(life)
+    if lives.present?
+      lives.each do |life|
+        reviews.push(life)
+      end
     end
 
-    @reviews.sort_by! { |review| review.created_at }.reverse!
+    if reviews.present?
+      reviews.sort_by! { |review| review.created_at }.reverse!
+    end
 
     return reviews
   end
