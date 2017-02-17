@@ -12,6 +12,10 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   root "main#index"
   get "review_map" => "main#review_map"
+  get "user_info" => "user_info#change_info"
+  post "update_user_info" => "user_info#update_info"
+  post "update_password" => "user_info#update_password"
+
   post "get_reviews_in_bound" => "main#reviews_in_bound"
 
   post "update_review_houses/:id" => "review_houses#update"

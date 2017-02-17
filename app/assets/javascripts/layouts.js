@@ -59,8 +59,24 @@ init  = function() {
     checkUserSignedIn("scrap");
   });
 
+  $('.side-bar .body .my-map').on('click', function(){
+    alert("준비중 입니다.");
+  });
+
+  $('.side-bar .body .followings').on('click', function(){
+    alert("준비중 입니다.");
+  });
+
+  $('.side-bar .body .followers').on('click', function(){
+    alert("준비중 입니다.");
+  });
+
   $('.side-bar .body .user-info .sign-out').on('click', function(){
     signoutProcess();
+  });
+
+  $('.side-bar .body .user-info .settings').on('click', function(){
+    window.location.href = "/user_info";
   });
 
   $('.side-bar .body .cs').on('click', function(){

@@ -41,10 +41,10 @@ var modal_function = function () {
     var nickname = $(this).parent().children('.nickname-container').children('.nickname').val();
     var birth = $('#sign-up .sign-up-sub .birth-container .birth option:selected').val();
     var occupation = $('#sign-up .sign-up-sub .occupation-container .occupation option:selected').val();
-    var $sex = $("#sign-up .sign-up-sub .sex-container input:radio[name='sex']");
-    var sex = $("#sign-up .sign-up-sub .sex-container input:radio[name='sex']").val();
+    var sex = $("#sign-up .sign-up-sub .sex-container input:radio[name='sex']:checked").val();
+    var $sex = $("#sign-up .sign-up-sub .sex-container input:radio[name='sex']:checked");
 
-    if(email && password && nickname && birth && occupation && $sex.is(':checked')) {
+    if(email && password && nickname && birth && occupation && $sex.is(":checked")) {
       signUpProcess(email, password, nickname, birth, occupation, sex);
     } else {
       alert("정보를 입력해 주세요.");
