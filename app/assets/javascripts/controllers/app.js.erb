@@ -33,6 +33,10 @@ myApp.controller('NavCtrl', [
       if(search_type === "life") {
         $('.nav-bar .nav-search .search-wrapper .search-type-wrapper .house').removeClass('selected');
         $('.nav-bar .nav-search .search-wrapper .search-type-wrapper .life').addClass('selected');
+
+        $('.sub-navbar .hot').addClass('hide');
+        $('.sub-navbar .new').addClass('hide');
+        $('.sub-navbar .best').addClass('hide');
       }
     })
 
@@ -668,7 +672,7 @@ myApp.controller('ShowCtrl', [
       if($scope.comment_writting) {
         $http({
           method: 'post',
-          url: 'new_comment_H',
+          url: '/new_comment_H',
           data: { review_house_id: $scope.id,
                   comment: $scope.comment_writting }
         })
@@ -723,7 +727,7 @@ myApp.controller('ShowCtrl', [
       if(comment.subcomment_writting) {
         $http({
           method: 'post',
-          url: 'new_subcomment_H',
+          url: '/new_subcomment_H',
           data: { comment_house_id: comment.id,
                   comment: comment.subcomment_writting }
         })
@@ -741,7 +745,7 @@ myApp.controller('ShowCtrl', [
       if(confirm("삭제하시겠습니까?")) {
         $http({
           method: 'post',
-          url: 'delete_comment_H',
+          url: '/delete_comment_H',
           data: { comment_id: comment.id }
         })
           .then(function(data, status, headers, config) {
@@ -758,7 +762,7 @@ myApp.controller('ShowCtrl', [
       if(confirm("삭제하시겠습니까?")) {
         $http({
           method: 'post',
-          url: 'delete_subcomment_H',
+          url: '/delete_subcomment_H',
           data: { subcomment_id: comment.id }
         })
           .then(function(data, status, headers, config) {
@@ -966,7 +970,7 @@ myApp.controller('ShowLifeCtrl', [
       if($scope.comment_writting) {
         $http({
           method: 'post',
-          url: 'new_comment_L',
+          url: '/new_comment_L',
           data: { review_life_id : $scope.id,
                   comment: $scope.comment_writting }
         })
@@ -1021,7 +1025,7 @@ myApp.controller('ShowLifeCtrl', [
       if(comment.subcomment_writting) {
         $http({
           method: 'post',
-          url: 'new_subcomment_L',
+          url: '/new_subcomment_L',
           data: { comment_life_id: comment.id,
                   comment: comment.subcomment_writting }
         })
@@ -1039,7 +1043,7 @@ myApp.controller('ShowLifeCtrl', [
       if(confirm("삭제하시겠습니까?")) {
         $http({
           method: 'post',
-          url: 'delete_comment_L',
+          url: '/delete_comment_L',
           data: { comment_id: comment.id }
         })
           .then(function(data, status, headers, config) {
@@ -1055,7 +1059,7 @@ myApp.controller('ShowLifeCtrl', [
       if(confirm("삭제하시겠습니까?")) {
         $http({
           method: 'post',
-          url: 'delete_subcomment_L',
+          url: '/delete_subcomment_L',
           data: { subcomment_id: comment.id }
         })
           .then(function(data, status, headers, config) {

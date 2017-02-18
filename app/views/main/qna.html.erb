@@ -1,23 +1,23 @@
 <div class="qna-container">
   <div class="qna-wrapper">
-    <div class="qna-header">문의하기</div>
+    <div class="qna-header">1:1 문의</div>
     <div class="qna-body">
       <div class="reg-qna">
       <% if user_signed_in? %>
         <form id="form-qna" action="/qna" method="post">
           <input type="hidden" name="authenticity_token" value="QGthAE0W7zBgRqvzsphx7J05/bXasa8bpotEkFjwctIqEBfabdK1rN6B8wlcupH4ElpoBt2n9KwRY2it813Whw==">
-          <div class="reg-left">
-          <input type="text" placeholder="제목" name="qna[title]">
-          <textarea placeholder="문의사항을 입력해주세요" name="qna[question]"></textarea>
-          </div>
-          <div class="reg-right">
-            <div class="submit-button">등록</div>
+          <div class="reg-container">
+            <input type="text" placeholder="제목" name="qna[title]">
+            <textarea placeholder="문의사항을 입력해주세요" name="qna[question]"></textarea>
+            <div class="button-container">
+              <div class="submit-button">등록</div>
+            </div>
           </div>
         </form>
       </div>
         <table>
           <tr>
-            <td>내용</td>
+            <td>제목</td>
             <td>등록일</td>
             <td>상태</td>
           </tr>

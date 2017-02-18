@@ -6,23 +6,23 @@
 .modal {
   &#modal-sign-in {
     .modal-dialog {
+      width: 563px;
+      margin-top: 140px;
       .modal-content {
-        width: 632.5px;
+        width: 100%;
         border-radius: 0px;
         .modal-body {
-          padding: 0px 0px 20px 0px;
+          padding: 0px;
           .modal-title {
-            height: 80.5px;
-            line-height: 80.5px;
-            padding: 0px 30.5px;
+            padding: 16px 24px;
             background: #f4ca66;
             div {
               display: inline-block;
-              font-size: 30px;
+              font-size: 25px;
+              line-height: 25px;
               color: #50265a;
             }
             .close {
-              line-height: 80.5px;
               text-shadow: none;
               opacity: 1;
               img {
@@ -36,17 +36,18 @@
 
           #sign-in {
             display: block;
-            font-size: 24px;
             .email-container, .password-container {
-              margin-bottom: 40px;
+              margin-bottom: 20px;
               div {
-                line-height: 24px;
+                font-size: 19px;
+                line-height: 19px;
                 margin-bottom: 15px;
               }
               input {
-                line-height: 24px;
+                font-size: 19px;
+                line-height: 19px;
+                padding: 13px;
                 width: 100%;
-                padding: 12px 21px;
                 border-radius: 10px;
                 border: 1px solid #bbb;
               }
@@ -55,39 +56,47 @@
               margin-bottom: 18.5px;
               div {
                 display: inline-block;
-                font-size: 18px;
-                line-height: 18px;
+                font-size: 14px;
+                line-height: 14px;
+              }
+              input {
+                margin: 0px;
               }
             }
             .sign-in-btn-container, .sign-up-btn-container {
-              margin-bottom: 31px;
+              margin-bottom: 15px;
               .my-btn {
-                font-size: 26px;
-                line-height: 26px;
+                cursor: pointer;
+                font-size: 19px;
+                line-height: 19px;
                 text-align: center;
-                padding: 19px 0px;
+                padding: 13px;
                 border-radius: 10px;
                 background: #f4ca66;
                 color: #fff;
                 margin-bottom: 15.5px;
                 &.fb {
                   background: #4065b4;
+                  margin-bottom: 0px;
                 }
               }
             }
             .sign-up-btn-container {
               margin-bottom: 20px;
+              font-size: 19px;
+              line-height: 19px;
+              .my-btn {
+                cursor: pointer;
+              }
               .sign-up-info {
                 margin-bottom: 15.5px;
-                font-size: 24px;
-                line-height: 24px;
               }
             }
             .forgot-container {
+              font-size: 19px;
+              line-height: 19px;
               div {
                 display: inline-block;
-                font-size: 24px;
-                line-height: 24px;
                 &.find-pw {
                   text-decoration: underline;
                 }
@@ -97,16 +106,16 @@
           #sign-up {
             .sign-up-main {
               display: block;
-              font-size: 26px;
-              line-height: 26px;
-              padding-top: 93.5px;
+              font-size: 19px;
+              line-height: 19px;
+              padding: 19px 30.5px;
               .email-container, .password-container {
                 div {
                   margin-bottom: 12px;
                 }
                 span {
                   font-size: 13px;
-                  line-height: 13px;
+                  line-height: 30px;
                   color: #ed1c24;
                   position: relative;
                   float: right;
@@ -114,9 +123,8 @@
                   margin-right: 21px;
                 }
                 input {
-                  line-height: 26px;
                   border: 1px solid #bbb;
-                  padding: 12px 21px;
+                  padding: 13px;
                   border-radius: 10px;
                   width: 100%;
                   &.password {
@@ -125,30 +133,31 @@
                 }
               }
               .email-container {
-                margin-bottom: 42px;
+                margin-bottom: 20px;
               }
               .password-container {
-                margin-bottom: 75px;
+                margin-bottom: 35px;
               }
               .btn-next {
-                line-height: 26px;
-                font-size: 26px;
                 text-align: center;
                 padding: 19px 0px;
                 border-radius: 10px;
                 background: #f4ca66;
                 color: #fff;
-                margin-bottom: 15.5px;
+                cursor: pointer;
+                div {
+                  cursor: pointer;
+                }
               }
             }
             .sign-up-sub {
-              line-height: 26px;
-              font-size: 26px;
+              line-height: 19px;
+              font-size: 19px;
               display: none;
-              padding-top: 30px;
+              padding: 19px 30.5px;
               .nickname-container {
                 span {
-                  line-height: 13px;
+                  line-height: 30px;
                   font-size: 13px;
                   color: #ed1c24;
                   position: relative;
@@ -159,7 +168,6 @@
               }
               .nickname-container, .birth-container, .occupation-container {
                 div {
-                  line-height: 26px;
                   margin-bottom: 12px;
                 }
                 select {
@@ -170,10 +178,9 @@
                 input, .birth, .occupation {
                   background: #fff;
                   border: 1px solid #bbb;
-                  padding: 12px 21px;
+                  padding: 13px;
                   border-radius: 10px;
                   width: 100%;
-                  line-height: 26px;
                 }
                 .arrow {
                   width: 0;
@@ -186,7 +193,7 @@
                   top: -31px;
                   margin-right: 20px;
                 }
-                margin-bottom: 42px;
+                margin-bottom: 20px;
               }
               .sex-container {
                 div {
@@ -194,8 +201,8 @@
                   line-height: 26px;
                 }
                 .radio-container {
-                  font-size: 24px;
-                  line-height: 24px;
+                  font-size: 19px;
+                  line-height: 19px;
                   input {
                     margin: 0px 10px;
                     &:nth-child(2) {
@@ -206,34 +213,42 @@
                 margin-bottom: 20px;
               }
               .btn-confirm {
-                font-size: 26px;
-                line-height: 26px;
+                font-size: 19px;
+                line-height: 19px;
                 text-align: center;
                 padding: 19px 0px;
                 border-radius: 10px;
                 background: #f4ca66;
                 color: #fff;
-                margin-bottom: 15.5px;
+                cursor: pointer;
+                div {
+                  cursor: pointer;
+                }
               }
             }
             .sign-up-fin {
               display: none;
-              padding: 50px 30.5px;
+              padding: 22px 30.5px;
+              font-size: 19px;
+              line-height: 19px;
               .info-container {
                 padding: 50px 67px;
-                div {
+                .info-text {
                   text-align: center;
-                  font-size: 30px;
-                  line-height: 30px;
+                  div:first-child {
+                    line-height: 28px;
+                  }
+                  div:last-child {
+                    line-height: 27px;
+                  }
                 }
               }
               .btn-okay {
                 background: #f4ca66;
                 text-align: center;
                 color: #fff;
-                font-size: 30px;
-                line-height: 30px;
                 padding: 14px 0px;
+                cursor: pointer;
               }
             }
           }

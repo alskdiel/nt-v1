@@ -1,5 +1,17 @@
-<p>Welcome <%= @email %>!</p>
-
-<p>You can confirm your account email through the link below:</p>
-
-<p><%= link_to 'Confirm my account', confirmation_url(@resource, confirmation_token: @token) %></p>
+<p>
+귀하는 내집탐방 회원가입을 신청하셨습니다. 아래의 링크를 클릭하고 회원가입을 마무리하세요.
+</br>
+</br>
+<%= link_to 'Confirm my account', confirmation_url(@resource, confirmation_token: @token) %>
+</br>
+</br>
+만일 내집탐방 웹사이트에 회원가입을 한 적이 없다면, 무시하셔도 됩니다. 또는 문제가 발생하였다면 아래 메일로 연락주시기 바랍니다.
+ccveritas0925@gmail.com
+</br>
+</br>
+</br>
+</br>
+원룸을 찾는 가장 똑똑한 방법,</br>
+내집탐방
+</br>
+</p>

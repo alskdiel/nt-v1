@@ -17,7 +17,9 @@
     </div>
   </div>
   <div class="nav-buttons">
-    <%= image_tag 'navbar/button-write.png', class: "write" %>
+    <% if !@isForm %>
+      <%= image_tag 'navbar/button-write.png', class: "write" %>
+    <% end %>
     <%= image_tag 'navbar/button-map.png', class: "map" %>
     <%= image_tag 'navbar/button-menu.png', class: "menu" %>
   </div>

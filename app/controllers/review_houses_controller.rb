@@ -58,6 +58,7 @@ class ReviewHousesController < ApplicationController
     if user_signed_in?
       @this_year = Time.now.year
       @min_year = 1900
+      @isForm = true
     else
       redirect_to root_path
     end
@@ -68,6 +69,7 @@ class ReviewHousesController < ApplicationController
     if user_signed_in?
       @this_year = Time.now.year
       @min_year = 1900
+      @isForm = true
 
       @review = ReviewHouse.find(params[:id])
       if current_user.id == @review.user_id
