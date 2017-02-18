@@ -64,6 +64,14 @@
               background: #fff;
               margin-top: -18px;
               .content {
+                -ms-word-break: break-all;
+                word-break: break-all;
+                /* Non standard for webkit */
+                word-break: break-word;
+                -webkit-hyphens: auto;
+                -moz-hyphens: auto;
+                -ms-hyphens: auto;
+                hyphens: auto;
                 font-size: 19px;
                 line-height: 30px;
               }
@@ -182,7 +190,14 @@
                       div {
                         display: inline-block;
                         &.content {
-                          white-space: pre-wrap;
+                          -ms-word-break: break-all;
+                          word-break: break-all;
+                          /* Non standard for webkit */
+                          word-break: break-word;
+                          -webkit-hyphens: auto;
+                          -moz-hyphens: auto;
+                          -ms-hyphens: auto;
+                          hyphens: auto;
                           font-size: 16px;
                           line-height: 22px;
                           color: #4d4d4d;
@@ -283,6 +298,14 @@
                           div {
                             display: inline-block;
                             &.content {
+                              -ms-word-break: break-all;
+                              word-break: break-all;
+                              /* Non standard for webkit */
+                              word-break: break-word;
+                              -webkit-hyphens: auto;
+                              -moz-hyphens: auto;
+                              -ms-hyphens: auto;
+                              hyphens: auto;
                               white-space: pre-wrap;
                               font-size: 16px;
                               line-height: 22px;
