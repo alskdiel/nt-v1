@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170216085732) do
+ActiveRecord::Schema.define(version: 20170218134020) do
 
   create_table "comment_houses", force: :cascade do |t|
     t.integer  "review_house_id"
@@ -77,33 +77,35 @@ ActiveRecord::Schema.define(version: 20170216085732) do
   end
 
   create_table "review_houses", force: :cascade do |t|
-    t.integer  "user_id",                null: false
-    t.string   "title",                  null: false
-    t.string   "address",                null: false
-    t.datetime "start_time",             null: false
-    t.datetime "end_time",               null: false
-    t.integer  "price_satisfaction",     null: false
-    t.integer  "residence_satisfaction", null: false
-    t.integer  "env_satisfaction",       null: false
-    t.text     "price_review",           null: false
-    t.text     "residence_review",       null: false
-    t.text     "env_review",             null: false
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.integer  "user_id",                            null: false
+    t.string   "title",                              null: false
+    t.string   "address",                            null: false
+    t.datetime "start_time",                         null: false
+    t.datetime "end_time",                           null: false
+    t.integer  "price_satisfaction",                 null: false
+    t.integer  "residence_satisfaction",             null: false
+    t.integer  "env_satisfaction",                   null: false
+    t.text     "price_review",                       null: false
+    t.text     "residence_review",                   null: false
+    t.text     "env_review",                         null: false
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
     t.float    "latitude"
     t.float    "longtitude"
+    t.integer  "hit_count",              default: 0
   end
 
   create_table "review_lives", force: :cascade do |t|
     t.integer  "user_id"
     t.string   "title"
     t.text     "content"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
     t.string   "image_file_name"
     t.string   "image_content_type"
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
+    t.integer  "hit_count",          default: 0
   end
 
   create_table "scrap_houses", force: :cascade do |t|

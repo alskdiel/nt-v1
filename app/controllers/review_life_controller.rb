@@ -32,6 +32,11 @@ class ReviewLifeController < ApplicationController
 
   def show
     @review = ReviewLife.find(params[:id])
+
+    hit_count = @review.hit_count
+    hit_count += 1
+    @review.update(hit_count: hit_count)
+
     @auth = @review.auth(current_user)
     if user_signed_in?
       @upvote = current_user.has_upvoted_L?(params[:id])
