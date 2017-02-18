@@ -4,7 +4,7 @@ var noti_qna_function = function () {
 
   var $noti_content_tr = $noti_container.find('.notice-wrapper').find('.noti-body').find('table').find('tbody').find('.noti-component-title');
   var $qna_content_tr = $qna_container.find('.qna-wrapper').find('.qna-body').find('table').find('tbody').find('.qna-component-title');
-  var $submit_button = $qna_container.find('.qna-wrapper').find('.qna-body').find('.reg-qna').find('#form-qna').find('.reg-right').find('.submit-button');
+  var $submit_button = $qna_container.find('.qna-wrapper').find('.qna-body').find('.reg-qna').find('#form-qna').find('.reg-container').find('.button-container').find('.submit-button');
 
   $noti_content_tr.on('click', function() {
     var $content_tr = $(this).parent().find('.noti-component-content');
@@ -25,12 +25,10 @@ var noti_qna_function = function () {
   });
 
   $submit_button.on('click', function() {
-    var $container = $(this).parent().parent().find('.reg-left');
+    var $container = $(this).parent().parent().parent().find('.reg-container');
     var title = $container.find('input').val();
     var question = $container.find('textarea').val();
 
-    console.log(title)
-    console.log(question)
     if(title && question) {
       $container.parent().submit();
     }
