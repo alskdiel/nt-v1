@@ -456,6 +456,7 @@ myApp.controller('PinCtrl', [
         url: '/get_reviews.json'
       })
         .then(function(data, status, headers, config) {
+          console.log(data);
           review_container = data.data;
           $scope.reviews = data.data.review_new;
         });
@@ -468,6 +469,7 @@ myApp.controller('PinCtrl', [
         url: '/get_house_reviews.json'
       })
         .then(function(data, status, headers, config) {
+          console.log(data);
           review_container = data.data;
           $scope.reviews = data.data.review_new;
         });
@@ -479,6 +481,7 @@ myApp.controller('PinCtrl', [
         url: '/get_life_reviews.json'
       })
         .then(function(data, status, headers, config) {
+          console.log(data);
           review_container = data.data;
           $scope.reviews = data.data.review_new;
         });

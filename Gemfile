@@ -10,6 +10,9 @@ gem 'sprockets-rails', :require => 'sprockets/railtie'
 gem 'angularjs-rails'
 gem 'angular-ui-bootstrap-rails'
 gem 'will_paginate', '~> 3.1.0'
+gem 'whenever', :require => false
+gem 'redis'
+gem 'redis-namespace'
 
 gem "letter_opener", :group => :development
 # gem 'mailcatcher'
