@@ -1147,9 +1147,12 @@ myApp.controller('ShowLifeCtrl', [
       var title = $scope.title;
       var hash_tag = $scope.hash_tags;
       var content = deleteLink($scope.content);
+      var image_url = decodeURI($scope.image_url);
+      image_url = image_url.substring(image_url.indexOf('/original/') + 10, image_url.length);
       $("#modal-write-lifefeed").find('.modal-dialog').find('.modal-content').find('#form-life').find('.modal-body').find('.title').find('input').val(title);
       $("#modal-write-lifefeed").find('.modal-dialog').find('.modal-content').find('#form-life').find('.modal-body').find('.hashtag').find('input').val(hash_tag);
       $("#modal-write-lifefeed").find('.modal-dialog').find('.modal-content').find('#form-life').find('.modal-body').find('.content').find('textarea').val(content);
+      $("#modal-write-lifefeed").find('.modal-dialog').find('.modal-content').find('#form-life').find('.modal-body').find('.image-file').find('.image-path').text(image_url);
 
       $("#modal-write-lifefeed").find('.modal-dialog').find('.modal-content').find('#form-life').attr('action', '/review_lifes/'+$scope.id);
     }

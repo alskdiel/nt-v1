@@ -295,6 +295,7 @@ var modal_function = function () {
     $("#modal-write-lifefeed").find('.modal-dialog').find('.modal-content').find('#form-life').find('.modal-body').find('.hashtag').find('input').val('');
     $("#modal-write-lifefeed").find('.modal-dialog').find('.modal-content').find('#form-life').find('.modal-body').find('.content').find('textarea').val('');
     $("#modal-write-lifefeed").find('.modal-dialog').find('.modal-content').find('#form-life').find('.modal-body').find('.image-file').find('input').val('');
+    $("#modal-write-lifefeed").find('.modal-dialog').find('.modal-content').find('#form-life').find('.modal-body').find('.image-file').find('.image-path').text('');
     $("#modal-write-lifefeed").find('.modal-dialog').find('.modal-content').find('#form-life').attr('action', '/review_lifes');
   });
 
@@ -305,6 +306,12 @@ var modal_function = function () {
   $('#modal-write-info .modal-content .modal-footer .button-wrapper .btn.disagree').on('click', function() {
     $("#modal-write").modal('hide');
     $("#modal-write-info").modal('hide');
+  });
+
+  $('#modal-write-lifefeed .modal-content .modal-body .image-file #write-life-img').on('change', function() {
+    var file_path = $(this).val();
+    file_path = file_path.substring(file_path.indexOf('\\fakepath\\') + 10, file_path.length);
+    $(this).parent().find('.image-path').text(file_path);
   });
 
   $('#modal-write-lifefeed .modal-content .modal-footer .submit').on('click', function() {
