@@ -30,9 +30,10 @@
       </div>
 
       <div class="content-container">
-        <div class="content">{{content}}</div>
+        <div class="content" ng-bind-html="content"></div>
       </div>
     </div>
+
     <div class="upvote-and-scrap-container">
       <div class="upvote">
         <div class="count">{{upvote_and_scrap.cnt_upvotes}}</div>

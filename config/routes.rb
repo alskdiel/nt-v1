@@ -16,6 +16,8 @@ Rails.application.routes.draw do
   post "update_user_info" => "user_info#update_info"
   post "update_password" => "user_info#update_password"
 
+  get "link_to/:id" => "main#link_to"
+
   post "get_reviews_in_bound" => "main#reviews_in_bound"
 
   post "update_review_houses/:id" => "review_houses#update"

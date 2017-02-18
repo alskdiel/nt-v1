@@ -1,4 +1,4 @@
-var myApp = angular.module('myApp', ['ui.bootstrap', 'wu.masonry']);
+var myApp = angular.module('myApp', ['ui.bootstrap', 'wu.masonry', 'ngSanitize']);
 
 myApp.config([
   "$httpProvider", function($httpProvider) {
@@ -809,10 +809,11 @@ myApp.controller('ShowLifeCtrl', [
   '$scope',
   '$http',
   '$timeout',
+  '$sce',
   '$uibModalInstance',
   'data',
 
-  function($scope, $http, $timeout, $uibModalInstance, data) {
+  function($scope, $http, $timeout, $sce, $uibModalInstance, data) {
 
     // var ROOT_PATH = "http://localhost:3000/"
     $scope.image_url = data.image_url;
@@ -822,7 +823,8 @@ myApp.controller('ShowLifeCtrl', [
     $scope.title = data.title;
     $scope.written_by = data.written_by;
     $scope.hash_tags = data.hash_tags;
-    $scope.content = data.content;
+    // $scope.content = data.content;
+    $scope.content = makeLink(data.content);
 
     $scope.upvote_and_scrap = data.upvote_and_scrap;
     $scope.comments = [];
@@ -1021,6 +1023,32 @@ myApp.controller('ShowLifeCtrl', [
       initSubcommentStatus($scope.comments);
     }
 
+    function findURL(str) {
+      var p = /(http(s)?:\/\/([\w-]+\.)+[\w-]+(\/[\w-.\/?%&=]*)?)/gi;
+      var result = str.match(p);
+
+      return result;
+    }
+
+    function makeLink(str) {
+      var p = /(http(s)?:\/\/([\w-]+\.)+[\w-]+(\/[\w-.\/?%&=]*)?)/gi;
+      return str.replace(p, '<a href="/link_to/link?url=$1" target="_blank">$1</a>');
+    }
+
+    function deleteLink(str) {
+      console.log(str);
+      var start_index = str.indexOf("<a href");
+      var str = str;
+      if(start_index) {
+        var url = findURL(str);
+        var end_index = str.indexOf("</a>");
+        str = str.replace(str.substring(start_index, end_index + 4), url);
+      }
+      return str;
+      // return str.replace(p,'<a href="/link_to/link?url=$1" target="_blank">$1</span>');
+    }
+
+
     function initSubcommentStatus(comments) {
       opened_subcomment = [];
       for(var i=0; i<comments.length; i++) {
@@ -1074,7 +1102,7 @@ myApp.controller('ShowLifeCtrl', [
     function setModalDataToEdit() {
       var title = $scope.title;
       var hash_tag = $scope.hash_tags;
-      var content = $scope.content;
+      var content = deleteLink($scope.content);
       $("#modal-write-lifefeed").find('.modal-dialog').find('.modal-content').find('#form-life').find('.modal-body').find('.title').find('input').val(title);
       $("#modal-write-lifefeed").find('.modal-dialog').find('.modal-content').find('#form-life').find('.modal-body').find('.hashtag').find('input').val(hash_tag);
       $("#modal-write-lifefeed").find('.modal-dialog').find('.modal-content').find('#form-life').find('.modal-body').find('.content').find('textarea').val(content);

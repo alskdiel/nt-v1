@@ -133,6 +133,10 @@ class MainController < ApplicationController
     return render json: { user_signed_in: user_signed_in? }
   end
 
+  def link_to
+    url = params[:url]
+    redirect_to url
+  end
 
 
 end
