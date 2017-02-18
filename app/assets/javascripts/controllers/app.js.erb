@@ -6,13 +6,35 @@ myApp.config([
   }
 ]);
 
+myApp.factory('searchFactory', function() {
+  var search_type;
+  return {
+    setSearchType: function(search_type) {
+      this.search_type = search_type;
+    },
+
+    getSearchType: function() {
+      return this.search_type;
+    }
+  }
+});
+
 myApp.controller('NavCtrl', [
   '$scope',
   '$http',
+  '$timeout',
 
-  function($scope, $http) {
+  function($scope, $http, $timeout) {
     var search_type = 'house';
     $scope.search_keywords;
+
+    $scope.$on("search_type", function(event, type) {
+      search_type = type.type;
+      if(search_type === "life") {
+        $('.nav-bar .nav-search .search-wrapper .search-type-wrapper .house').removeClass('selected');
+        $('.nav-bar .nav-search .search-wrapper .search-type-wrapper .life').addClass('selected');
+      }
+    })
 
     $scope.setSearchType = function($event, type) {
       $scope.search_keywords = "";
@@ -55,7 +77,6 @@ myApp.controller('NavCtrl', [
       var keywords_str = $scope.search_keywords;
       keywords_str = keywords_str.toLowerCase();
       keywords_str = keywords_str.replace(" ", "");
-      console.log(keywords_str)
       var params = keywords_str.split("#");
       params.splice(0, 1)
 
@@ -83,6 +104,14 @@ myApp.controller('MainCtrl', [
   function($scope, $http) {
     $scope.my_info = {};
 
+    // $scope.$watch("search_type", function(event, type) {
+    //   console.log('yy')
+    //   console.log(type);
+    // })
+    // $scope.$on("search_type", function(event, type) {
+    //   console.log('xx');
+    //   console.log(type);
+    // })
 
     $scope.uploadImage = function() {
       $('#form-cover-img').submit();
@@ -324,11 +353,12 @@ myApp.controller('MapCtrl', [
 
 myApp.controller('PinCtrl', [
   '$scope',
+  '$rootScope',
   '$http',
   '$timeout',
   '$uibModal',
 
-  function($scope, $http, $timeout, $uibModal) {
+  function($scope, $rootScope, $http, $timeout, $uibModal) {
     $scope.reviews = [];
 
     initController();
@@ -492,7 +522,11 @@ myApp.controller('PinCtrl', [
         data: data
       })
         .then(function(data, status, headers, config) {
-          $scope.reviews = data.data;
+          var search_type = data.data.type;
+          $rootScope.$broadcast("search_type", { type: search_type });
+
+          console.log('pinctrl')
+          $scope.reviews = data.data.reviews;
         });
     }
   }

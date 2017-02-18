@@ -26,8 +26,9 @@ class MainController < ApplicationController
   def search_item
     param_arr = params[:params].split("&")
     @reviews = []
+    @type = params[:type]
 
-    if params[:type] == "house"
+    if @type == "house"
       @queries = []
 
       param_arr.each do |param|
@@ -37,7 +38,7 @@ class MainController < ApplicationController
       @query = @queries.join(" AND ");
       @reviews = ReviewHouse.where(@query)
 
-    else params[:type] == "life"
+    else @type == "life"
       isPossible = true
 
       hash_id_arr = []
