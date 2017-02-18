@@ -41,6 +41,7 @@ class ReviewLifeController < ApplicationController
     if user_signed_in?
       @upvote = current_user.has_upvoted_L?(params[:id])
       @scrap = current_user.has_scraped_L?(params[:id])
+      ReviewLifeHitLog.create(user_id: current_user.id, review_life_id: @review.id)
     else
       @upvote = @scrap = false
     end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170218134020) do
+ActiveRecord::Schema.define(version: 20170218140251) do
 
   create_table "comment_houses", force: :cascade do |t|
     t.integer  "review_house_id"
@@ -76,6 +76,13 @@ ActiveRecord::Schema.define(version: 20170218134020) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "review_house_hit_logs", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "review_house_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
   create_table "review_houses", force: :cascade do |t|
     t.integer  "user_id",                            null: false
     t.string   "title",                              null: false
@@ -93,6 +100,13 @@ ActiveRecord::Schema.define(version: 20170218134020) do
     t.float    "latitude"
     t.float    "longtitude"
     t.integer  "hit_count",              default: 0
+  end
+
+  create_table "review_life_hit_logs", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "review_life_id"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
   end
 
   create_table "review_lives", force: :cascade do |t|

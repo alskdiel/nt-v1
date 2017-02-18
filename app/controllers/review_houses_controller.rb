@@ -46,6 +46,7 @@ class ReviewHousesController < ApplicationController
     if user_signed_in?
       @upvote = current_user.has_upvoted_H?(params[:id])
       @scrap = current_user.has_scraped_H?(params[:id])
+      ReviewHouseHitLog.create(user_id: current_user.id, review_house_id: @review.id)
     else
       @upvote = @scrap = false
     end

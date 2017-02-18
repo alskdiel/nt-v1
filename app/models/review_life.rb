@@ -4,6 +4,8 @@ class ReviewLife < ActiveRecord::Base
   has_many :comment_lives
   has_many :hash_tag_refs
 
+  has_many :review_life_hit_logs
+
   belongs_to :user
   has_attached_file :image, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "/images/:style/missing.png"
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\z/

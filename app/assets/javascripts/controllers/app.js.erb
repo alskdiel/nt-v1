@@ -456,7 +456,6 @@ myApp.controller('PinCtrl', [
         url: '/get_reviews.json'
       })
         .then(function(data, status, headers, config) {
-          console.log(data);
           review_container = data.data;
           $scope.reviews = data.data.review_new;
         });
@@ -469,7 +468,6 @@ myApp.controller('PinCtrl', [
         url: '/get_house_reviews.json'
       })
         .then(function(data, status, headers, config) {
-          console.log(data);
           review_container = data.data;
           $scope.reviews = data.data.review_new;
         });
@@ -481,7 +479,6 @@ myApp.controller('PinCtrl', [
         url: '/get_life_reviews.json'
       })
         .then(function(data, status, headers, config) {
-          console.log(data);
           review_container = data.data;
           $scope.reviews = data.data.review_new;
         });
@@ -886,7 +883,7 @@ myApp.controller('ShowLifeCtrl', [
     $scope.written_by = data.written_by;
     $scope.hash_tags = data.hash_tags;
     // $scope.content = data.content;
-    $scope.content = makeLink(data.content);
+    $scope.content = makeLink(data.content, $scope.id);
 
     $scope.upvote_and_scrap = data.upvote_and_scrap;
     $scope.comments = [];
@@ -1092,13 +1089,12 @@ myApp.controller('ShowLifeCtrl', [
       return result;
     }
 
-    function makeLink(str) {
+    function makeLink(str, id) {
       var p = /(http(s)?:\/\/([\w-]+\.)+[\w-]+(\/[\w-.\/?%&=]*)?)/gi;
-      return str.replace(p, '<a href="/link_to/link?url=$1" target="_blank">$1</a>');
+      return str.replace(p, '<a href="/link_to/'+id+'?&url=$1" target="_blank">$1</a>');
     }
 
     function deleteLink(str) {
-      console.log(str);
       var start_index = str.indexOf("<a href");
       var str = str;
       if(start_index) {

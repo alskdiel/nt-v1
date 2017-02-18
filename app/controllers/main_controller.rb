@@ -144,6 +144,8 @@ class MainController < ApplicationController
   end
 
   def link_to
+    review_id = params[:id]
+
     url = params[:url]
     redirect_to url
   end

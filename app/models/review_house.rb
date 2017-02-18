@@ -4,6 +4,7 @@ class ReviewHouse < ActiveRecord::Base
   has_many :upvote_houses
   has_many :scrap_houses
   has_many :comment_houses
+  has_many :review_house_hit_logs
 
   belongs_to :user
 
