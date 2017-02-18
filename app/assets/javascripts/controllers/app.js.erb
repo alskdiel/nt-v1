@@ -1099,8 +1099,10 @@ myApp.controller('ShowLifeCtrl', [
       var str = str;
       if(start_index) {
         var url = findURL(str);
-        var end_index = str.indexOf("</a>");
-        str = str.replace(str.substring(start_index, end_index + 4), url);
+        if(url) {
+          var end_index = str.indexOf("</a>");
+          str = str.replace(str.substring(start_index, end_index + 4), url);
+        }
       }
       return str;
       // return str.replace(p,'<a href="/link_to/link?url=$1" target="_blank">$1</span>');
