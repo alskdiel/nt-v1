@@ -56,6 +56,17 @@ var modal_function = function () {
     window.location.reload(true);
   });
 
+  $('#modal-sign-in .modal-content .content-wrapper.sign-in-main .remember-container div').on('click', function() {
+    var current_status = $(this).parent().children('.remember-me').is(':checked') ? 1: 0;
+
+    console.log(current_status)
+    if(current_status) {
+      $(this).parent().children('.remember-me').prop('checked', false);
+    } else {
+      $(this).parent().children('.remember-me').prop('checked', true);
+    }
+  });
+
   $('#modal-sign-in .modal-content .content-wrapper.sign-in-main .password-container input').on('keydown', function(key) {
     if(key.keyCode == 13) {
       var user_email = $(this).parent().parent().children('.email-container').children('.user-id').val();
