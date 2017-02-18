@@ -1,4 +1,3 @@
-
 var init;
 init  = function() {
   $side_bar_bg = $('.side-bar-background');
@@ -111,7 +110,7 @@ init  = function() {
 
   function checkUserSignedIn(type) {
     $.ajax({
-      url: 'users/user_signed_in',
+      url: '/users/user_signed_in',
       type: 'get',
       dataType: 'json',
       // data: $.param( $('Element or Expression') ),
