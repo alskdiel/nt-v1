@@ -55,9 +55,19 @@ myApp.controller('NavCtrl', [
       var keywords_str = $scope.search_keywords;
       keywords_str = keywords_str.toLowerCase();
       keywords_str = keywords_str.replace(" ", "");
+      console.log(keywords_str)
       var params = keywords_str.split("#");
+      params.splice(0, 1)
+
+      for(var i=params.length; i>-1; i--) {
+        if(params[i] === "") {
+          params.splice(i, 1);
+        }
+      }
+
       var params_str = params.join("&");
-      params_str = 'life?='+params_str.substr(1, params_str.length);
+      params_str = 'life?='+params_str;
+
 
       return params_str;
     }
