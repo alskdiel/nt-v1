@@ -11,10 +11,25 @@ class ReviewHousesController < ApplicationController
   end
 
   def get_reviews
-    @reviews = ReviewHouse.all
+    @reviews_all = ReviewHouse.all.order("created_at DESC")
     # return render json: { ret: true,
     #                       reviews: reviews}
+    @reviews = {}
+    @reviews[:new] = @reviews_all.clone
+    @reviews[:best] = []
 
+    temp = []
+    reviews_best = @reviews_all.clone
+    reviews_best.each do |review_best|
+      temp.push(review: review_best,
+                best_param: review_best.param_best)
+    end
+
+    temp.sort_by! { |o| o[:best_param] }.reverse!
+    review_best = []
+    temp.each do |o|
+      @reviews[:best].push(o[:review])
+    end
   end
 
   # GET /review_houses/1

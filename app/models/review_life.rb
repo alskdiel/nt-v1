@@ -44,6 +44,10 @@ class ReviewLife < ActiveRecord::Base
     ScrapLife.where(review_life_id: self.id).count
   end
 
+  def param_best
+    return self.cnt_upvotes + self.cnt_scraps
+  end
+
   def comments (current_user = nil)
     comments = self.comment_lives
     ret = []

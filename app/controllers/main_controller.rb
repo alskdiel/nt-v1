@@ -10,15 +10,33 @@ class MainController < ApplicationController
     houses = ReviewHouse.all.order("created_at DESC")
     lives = ReviewLife.all.order("created_at DESC")
 
-    @reviews = []
+    @reviews_all = []
     houses.each do |house|
-      @reviews.push(house)
+      @reviews_all.push(house)
     end
     lives.each do |life|
-      @reviews.push(life)
+      @reviews_all.push(life)
     end
 
-    @reviews.sort_by! { |review| review.created_at }.reverse!
+    @reviews_all.sort_by! { |review| review.created_at }.reverse!
+    @reviews = {}
+
+    @reviews[:new] = @reviews_all.clone
+    @reviews[:best] = []
+
+    temp = []
+    reviews_best = @reviews_all.clone
+    reviews_best.each do |review_best|
+      temp.push(review: review_best,
+                best_param: review_best.param_best)
+    end
+
+    temp.sort_by! { |o| o[:best_param] }.reverse!
+    review_best = []
+    temp.each do |o|
+      @reviews[:best].push(o[:review])
+    end
+
 
   end
 

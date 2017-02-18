@@ -99,19 +99,10 @@ myApp.controller('NavCtrl', [
 myApp.controller('MainCtrl', [
   '$scope',
   '$http',
+  '$rootScope',
 
-
-  function($scope, $http) {
+  function($scope, $http, $rootScope) {
     $scope.my_info = {};
-
-    // $scope.$watch("search_type", function(event, type) {
-    //   console.log('yy')
-    //   console.log(type);
-    // })
-    // $scope.$on("search_type", function(event, type) {
-    //   console.log('xx');
-    //   console.log(type);
-    // })
 
     $scope.uploadImage = function() {
       $('#form-cover-img').submit();
@@ -122,11 +113,11 @@ myApp.controller('MainCtrl', [
     }
 
     $scope.getNewReviews = function() {
-      alert("new");
+      $rootScope.$broadcast("filter_type", { type: "new" });
     }
 
     $scope.getBestReviews = function() {
-      alert("best");
+      $rootScope.$broadcast("filter_type", { type: "best" });
     }
 
     initController();
@@ -439,23 +430,46 @@ myApp.controller('PinCtrl', [
       }
     }
 
+    $scope.$on("filter_type", function(event, type) {
+      search_type = type.type;
+      if(search_type === "best") {
+        $('.sub-navbar .hot').removeClass('selected');
+        $('.sub-navbar .new').removeClass('selected');
+        $('.sub-navbar .best').addClass('selected');
+        $scope.reviews = review_container.review_best
+      } else if(search_type === "new") {
+        $('.sub-navbar .hot').removeClass('selected');
+        $('.sub-navbar .new').addClass('selected');
+        $('.sub-navbar .best').removeClass('selected');
+        $scope.reviews = review_container.review_new;
+      } else {
+        $('.sub-navbar .hot').addClass('selected');
+        $('.sub-navbar .new').removeClass('selected');
+        $('.sub-navbar .best').removeClass('selected');
+        $scope.reviews = review_container.review_hot;
+      }
+    })
+
     function getAllReviews() {
       $http({
         method: 'get',
         url: '/get_reviews.json'
       })
         .then(function(data, status, headers, config) {
-          $scope.reviews = data.data;
+          review_container = data.data;
+          $scope.reviews = data.data.review_new;
         });
     }
 
+    var review_container;
     function getOneroomReviews() {
       $http({
         method: 'get',
         url: '/get_house_reviews.json'
       })
         .then(function(data, status, headers, config) {
-          $scope.reviews = data.data;
+          review_container = data.data;
+          $scope.reviews = data.data.review_new;
         });
     }
 
@@ -465,7 +479,8 @@ myApp.controller('PinCtrl', [
         url: '/get_life_reviews.json'
       })
         .then(function(data, status, headers, config) {
-          $scope.reviews = data.data;
+          review_container = data.data;
+          $scope.reviews = data.data.review_new;
         });
     }
 

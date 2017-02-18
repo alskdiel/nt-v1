@@ -82,6 +82,10 @@ class ReviewHouse < ActiveRecord::Base
     # ScrapHouse.where(review_house_id: self.id).count
   end
 
+  def param_best
+    return self.cnt_upvotes + self.cnt_scraps
+  end
+
   def comments (current_user = nil)
     comments = self.comment_houses
     ret = []
