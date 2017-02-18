@@ -118,10 +118,18 @@
                   font-size: 13px;
                   line-height: 30px;
                   color: #ed1c24;
-                  position: relative;
-                  float: right;
-                  top: -40px;
+                  position: absolute;
+                  right: 24px;
                   margin-right: 21px;
+                  &.email-conf {
+                    top: 120px;
+                  }
+                  &.pw-cond {
+                    top: 218px;
+                  }
+                  &.pw-conf {
+                    top: 286px;
+                  }
                 }
                 input {
                   border: 1px solid #bbb;

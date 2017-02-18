@@ -42,8 +42,8 @@ class User < ActiveRecord::Base
     return self.user_info.nickname
   end
 
-  def sex
-    if self.user_info.sex == 0
+  def is_male?
+    if self.user_info.sex == -1
       return true
     else
       return false
@@ -57,7 +57,7 @@ class User < ActiveRecord::Base
   def info_brief
     info = {
       nickname: self.nickname,
-      isMale: self.sex,
+      isMale: self.is_male?,
       cover_image: self.cover_image
     }
 
