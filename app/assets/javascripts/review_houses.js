@@ -54,6 +54,12 @@ var review_houses_function = function() {
     }
   });
 
+  $('.write-container .content-wrapper .image #write-img').on('change', function() {
+    var file_path = $(this).val();
+    file_path = file_path.substring(file_path.indexOf('\\fakepath\\') + 10, file_path.length);
+    $(this).parent().find('.image-path').text(file_path);
+  });
+
   function checkDataEntered() {
     // var title = $("input[type='text'][name='review_house[title]']").val() ? true : "제목";
     // var latitude = $("input[type='hidden'][name='latitude']").val() ? true : "주소";

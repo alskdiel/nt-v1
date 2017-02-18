@@ -3,6 +3,15 @@ init  = function() {
   $side_bar_bg = $('.side-bar-background');
   $side_bar = $('.side-bar');
 
+  window.onresize = function(event) {
+    var window_size = $(window).width();
+    if(window_size < 930) {
+      $('.nav-bar .nav-search').addClass('hide');
+    } else {
+      $('.nav-bar .nav-search').removeClass('hide');
+    }
+  };
+
   $side_bar_bg.on('click', function() {
     if($(this).hasClass('sidebar-opened')) {
       closeSidebar();

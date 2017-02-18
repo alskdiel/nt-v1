@@ -57,6 +57,7 @@ body {
         &.nav-search {
           height: 100%;
           padding: 28px 0px;
+          // width: 880px;
           width: calc(100% - 376px);
           .search-wrapper {
             width: 100%;
@@ -110,6 +111,9 @@ body {
                 float: right;
               }
             }
+          }
+          &.hide {
+            display: none;
           }
         }
         &.nav-buttons {
