@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170218140251) do
+ActiveRecord::Schema.define(version: 20170218153928) do
 
   create_table "comment_houses", force: :cascade do |t|
     t.integer  "review_house_id"
@@ -40,6 +40,14 @@ ActiveRecord::Schema.define(version: 20170218140251) do
     t.string   "keyword"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "linkto_hit_logs", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "review_life_id"
+    t.string   "url"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
   end
 
   create_table "notices", force: :cascade do |t|

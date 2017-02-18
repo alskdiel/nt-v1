@@ -145,8 +145,13 @@ class MainController < ApplicationController
 
   def link_to
     review_id = params[:id]
-
     url = params[:url]
+
+    if user_signed_in?
+      LinktoHitLog.create(user_id: current_user.id, review_life_id: review_id, url: url)
+    else
+      LinktoHitLog.create(review_life_id: review_id, url: url)
+    end
     redirect_to url
   end
 

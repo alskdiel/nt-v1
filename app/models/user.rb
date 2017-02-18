@@ -3,6 +3,7 @@ class User < ActiveRecord::Base
   has_many :review_house_hit_logs
   has_many :review_lifes
   has_many :review_life_hit_logs
+  has_many :linkto_hit_logs
   has_many :upvote_houses
   has_many :scrap_houses
   has_many :upvote_lives
