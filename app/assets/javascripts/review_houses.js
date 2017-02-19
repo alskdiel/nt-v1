@@ -21,7 +21,8 @@ var review_houses_function = function() {
       } else {
         $('#form-write .content-wrapper .address #latitude').val(null);
         $('#form-write .content-wrapper .address #longtitude').val(null);
-        alert("위치를 찾을 수 없습니다.");
+        $('#form-write .content-wrapper .address .addr-cond').text("위치를 찾을 수 없습니다.");
+        // alert();
       }
 
       console.log($('#form-write .content-wrapper .address #latitude').val());
