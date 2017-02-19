@@ -9,6 +9,6 @@ class NtMailer < ApplicationMailer
     User.where(email: email).take.update(password: @temp_password)
 
     # binding pry
-    mail(to: email, subject: 'Password Forgot Email')
+    mail(to: email, subject: '[내집탐방] 귀하의 임시 비밀번호가 전송되었습니다.')
   end
 end

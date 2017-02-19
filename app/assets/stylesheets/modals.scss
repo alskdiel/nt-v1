@@ -77,6 +77,7 @@
                 color: #fff;
                 margin-bottom: 15.5px;
                 &.fb {
+                  display: none;
                   background: #4065b4;
                   margin-bottom: 0px;
                 }
@@ -470,12 +471,16 @@
           }
           .image-file {
             label {
+              cursor: pointer;
               font-size: 19px;
               line-height: 19px;
               background: #dc534c;
               color: #fff;
               padding: 13px;
               font-weight: normal;
+              div {
+                cursor: pointer;
+              }
             }
             input[type="file"] {
               position: absolute;
@@ -498,6 +503,7 @@
           padding: 0px 202px;
           margin-top: 26px;
           .button.submit {
+            cursor: pointer;
             text-align: center;
             background: #f4ca66;
             font-size: 21px;

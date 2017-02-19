@@ -80,12 +80,16 @@
       .image {
         margin-bottom: 57px;
         label {
+          cursor: pointer;
           font-size: 21px;
           line-height: 21px;
           background: #f4ca66;
           color: #fff;
           padding: 16px 40px;
           font-weight: normal;
+          div {
+            cursor: pointer;
+          }
         }
         input[type="file"] {
           position: absolute;
@@ -121,6 +125,7 @@
               display: inline-block;
               margin-right: 24px;
               img {
+                cursor: pointer;
                 height: 100%;
                 &.none {
                   display: none;
@@ -580,6 +585,9 @@
                           color: #999;
                           font-size: 13px;
                         }
+                        &.btn-delete {
+                          cursor: pointer;
+                        }
                       }
                     }
                     .comment-body {
@@ -614,6 +622,7 @@
                       height: 100%;
                       line-height: 50px;
                       display: inline-block;
+                      cursor: pointer;
                       img {
                         height: 100%;
                       }
@@ -634,6 +643,7 @@
                     div {
                       color: #999;
                       display: inline-block;
+                      cursor: pointer;
                       .arrow {
                         width: 0;
                         height: 0;
@@ -647,6 +657,7 @@
                         }
                       }
                       &.devider {
+                        cursor: default;
                         margin: 0px 11px;
                         font-size: 14px;
                       }
@@ -671,6 +682,7 @@
                         padding: 6px 16px;
                         font-size: 11px;
                         line-height: 11px;
+                        cursor: pointer;
                       }
                     }
                     .show-subcomment {
@@ -689,6 +701,9 @@
                             &.created-at, &.btn-delete {
                               color: #999;
                               font-size: 13px;
+                            }
+                            &.btn-delete {
+                              cursor: pointer;
                             }
                           }
                         }

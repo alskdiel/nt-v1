@@ -1,7 +1,7 @@
 set :output, "log/whenever.log"
 set :environment, :development
 every 1.hours do # 1.minute 1.day 1.week 1.month 1.year is also supported
-# every 3.minutes do # 1.minute 1.day 1.week 1.month 1.year is also supported
+# every 1.minutes do # 1.minute 1.day 1.week 1.month 1.year is also supported
   rake 'calc_filter'
 end
 # Use this file to easily define all of your cron jobs.

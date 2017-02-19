@@ -214,10 +214,9 @@ var modal_function = function () {
           $('#modal-forgot-pw .modal-body.complete').css('display', 'block');
 
           var info_text = email+" 으로 임시 비밀번호가 발송되었습니다. 메일을 확인해주세요.";
-          $('#modal-forgot-pw .modal-body.complete .info-box').text(info_text);
+          $('#modal-forgot-pw .modal-body.complete .info-text').text(info_text);
         } else {
           $("#modal-forgot-pw .send .email-cond").text("이메일이 존재하지 않습니다.");
-          console.log($("#modal-forgot-pw .send .email-cond"))
 
         }
         // success callback
@@ -306,7 +305,7 @@ var modal_function = function () {
           // login successful
           window.location.reload(true);
         } else {
-          alert("wrong info");
+          alert("이메일 또는 비밀번호를 확인하세요.");
           // login failed
         }
       },

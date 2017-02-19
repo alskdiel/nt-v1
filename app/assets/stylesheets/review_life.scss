@@ -183,6 +183,9 @@
                           color: #999;
                           font-size: 13px;
                         }
+                        &.btn-delete {
+                          cursor: pointer;
+                        }
                       }
                     }
                     .comment-body {
@@ -212,6 +215,7 @@
                     height: 43px;
                     line-height: 43px;
                     .upvote {
+                      cursor: pointer;
                       height: 100%;
                       line-height: 50px;
                       display: inline-block;
@@ -235,6 +239,7 @@
                     div {
                       color: #999;
                       display: inline-block;
+                      cursor: pointer;
                       .arrow {
                         width: 0;
                         height: 0;
@@ -248,6 +253,7 @@
                         }
                       }
                       &.devider {
+                        cursor: default;
                         margin: 0px 11px;
                         font-size: 14px;
                       }
@@ -264,6 +270,7 @@
                         border: 1px solid #b2b1b1;
                       }
                       .submit-subcomment {
+                        cursor: pointer;
                         margin-left: 10px;
                         display: inline-block;
                         vertical-align: bottom;
@@ -290,6 +297,9 @@
                             &.created-at, &.btn-delete {
                               color: #999;
                               font-size: 13px;
+                            }
+                            &.btn-delete {
+                              cursor: pointer;
                             }
                           }
                         }
