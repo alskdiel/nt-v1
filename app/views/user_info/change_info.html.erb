@@ -1,52 +1,80 @@
-<div>
-회원정보변경
-  <form id="form-user-info" action="/update_user_info" method="post">
-    <input type="hidden" name="authenticity_token" value="QGthAE0W7zBgRqvzsphx7J05/bXasa8bpotEkFjwctIqEBfabdK1rN6B8wlcupH4ElpoBt2n9KwRY2it813Whw==">
-
-    <input type="text" placeholder="닉네임" name="user_info[nickname]" value="<%= @user_info.nickname %>"/>
-
-    <select class="birth" name="user_info[birth]">
-      <% while @this_year >= @min_year %>
-        <% if @this_year == @user_info.birth %>
-          <option value="<%= @this_year %>" selected><%= @this_year %></option>
+<div class="user-info-change-container">
+  <div class="user-info-header">
+    회원정보변경
+  </div>
+  <div class="user-info-body">
+    <form id="form-user-info" action="/update_user_info" method="post">
+      <input type="hidden" name="authenticity_token" value="QGthAE0W7zBgRqvzsphx7J05/bXasa8bpotEkFjwctIqEBfabdK1rN6B8wlcupH4ElpoBt2n9KwRY2it813Whw==">
+      <div class="nickname-container component-container">
+        <div class="label">닉네임</div>
+        <input type="text" class="content" placeholder="닉네임" name="user_info[nickname]" value="<%= @user_info.nickname %>"/>
+      </div>
+      <div class="birth-container component-container">
+        <div class="label">태어난 년도</div>
+        <select class="birth content" name="user_info[birth]">
+          <% while @this_year >= @min_year %>
+            <% if @this_year == @user_info.birth %>
+              <option value="<%= @this_year %>" selected><%= @this_year %></option>
+            <% else %>
+              <option value="<%= @this_year %>"><%= @this_year %></option>
+            <% end %>
+            <% @this_year -= 1 %>
+          <% end %>
+        </select>
+        <div class="arrow"></div>
+      </div>
+      <div class="occupation-container component-container">
+        <div class="label">직업</div>
+        <select class="occupation content" name="user_info[occupation]">
+          <% i = 1 %>
+          <% @occupations.each do |occupation| %>
+            <% if @user_info.occupation == i %>
+              <option value="<%= i %>" selected><%= occupation %></option>
+            <% else %>
+              <option value="<%= i %>"><%= occupation %></option>
+            <% end %>
+            <% i += 1 %>
+          <% end %>
+        </select>
+        <div class="arrow"></div>
+      </div>
+      <div class="sex-container component-container">
+        <div class="label">성별</div>
+        <% if @user_info.sex == -1 %>
+          <input type="radio" name="user_info[sex]" value="-1" checked/>남
+          <input type="radio" name="user_info[sex]" value="1"/>여
         <% else %>
-          <option value="<%= @this_year %>"><%= @this_year %></option>
+          <input type="radio" name="user_info[sex]" value="-1"/>남
+          <input type="radio" name="user_info[sex]" value="1" checked/>여
         <% end %>
-        <% @this_year -= 1 %>
-      <% end %>
-    </select>
-
-    <select class="occupation" name="user_info[occupation]">
-      <% i = 1 %>
-      <% @occupations.each do |occupation| %>
-        <% if @user_info.occupation == i %>
-          <option value="<%= i %>" selected><%= occupation %></option>
-        <% else %>
-          <option value="<%= i %>"><%= occupation %></option>
-        <% end %>
-        <% i += 1 %>
-      <% end %>
-    </select>
-
-    <% if @user_info.sex == -1 %>
-      <input type="radio" name="user_info[sex]" value="-1" checked/>남
-      <input type="radio" name="user_info[sex]" value="1"/>여
-    <% else %>
-      <input type="radio" name="user_info[sex]" value="-1"/>남
-      <input type="radio" name="user_info[sex]" value="1" checked/>여
-    <% end %>
-
-    <input type="submit"/>
-  </form>
+      </div>
+      <div class="submit-container component-container">
+        <input type="submit" value="저장하기"/>
+      </div>
+    </form>
+  </div>
 </div>
-<div>
-비밀번호변경
-  <form id="form-user-info" action="/update_password" method="post">
-    <input type="hidden" name="authenticity_token" value="QGthAE0W7zBgRqvzsphx7J05/bXasa8bpotEkFjwctIqEBfabdK1rN6B8wlcupH4ElpoBt2n9KwRY2it813Whw==">
 
-    <input type="password" placeholder="비밀번호" name="user_info[password]"/>
-    <input type="password" placeholder="비밀번호 확인" name="user_info[password_confirm]"/>
+<div class="user-password-change-container">
+  <div class="user-password-header">
+    비밀번호변경
+  </div>
+  <div class="user-password-body">
+    <form id="form-user-info" action="/update_password" method="post">
+      <input type="hidden" name="authenticity_token" value="QGthAE0W7zBgRqvzsphx7J05/bXasa8bpotEkFjwctIqEBfabdK1rN6B8wlcupH4ElpoBt2n9KwRY2it813Whw==">
 
-    <input type="submit"/>
-  </form>
+      <div class="pw-container component-container">
+        <div class="label">비밀번호</div>
+        <input type="password" class="content" placeholder="비밀번호" name="user_info[password]"/>
+      </div>
+      <div class="pw-c-container component-container">
+        <div class="label">비밀번호 확인</div>
+        <input type="password" class="content" placeholder="비밀번호 확인" name="user_info[password_confirm]"/>
+      </div>
+
+      <div class="submit-container component-container">
+        <input type="submit" value="변경"/>
+      </div>
+    </form>
+  </div>
 </div>

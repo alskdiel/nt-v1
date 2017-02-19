@@ -1,3 +1,75 @@
-// Place all the styles related to the user_info controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+.user-info-change-container, .user-password-change-container {
+  margin: 0px auto;
+  width: 800px;
+  padding: 50px 100px;
+  font-size: 19px;
+  line-height: 19px;
+  &.user-password-change-container {
+    padding: 0px 100px;
+  }
+  .user-info-header, .user-password-header {
+    margin-bottom: 30px;
+    text-align: center;
+    font-size: 21px;
+    line-height: 21px;
+  }
+  .user-info-body, .user-password-body {
+    .component-container {
+      margin-bottom: 20px;
+      .label {
+        width: 130px;
+        text-align: right;
+        font-weight: normal;
+        color: #000;
+        font-size: 19px;
+        line-height: 19px;
+        display: inline-block;
+      }
+      .content {
+        width: 380px;
+        display: inline-block;
+        padding: 13px;
+        border: 1px solid #bbb;
+        background: #fff;
+        border-radius: 0px;
+
+        -webkit-appearance: none; /* 네이티브 외형 감추기 */ 
+        -moz-appearance: none; 
+        appearance: none;
+      }
+      .arrow {
+        width: 0;
+        height: 0;
+        border-left: 7px solid transparent;
+        border-right: 7px solid transparent;
+        border-top: 11px solid #bbb;
+        position: relative;
+        float: right;
+        top: -27px;
+        margin-right: 105px;
+      }
+      &.sex-container {
+        input {
+          margin: 0px 10px;
+          &:last-child {
+            margin-left: 50px;
+          }
+        }
+      }
+      &.submit-container {
+        margin-top: 35px;
+        text-align: center;
+        input {
+          color: #fff;
+          border: none;
+          width: 150px;
+          padding: 13px;
+          background: #f4ca66;
+          -webkit-appearance: none; /* 네이티브 외형 감추기 */ 
+          -moz-appearance: none; 
+          appearance: none;
+        }
+      }
+    }
+  }
+}
