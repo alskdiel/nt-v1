@@ -18,6 +18,7 @@ var review_houses_function = function() {
         console.log(result);
         $('#form-write .content-wrapper .address #latitude').val(result.addr[0].lat);
         $('#form-write .content-wrapper .address #longtitude').val(result.addr[0].lng);
+        $('#form-write .content-wrapper .address .addr-cond').text("");
       } else {
         $('#form-write .content-wrapper .address #latitude').val(null);
         $('#form-write .content-wrapper .address #longtitude').val(null);

@@ -6,8 +6,8 @@ class ReviewHousesController < ApplicationController
   def index
     # @reviews = ReviewHouse.all
     @mode = "oneroom"
-    render "main/index"
     # binding pry
+    render "main/index"
   end
 
   def get_reviews
@@ -16,21 +16,8 @@ class ReviewHousesController < ApplicationController
     #                       reviews: reviews}
     @reviews = {}
     @reviews[:new] = @reviews_all.clone
-    # ReviewHousesHelper.calc_best
     @reviews[:best] = JSON[$redis.get("house_best")]
-
-    # temp = []
-    # reviews_best = @reviews_all.clone
-    # reviews_best.each do |review_best|
-    #   temp.push(review: review_best,
-    #             best_param: review_best.param_best)
-    # end
-    #
-    # temp.sort_by! { |o| o[:best_param] }.reverse!
-    # review_best = []
-    # temp.each do |o|
-    #   @reviews[:best].push(o[:review])
-    # end
+    @reviews[:hot] = JSON[$redis.get("house_hot")]
   end
 
   # GET /review_houses/1

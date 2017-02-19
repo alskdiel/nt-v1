@@ -113,7 +113,7 @@ myApp.controller('MainCtrl', [
     }
 
     $scope.getHotReviews = function() {
-      alert("hot");
+      $rootScope.$broadcast("filter_type", { type: "hot" });
     }
 
     $scope.getNewReviews = function() {
@@ -435,13 +435,13 @@ myApp.controller('PinCtrl', [
     }
 
     $scope.$on("filter_type", function(event, type) {
-      search_type = type.type;
-      if(search_type === "best") {
+      filter_type = type.type;
+      if(filter_type === "best") {
         $('.sub-navbar .hot').removeClass('selected');
         $('.sub-navbar .new').removeClass('selected');
         $('.sub-navbar .best').addClass('selected');
         $scope.reviews = review_container.review_best
-      } else if(search_type === "new") {
+      } else if(filter_type === "new") {
         $('.sub-navbar .hot').removeClass('selected');
         $('.sub-navbar .new').addClass('selected');
         $('.sub-navbar .best').removeClass('selected');
@@ -461,7 +461,7 @@ myApp.controller('PinCtrl', [
       })
         .then(function(data, status, headers, config) {
           review_container = data.data;
-          $scope.reviews = data.data.review_new;
+          $scope.reviews = data.data.review_hot;
         });
     }
 
@@ -473,7 +473,7 @@ myApp.controller('PinCtrl', [
       })
         .then(function(data, status, headers, config) {
           review_container = data.data;
-          $scope.reviews = data.data.review_new;
+          $scope.reviews = data.data.review_hot;
         });
     }
 
@@ -484,7 +484,7 @@ myApp.controller('PinCtrl', [
       })
         .then(function(data, status, headers, config) {
           review_container = data.data;
-          $scope.reviews = data.data.review_new;
+          $scope.reviews = data.data.review_hot;
         });
     }
 
@@ -544,7 +544,6 @@ myApp.controller('PinCtrl', [
           var search_type = data.data.type;
           $rootScope.$broadcast("search_type", { type: search_type });
 
-          console.log('pinctrl')
           $scope.reviews = data.data.reviews;
         });
     }

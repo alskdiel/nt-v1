@@ -15,6 +15,7 @@ class ReviewLifeController < ApplicationController
     @reviews[:new] = @reviews_all.clone
     # ReviewLifeHelper.calc_best
     @reviews[:best] = JSON[$redis.get("life_best")]
+    @reviews[:hot] = JSON[$redis.get("life_hot")]
 
     # temp = []
     # reviews_best = @reviews_all.clone
