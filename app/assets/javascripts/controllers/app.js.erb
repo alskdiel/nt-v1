@@ -134,11 +134,13 @@ myApp.controller('MainCtrl', [
       } else {
         var input = input_type.split("/");
         var from = input[1];
-        var review_id = input[2];
+        var id = input[2];
         if(from === "user_reviews_h") {
-          getUserReviewInfo_H(review_id);
+          getUserReviewInfo_H(id);
         } else if(from === "user_reviews_l") {
-          getUserReviewInfo_L(review_id);
+          getUserReviewInfo_L(id);
+        } else if(from === "user_reviews") {
+          getUserReviewInfo(id);
         }
       }
 
@@ -148,6 +150,22 @@ myApp.controller('MainCtrl', [
       $http({
         method: 'get',
         url: '/get_my_review_info.json'
+      })
+        .then(function(data, status, headers, config) {
+          if(data.data.ret) {
+            $scope.my_info = data.data.my_info;
+            $scope.is_mypage = data.data.is_mypage;
+          } else {
+            alert("user not accessible");
+          }
+        });
+    }
+
+    function getUserReviewInfo(id) {
+      var url = '/get_user_review_info/' + id + '.json'
+      $http({
+        method: 'get',
+        url: url
       })
         .then(function(data, status, headers, config) {
           if(data.data.ret) {
@@ -424,11 +442,13 @@ myApp.controller('PinCtrl', [
 
           getSearchedReviews(type, params_str);
         } else {
-          var review_id = input[2];
+          var id = input[2];
           if(from === "user_reviews_h") {
-            getUserReviews_H(review_id);
+            getUserReviews_H(id);
           } else if(from === "user_reviews_l"){
-            getUserReviews_L(review_id);
+            getUserReviews_L(id);
+          } else if(from === "user_reviews") {
+            getUserReviews(id);
           }
         }
       }
@@ -503,6 +523,17 @@ myApp.controller('PinCtrl', [
       $http({
         method: 'get',
         url: '/get_my_scraps.json'
+      })
+        .then(function(data, status, headers, config) {
+          $scope.reviews = data.data.reviews;
+        });
+    }
+
+    function getUserReviews(id) {
+      var url = '/get_user_reviews/' + id + '.json'
+      $http({
+        method: 'get',
+        url: url
       })
         .then(function(data, status, headers, config) {
           $scope.reviews = data.data.reviews;
@@ -587,6 +618,10 @@ myApp.controller('ShowCtrl', [
       initImagePath();
     });
 
+    $scope.to_user_page = function (user_id) {
+      console.log('xx');
+      window.location.href = "/user_reviews/"+user_id;
+    }
     // $scope.to_prev_image = function() {
     //   if(current_img_tab === 0) {
     //     current_img_tab = $scope.image_url.length - 1;
@@ -899,6 +934,11 @@ myApp.controller('ShowLifeCtrl', [
       getComments();
       initImagePath();
     });
+
+    $scope.to_user_page = function (user_id) {
+      console.log('xx');
+      window.location.href = "/user_reviews/"+user_id;
+    }
 
     $scope.getUserReviews = function() {
       window.location.href = "/user_reviews_l/" + $scope.id;

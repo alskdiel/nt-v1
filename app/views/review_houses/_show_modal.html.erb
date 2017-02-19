@@ -126,7 +126,7 @@
           <div class="comment-inner-wrapper">
             <div class="comment-left">
               <div class="comment-header">
-                <div class="nickname">{{comment.written_by}}</div>
+                <div class="nickname" ng-click="to_user_page(comment.user_id)">{{comment.written_by}}</div>
                 <div class="created-at">{{comment.created_at}}</div>
                 <div class="btn-delete" ng-if="comment.auth" ng-click="delete_comment(comment)">삭제</div>
               </div>
@@ -158,7 +158,7 @@
               <div class="show-subcomment" ng-if="comment.show_sub">
                 <div class="subcomments" ng-repeat="subcomment in comment.subcomments">
                   <div class="sub-header">
-                    <div class="nickname">{{subcomment.written_by}}</div>
+                    <div class="nickname" ng-click="to_user_page(comment.user_id)">{{subcomment.written_by}}</div>
                     <div class="created-at">{{subcomment.created_at}}</div>
                     <div class="btn-delete" ng-if="subcomment.auth" ng-click="delete_subcomment(subcomment)">삭제</div>
                   </div>

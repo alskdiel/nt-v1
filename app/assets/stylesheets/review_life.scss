@@ -176,6 +176,7 @@
                         display: inline-block;
                         margin-right: 17px;
                         &.nickname {
+                          cursor: pointer;
                           font-weight: 500;
                           font-size: 19px;
                         }
@@ -290,6 +291,7 @@
                             display: inline-block;
                             margin-right: 17px;
                             &.nickname {
+                              cursor: pointer;
                               font-size: 19px;
                               line-height: 19px;
                               font-weight: 500;

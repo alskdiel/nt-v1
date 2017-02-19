@@ -24,6 +24,7 @@ class CommentLife < ActiveRecord::Base
 
       subcomments.push({
         auth: auth,
+        user_id: subcomment.user_id,
         id: subcomment.id,
         written_by: User.find(subcomment.user_id).nickname,
         created_at: subcomment.created_at.strftime("%Y-%m-%d %H:%M"),

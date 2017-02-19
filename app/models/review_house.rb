@@ -103,6 +103,7 @@ class ReviewHouse < ActiveRecord::Base
       end
       ret.push({
         id: comment.id,
+        user_id: comment.user_id,
         auth: auth,
         written_by: User.find(comment.user_id).nickname,
         content: comment.content,

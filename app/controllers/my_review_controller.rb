@@ -8,6 +8,10 @@ class MyReviewController < ApplicationController
     end
   end
 
+  def user_reviews
+    render "my_review/user_review"
+  end
+
   def get_my_reviews
     if user_signed_in?
       houses = current_user.review_houses.all.order("created_at DESC")
@@ -62,9 +66,8 @@ class MyReviewController < ApplicationController
     render "my_review/user_review"
   end
 
-  def get_user_review_info_H
-    review_id = params[:id]
-    user_id = ReviewHouse.find(review_id).user_id
+  def get_user_review_info
+    user_id = params[:id].to_i
 
     my_info = User.find(user_id).info_brief
 
@@ -75,6 +78,38 @@ class MyReviewController < ApplicationController
       is_mypage: is_mypage,
       my_info: my_info
     }
+  end
+
+  def get_user_review_info_H
+    review_id = params[:id]
+    user_id = ReviewHouse.find(review_id).user_id
+
+    my_info = User.find(user_id).info_brief
+
+    is_mypage = (current_user.id == user_id)
+    return render json: {
+      ret: true,
+      is_mypage: is_mypage,
+      my_info: my_info
+    }
+  end
+
+  def get_user_reviews
+    user_id = params[:id]
+
+    houses = User.find(user_id).review_houses.all.order("created_at DESC")
+    lives = User.find(user_id).review_lifes.all.order("created_at DESC")
+
+    @reviews = []
+
+    houses.each do |house|
+      @reviews.push(house)
+    end
+    lives.each do |life|
+      @reviews.push(life)
+    end
+
+    @reviews.sort_by! { |review| review.created_at }.reverse!
   end
 
   def get_user_reviews_H

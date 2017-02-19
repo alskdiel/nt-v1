@@ -40,6 +40,9 @@
               .change-cover {
                 float: right;
                 cursor: pointer;
+                div {
+                  cursor: pointer;
+                }
                 label {
                   font-weight: normal;
                   margin-bottom: 0px;
