@@ -23,11 +23,15 @@ class MainController < ApplicationController
     @reviews = {}
 
     @reviews[:new] = @reviews_all.clone
-    @reviews[:best] = JSON[$redis.get("main_best")]
-    # binding pry
-    # @reviews[:best] = $review_best_main
-    # binding pry
+    begin
+      @reviews[:best] = JSON[$redis.get("main_best")]
+    rescue
+    end
 
+    begin
+      @reviews[:hot] = JSON[$redis.get("main_hot")]
+    rescue
+    end
 
   end
 
