@@ -56,6 +56,19 @@ var modal_function = function () {
     window.location.reload(true);
   });
 
+  $('#modal-sign-in .modal-content #sign-in .content-wrapper .forgot-container .find-pw').on('click', function() {
+    $("#modal-sign-in").modal('hide');
+    $("#modal-forgot-pw").modal();
+  });
+
+  $('#modal-forgot-pw .modal-dialog .modal-content .modal-body .send-email').on('click', function() {
+    console.log('xx');
+    var email = $(this).parent().children('input').val();
+    console.log(email)
+
+    forgotPassword(email);
+  });
+
   $('#modal-sign-in .modal-content .content-wrapper.sign-in-main .remember-container div').on('click', function() {
     var current_status = $(this).parent().children('.remember-me').is(':checked') ? 1: 0;
 
@@ -167,6 +180,24 @@ var modal_function = function () {
     for(var i=today; i>1899; i--) {
       $sb.append("<option value="+i+">"+i+"</option>");
     }
+  }
+
+  function forgotPassword(email) {
+    $.ajax({
+      url: '/users/password',
+      type: 'POST',
+      dataType: 'json',
+      data: { email: email },
+      complete: function (jqXHR, textStatus) {
+        // callback
+      },
+      success: function (data, textStatus, jqXHR) {
+        // success callback
+      },
+      error: function (jqXHR, textStatus, errorThrown) {
+        // error callback
+      }
+    });
   }
 
   function nickConfProcess(nickname, $info_box) {

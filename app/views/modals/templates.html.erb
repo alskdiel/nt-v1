@@ -110,6 +110,23 @@
     </div>
   </div>
 </div>
+<div class="modal fade" id="modal-forgot-pw" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-title">
+        <div>비밀번호 찾기</div>
+        <div class="close" data-dismiss="modal">
+          <%= image_tag 'buttons/close.png', class: "cancel" %>
+        </div>
+      </div>
+      <div class="modal-body">
+        <div>이메일</div>
+        <input type="text" placeholder="이메일"/>
+        <div class="send-email">비밀번호 재설정 링크 보내기</div>
+      </div>
+    </div>
+  </div>
+</div>
 <% else %>
 
 <div class="modal fade" id="modal-write" role="dialog">

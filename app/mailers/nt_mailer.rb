@@ -1,0 +1,3 @@
+class NtMailer < ApplicationMailer
+
+end

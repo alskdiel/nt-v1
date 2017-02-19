@@ -99,6 +99,7 @@
               div {
                 display: inline-block;
                 &.find-pw {
+                  cursor: pointer;
                   text-decoration: underline;
                 }
               }
@@ -260,6 +261,56 @@
                 cursor: pointer;
               }
             }
+          }
+        }
+      }
+    }
+  }
+  &#modal-forgot-pw {
+    .modal-dialog {
+      width: 563px;
+      margin-top: 140px;
+      .modal-content {
+        width: 100%;
+        border-radius: 0px;
+        .modal-title {
+          padding: 16px 24px;
+          background: #f4ca66;
+          div {
+            display: inline-block;
+            font-size: 25px;
+            line-height: 25px;
+            color: #50265a;
+          }
+          .close {
+            text-shadow: none;
+            opacity: 1;
+            img {
+              vertical-align: middle;
+            }
+          }
+        }
+        .modal-body {
+          padding: 19px 30.5px;
+          font-size: 19px;
+          line-height: 19px;
+          div:first-child {
+            margin-bottom: 12px;
+          }
+          input {
+            width: 100%;
+            border-radius: 10px;
+            padding: 13px;
+            margin-bottom: 35px;
+            border: 1px solid #bbb;
+          }
+          div:last-child {
+            background: #f4ca66;
+            padding: 13px;
+            text-align: center;
+            color: #fff;
+            border-radius: 10px;
+            cursor: pointer;
           }
         }
       }
