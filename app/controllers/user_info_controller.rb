@@ -43,4 +43,13 @@ class UserInfoController < ApplicationController
 
     redirect_to root_path
   end
+
+  def check_current_password
+    if user_signed_in?
+      ret = current_user.valid_password?(params[:password])
+      render json: { ret: ret }
+    else
+      redirect_to root_path
+    end
+  end
 end

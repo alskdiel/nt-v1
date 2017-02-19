@@ -1101,11 +1101,14 @@ myApp.controller('ShowLifeCtrl', [
     function deleteLink(str) {
       var start_index = str.indexOf("<a href");
       var str = str;
+      console.log(str)
       if(start_index) {
         var url = findURL(str);
+        console.log(url)
         if(url) {
           var end_index = str.indexOf("</a>");
-          str = str.replace(str.substring(start_index, end_index + 4), url);
+          str = str.replace(str.substring(start_index, end_index + 4), url[0]);
+          console.log(str)
         }
       }
       return str;

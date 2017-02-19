@@ -16,6 +16,28 @@
     font-family: BMJUA;
   }
   .user-info-body, .user-password-body {
+    span {
+      font-size: 13px;
+      line-height: 30px;
+      color: #ed1c24;
+      position: absolute;
+      margin-left: -140px;
+      &.nick-conf {
+        top: 199px;
+      }
+      &.cur-pw-conf {
+        top: 635px;
+        margin-left: -171px;
+      }
+      &.pw-cond {
+        top: 704px;
+        margin-left: -212px;
+      }
+      &.pw-conf {
+        top: 773px;
+        margin-left: -184px;
+      }
+    }
     .component-container {
       margin-bottom: 20px;
       .label {
@@ -61,15 +83,14 @@
       &.submit-container {
         margin-top: 35px;
         text-align: center;
-        input {
+        padding: 0px 225px;
+        .submit-btn {
+          cursor: pointer;
           color: #fff;
           border: none;
           width: 150px;
           padding: 13px;
           background: #f4ca66;
-          -webkit-appearance: none; /* 네이티브 외형 감추기 */ 
-          -moz-appearance: none; 
-          appearance: none;
         }
       }
     }

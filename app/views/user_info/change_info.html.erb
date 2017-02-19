@@ -7,7 +7,8 @@
       <input type="hidden" name="authenticity_token" value="QGthAE0W7zBgRqvzsphx7J05/bXasa8bpotEkFjwctIqEBfabdK1rN6B8wlcupH4ElpoBt2n9KwRY2it813Whw==">
       <div class="nickname-container component-container">
         <div class="label">닉네임</div>
-        <input type="text" class="content" placeholder="닉네임" name="user_info[nickname]" value="<%= @user_info.nickname %>"/>
+        <input type="text" class="content" placeholder="닉네임" value="<%= @user_info.nickname %>"/>
+        <span class="nick-conf"></span>
       </div>
       <div class="birth-container component-container">
         <div class="label">태어난 년도</div>
@@ -49,7 +50,8 @@
         <% end %>
       </div>
       <div class="submit-container component-container">
-        <input type="submit" value="저장하기"/>
+        <!-- <input type="submit" value="저장하기"/> -->
+        <div class="submit-btn">저장하기</div>
       </div>
     </form>
   </div>
@@ -60,20 +62,30 @@
     비밀번호변경
   </div>
   <div class="user-password-body">
-    <form id="form-user-info" action="/update_password" method="post">
+    <form id="form-user-pw" action="/update_password" method="post">
       <input type="hidden" name="authenticity_token" value="QGthAE0W7zBgRqvzsphx7J05/bXasa8bpotEkFjwctIqEBfabdK1rN6B8wlcupH4ElpoBt2n9KwRY2it813Whw==">
+
+      <div class="curpw-container component-container">
+        <div class="label">현재 비밀번호</div>
+        <input type="password" class="content" placeholder="현재 비밀번호"/>
+        <span class="cur-pw-conf"></span>
+      </div>
 
       <div class="pw-container component-container">
         <div class="label">비밀번호</div>
-        <input type="password" class="content" placeholder="비밀번호" name="user_info[password]"/>
+        <input type="password" class="content password" placeholder="비밀번호" name="user_info[password]"/>
+        <span class="pw-cond"></span>
       </div>
+
       <div class="pw-c-container component-container">
         <div class="label">비밀번호 확인</div>
-        <input type="password" class="content" placeholder="비밀번호 확인" name="user_info[password_confirm]"/>
+        <input type="password" class="content password-conf" placeholder="비밀번호 확인" name="user_info[password_confirm]"/>
+        <span class="pw-conf"></span>
       </div>
 
       <div class="submit-container component-container">
-        <input type="submit" value="변경"/>
+        <!-- <input type="submit" value="변경"/> -->
+        <div class="submit-btn">변경</div>
       </div>
     </form>
   </div>

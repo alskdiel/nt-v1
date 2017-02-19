@@ -73,6 +73,7 @@ Rails.application.routes.draw do
 
   get "search/:param" => "main#index"
   post "get_searched_reviews" => "main#search_item"
+  post "valid_pw" => "user_info#check_current_password"
 
   get "notice" => "main#notice"
   get "qna" => "main#qna"
