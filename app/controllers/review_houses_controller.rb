@@ -16,8 +16,16 @@ class ReviewHousesController < ApplicationController
     #                       reviews: reviews}
     @reviews = {}
     @reviews[:new] = @reviews_all.clone
-    @reviews[:best] = JSON[$redis.get("house_best")]
-    @reviews[:hot] = JSON[$redis.get("house_hot")]
+    begin
+      @reviews[:best] = JSON[$redis.get("house_best")]
+    rescue
+    end
+
+    begin
+      @reviews[:hot] = JSON[$redis.get("house_hot")]
+    rescue
+    end
+
   end
 
   # GET /review_houses/1
