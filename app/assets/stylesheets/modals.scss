@@ -314,10 +314,19 @@
           }
           &.send {
             display: block;
+            .email-cond {
+              font-size: 13px;
+              line-height: 30px;
+              color: #ed1c24;
+              position: absolute;
+              right: 24px;
+              margin-right: 21px;
+              top: 60px;
+            }
           }
           &.complete {
             display: none;
-            .info-box {
+            .info-text {
               padding: 50px 67px;
               text-align: center;
               div:first-child {

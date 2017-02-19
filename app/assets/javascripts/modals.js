@@ -216,6 +216,8 @@ var modal_function = function () {
           var info_text = email+" 으로 임시 비밀번호가 발송되었습니다. 메일을 확인해주세요.";
           $('#modal-forgot-pw .modal-body.complete .info-box').text(info_text);
         } else {
+          $("#modal-forgot-pw .send .email-cond").text("이메일이 존재하지 않습니다.");
+          console.log($("#modal-forgot-pw .send .email-cond"))
 
         }
         // success callback
