@@ -77,6 +77,8 @@ Rails.application.routes.draw do
   get "notice" => "main#notice"
   get "qna" => "main#qna"
   post "qna" => "main#create_qna"
+  get "terms" => "main#terms"
+  get "policy" => "main#policy"
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

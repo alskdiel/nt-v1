@@ -110,11 +110,11 @@ init  = function() {
   });
 
   $('.side-bar .body .cs-detail .terms').on('click', function(){
-    alert("terms")
+    window.location.href = "/terms";
   });
 
   $('.side-bar .body .cs-detail .policy').on('click', function(){
-    alert("policy")
+    window.location.href = "/policy";
   });
 
   function checkUserSignedIn(type) {
