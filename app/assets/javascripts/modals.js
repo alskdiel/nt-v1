@@ -62,9 +62,7 @@ var modal_function = function () {
   });
 
   $('#modal-forgot-pw .modal-dialog .modal-content .modal-body .send-email').on('click', function() {
-    console.log('xx');
     var email = $(this).parent().children('input').val();
-    console.log(email)
 
     forgotPassword(email);
   });
@@ -153,6 +151,24 @@ var modal_function = function () {
     $("#modal-write").modal('hide');
   });
 
+  $('#modal-forgot-pw .modal-body.send input').on('keydown', function(key) {
+    if(key.keyCode == 13) {
+      email = $(this).val();
+      forgotPassword(email);
+    }
+  });
+
+  $('#modal-forgot-pw .modal-body.complete .btn-okay').on('click', function() {
+    $('#modal-forgot-pw').modal('hide');
+    $('#modal-forgot-pw .modal-body.send').css('display', 'block');
+    $('#modal-forgot-pw .modal-body.complete').css('display', 'none');
+  });
+
+  $('#modal-forgot-pw').on('hidden.bs.modal', function (){
+    $('#modal-forgot-pw .modal-body.send').css('display', 'block');
+    $('#modal-forgot-pw .modal-body.complete').css('display', 'none');
+  });
+
   function checkPwd(str) {
     if (str.length < 8) {
       return { msg: "8~16자 영문, 숫자를 혼합해주세요.",
@@ -192,10 +208,21 @@ var modal_function = function () {
         // callback
       },
       success: function (data, textStatus, jqXHR) {
+        console.log(data);
+        if(data.ret) {
+          $('#modal-forgot-pw .modal-body.send').css('display', 'none');
+          $('#modal-forgot-pw .modal-body.complete').css('display', 'block');
+
+          var info_text = email+" 으로 임시 비밀번호가 발송되었습니다. 메일을 확인해주세요.";
+          $('#modal-forgot-pw .modal-body.complete .info-box').text(info_text);
+        } else {
+
+        }
         // success callback
       },
       error: function (jqXHR, textStatus, errorThrown) {
         // error callback
+        alert("메일 전송에 실패했습니다. 잠시 후 다시 시도해 주세요.")
       }
     });
   }

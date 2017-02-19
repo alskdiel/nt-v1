@@ -312,6 +312,19 @@
             border-radius: 10px;
             cursor: pointer;
           }
+          &.send {
+            display: block;
+          }
+          &.complete {
+            display: none;
+            .info-box {
+              padding: 50px 67px;
+              text-align: center;
+              div:first-child {
+                line-height: 28px;
+              }
+            }
+          }
         }
       }
     }
