@@ -9,6 +9,7 @@
 
 /config/schedule.rb
 /config/database.yml
+/config/secrets.yml
 /config/environments/*
 /public/system/*
 
