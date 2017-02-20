@@ -14,9 +14,9 @@ class ReviewHousesController < ApplicationController
   def get_reviews
 
     begin
-      @reviews_all = ReviewHouse.order("created_at DESC").take(CARDNUMPERLOAD);
+      @reviews_all = ReviewHouse.order("created_at DESC").take(CARDNUMPERLOAD)
     rescue
-      @reviews_all = ReviewHouse.order("created_at DESC").all;
+      @reviews_all = ReviewHouse.order("created_at DESC").all
     end
     @reviews = {}
 
@@ -41,9 +41,9 @@ class ReviewHousesController < ApplicationController
     last_time = ReviewHouse.find(review_last[:id]).created_at
     review_tmp = []
     begin
-      cur_reviews = ReviewHouse.where("created_at < ?", last_time).take(CARDNUMPERLOAD)
+      cur_reviews = ReviewHouse.where("created_at < ?", last_time).order("created_at").take(CARDNUMPERLOAD)
     rescue
-      cur_reviews = ReviewHouse.where("created_at < ?", last_time)
+      cur_reviews = ReviewHouse.where("created_at < ?", last_time).order("created_at")
     end
     @reviews = cur_reviews
   end

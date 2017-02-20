@@ -459,11 +459,8 @@ myApp.controller('PinCtrl', [
 
     var scroll_param = true
     window.onscroll = function(ev) {
-      console.log('xxxxxxxxxxx')
       if(scroll_param) {
-        console.log('yyyyyyyyyyy')
         if($(window).scrollTop() + window.innerHeight > $(document).height() - 500) {
-          console.log('zzzzzzzzzzz')
           var last_review = $scope.reviews[$scope.reviews.length-1];
           scroll_param = false;
           getMoreCard(last_review);
@@ -486,7 +483,6 @@ myApp.controller('PinCtrl', [
         data: data
       })
         .then(function(data, status, headers, config) {
-          console.log(review_container)
           if(data.data.reviews) {
             for(var i=0; i<data.data.reviews.length; i++) {
               $scope.reviews.push(data.data.reviews[i]);
@@ -501,14 +497,12 @@ myApp.controller('PinCtrl', [
           $timeout(function() {
             scroll_param = true;
 
-            console.log(review_container);
           }, 2000);
         });
     }
 
     var filter_type = "hot";
     $scope.$on("filter_type", function(event, type) {
-      console.log(scroll_param)
       filter_type = type.type;
       if(filter_type === "best") {
         $('.sub-navbar .hot').removeClass('selected');

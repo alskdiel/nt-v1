@@ -11,9 +11,9 @@ class ReviewLifeController < ApplicationController
   def get_reviews
     # @reviews_all = ReviewLife.all.order("created_at DESC");
     begin
-      @reviews_all = ReviewLife.order("created_at DESC").take(CARDNUMPERLOAD);
+      @reviews_all = ReviewLife.order("created_at DESC").take(CARDNUMPERLOAD)
     rescue
-      @reviews_all = ReviewLife.order("created_at DESC").all;
+      @reviews_all = ReviewLife.order("created_at DESC").all
     end
 
     # return render json: { ret: true,
@@ -42,9 +42,9 @@ class ReviewLifeController < ApplicationController
     review_tmp = []
 
     begin
-      cur_reviews = ReviewLife.where("created_at < ?", last_time).take(CARDNUMPERLOAD)
+      cur_reviews = ReviewLife.where("created_at < ?", last_time).order("created_at").take(CARDNUMPERLOAD)
     rescue
-      cur_reviews = ReviewLife.where("created_at < ?", last_time)
+      cur_reviews = ReviewLife.where("created_at < ?", last_time).order("created_at")
     end
 
     @reviews = cur_reviews

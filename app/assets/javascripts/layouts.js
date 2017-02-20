@@ -176,7 +176,6 @@ init  = function() {
         // callback
       },
       success: function (data, textStatus, jqXHR) {
-        console.log(data);
         if(data.ret) {
           window.location.href = "/";
         }

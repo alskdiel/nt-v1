@@ -10,7 +10,6 @@ var user_info_function = function () {
   init();
   function init() {
     my_nickname = $('.user-info-change-container .user-info-body .nickname-container input').val();
-    console.log(my_nickname);
   }
 
   $('.user-info-change-container .user-info-body .nickname-container input').on('focusin', function() {
@@ -99,8 +98,6 @@ var user_info_function = function () {
           isPossibleNick = true;
           $info_box.text("");
         } else {
-            console.log(nickname);
-            console.log(my_nickname);
           if(nickname == my_nickname) {
             isPossibleNick = true;
             $info_box.text("");

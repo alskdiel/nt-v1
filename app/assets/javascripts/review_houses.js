@@ -15,7 +15,6 @@ var review_houses_function = function() {
 
     var callback = function(status, result) {
       if (status === daum.maps.services.Status.OK) {
-        console.log(result);
         $('#form-write .content-wrapper .address #latitude').val(result.addr[0].lat);
         $('#form-write .content-wrapper .address #longtitude').val(result.addr[0].lng);
         $('#form-write .content-wrapper .address .addr-cond').text("");
@@ -26,8 +25,6 @@ var review_houses_function = function() {
         // alert();
       }
 
-      console.log($('#form-write .content-wrapper .address #latitude').val());
-      console.log($('#form-write .content-wrapper .address #longtitude').val());
     };
 
     geocoder.addr2coord(addr, callback);

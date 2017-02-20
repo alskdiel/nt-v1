@@ -70,7 +70,6 @@ var modal_function = function () {
   $('#modal-sign-in .modal-content .content-wrapper.sign-in-main .remember-container div').on('click', function() {
     var current_status = $(this).parent().children('.remember-me').is(':checked') ? 1: 0;
 
-    console.log(current_status)
     if(current_status) {
       $(this).parent().children('.remember-me').prop('checked', false);
     } else {
@@ -208,7 +207,6 @@ var modal_function = function () {
         // callback
       },
       success: function (data, textStatus, jqXHR) {
-        console.log(data);
         if(data.ret) {
           $('#modal-forgot-pw .modal-body.send').css('display', 'none');
           $('#modal-forgot-pw .modal-body.complete').css('display', 'block');
