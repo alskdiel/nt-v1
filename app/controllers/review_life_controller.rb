@@ -1,4 +1,5 @@
 class ReviewLifeController < ApplicationController
+  CARDNUMPERLOAD = 10
 
   def index
     # @reviews = ReviewLife.all
@@ -8,34 +9,73 @@ class ReviewLifeController < ApplicationController
   end
 
   def get_reviews
-    @reviews_all = ReviewLife.all.order("created_at DESC");
+    # @reviews_all = ReviewLife.all.order("created_at DESC");
+    begin
+      @reviews_all = ReviewLife.order("created_at DESC").take(CARDNUMPERLOAD);
+    rescue
+      @reviews_all = ReviewLife.order("created_at DESC").all;
+    end
+
     # return render json: { ret: true,
     #                       reviews: reviews}
     @reviews = {}
     @reviews[:new] = @reviews_all.clone
     # ReviewLifeHelper.calc_best
     begin
-      @reviews[:best] = JSON[$redis.get("life_best")]
+      @reviews[:best] = JSON[$redis.get("life_best")][0..CARDNUMPERLOAD-1]
     rescue
     end
+    @best_index = CARDNUMPERLOAD
 
     begin
-      @reviews[:hot] = JSON[$redis.get("life_hot")]
+      @reviews[:hot] = JSON[$redis.get("life_hot")][0..CARDNUMPERLOAD-1]
     rescue
     end
+    @hot_index = CARDNUMPERLOAD
 
-    # temp = []
-    # reviews_best = @reviews_all.clone
-    # reviews_best.each do |review_best|
-    #   temp.push(review: review_best,
-    #             best_param: review_best.param_best)
-    # end
-    #
-    # temp.sort_by! { |o| o[:best_param] }.reverse!
-    # review_best = []
-    # temp.each do |o|
-    #   @reviews[:best].push(o[:review])
-    # end
+  end
+
+  def get_more_new
+    review_last = params[:last_review]
+    last_time = ReviewLife.find(review_last[:id]).created_at
+
+    review_tmp = []
+
+    begin
+      cur_reviews = ReviewLife.where("created_at < ?", last_time).take(CARDNUMPERLOAD)
+    rescue
+      cur_reviews = ReviewLife.where("created_at < ?", last_time)
+    end
+
+    @reviews = cur_reviews
+  end
+
+  def get_more_hot
+    index = params[:index]
+    begin
+      reviews_hot = JSON[$redis.get("life_hot")][index..(index + CARDNUMPERLOAD - 1)]
+      hot_index = index + CARDNUMPERLOAD
+      return render json: {
+        reviews: reviews_hot,
+        type: "hot",
+        index: hot_index
+      }
+    rescue
+    end
+  end
+
+  def get_more_best
+    index = params[:index]
+    begin
+      reviews_best = JSON[$redis.get("life_best")][index..(index + CARDNUMPERLOAD - 1)]
+      best_index = index + CARDNUMPERLOAD
+      return render json: {
+        reviews: reviews_best,
+        type: "best",
+        index: best_index
+      }
+    rescue
+    end
   end
 
   def show
@@ -103,6 +143,8 @@ class ReviewLifeController < ApplicationController
     if user_signed_in?
       review_life = current_user.review_lifes.new(review_life_params)
       review_life.save
+
+      ReviewTimeStamper.create(review_type: 1, review_id: review_life.id)
 
       hashtag_str = params[:hashtag]
       hashtag_str.downcase!

@@ -1,4 +1,5 @@
 class MainController < ApplicationController
+  CARDNUMPERLOAD = 10
 
   def index
     @mode = "all"
@@ -8,33 +9,100 @@ class MainController < ApplicationController
   end
 
   def get_reviews
-    houses = ReviewHouse.all.order("created_at DESC")
-    lives = ReviewLife.all.order("created_at DESC")
 
-    @reviews_all = []
-    houses.each do |house|
-      @reviews_all.push(house)
+    @reviews_new = []
+    begin
+      review_stamper = ReviewTimeStamper.order("created_at DESC").take(CARDNUMPERLOAD)
+    rescue
+      review_stamper = ReviewTimeStamper.order("created_at DESC")
     end
-    lives.each do |life|
-      @reviews_all.push(life)
+    review_stamper.each do |stamper|
+      if stamper.review_type == 0  # house
+        review = ReviewHouse.where(id: stamper.review_id).take
+        if review.present?
+          @reviews_new.push(review)
+        end
+      else                  # life
+        review = ReviewLife.where(id: stamper.review_id).take
+        if review.present?
+          @reviews_new.push(review)
+        end
+      end
     end
 
-    @reviews_all.sort_by! { |review| review.created_at }.reverse!
     @reviews = {}
 
-    @reviews[:new] = @reviews_all.clone
+    @reviews[:new] = @reviews_new
     begin
-      @reviews[:best] = JSON[$redis.get("main_best")]
+      @reviews[:best] = JSON[$redis.get("main_best")][0..CARDNUMPERLOAD-1]
     rescue
     end
+    @best_index = CARDNUMPERLOAD
 
     begin
-      @reviews[:hot] = JSON[$redis.get("main_hot")]
+      @reviews[:hot] = JSON[$redis.get("main_hot")][0..CARDNUMPERLOAD-1]
     rescue
     end
+    @hot_index = CARDNUMPERLOAD
 
   end
 
+  def get_more_new
+    review_last = params[:last_review]
+    time_stamper_id = review_last[:time_stamper_id]
+    last_time = ReviewTimeStamper.find(time_stamper_id).created_at
+
+    review_tmp = []
+
+    cur_reviews = []
+    begin
+      cur_review_stamper = ReviewTimeStamper.where("created_at < ?", last_time).take(CARDNUMPERLOAD)
+    rescue
+      cur_review_stamper = ReviewTimeStamper.where("created_at < ?", last_time)
+    end
+    cur_review_stamper.each do |stamper|
+      if stamper.review_type == 0  # house
+        review = ReviewHouse.where(id: stamper.review_id).take
+        if review.present?
+          cur_reviews.push(review)
+        end
+      else                  # life
+        review = ReviewLife.where(id: stamper.review_id).take
+        if review.present?
+          cur_reviews.push(review)
+        end
+      end
+    end
+    @reviews = cur_reviews
+  end
+
+  def get_more_hot
+    index = params[:index]
+    begin
+      reviews_hot = JSON[$redis.get("main_hot")][index..(index + CARDNUMPERLOAD - 1)]
+      hot_index = index + CARDNUMPERLOAD
+      return render json: {
+        reviews: reviews_hot,
+        type: "hot",
+        index: hot_index
+      }
+    rescue
+    end
+  end
+
+  def get_more_best
+    index = params[:index]
+    begin
+      reviews_best = JSON[$redis.get("main_best")][index..(index + CARDNUMPERLOAD - 1)]
+      best_index = index + CARDNUMPERLOAD
+      return render json: {
+        reviews: reviews_best,
+        type: "best",
+        index: best_index
+      }
+    rescue
+    end
+  end
 
   def search_item
     param_arr = params[:params].split("&")
@@ -159,5 +227,31 @@ class MainController < ApplicationController
     redirect_to url
   end
 
+  def g_timestamper
+    houses = ReviewHouse.all.order("created_at DESC")
+    lives = ReviewLife.all.order("created_at DESC")
+
+    @reviews_all = []
+    houses.each do |house|
+      @reviews_all.push(house)
+    end
+
+    lives.each do |life|
+      @reviews_all.push(life)
+    end
+
+    @reviews_all.sort_by! { |review| review.created_at }
+
+    @reviews_all.each do |review|
+      if review.is_house_review? # type 0
+        stamper = ReviewTimeStamper.create(review_type: 0, review_id: review.id)
+      else                # type 1
+        stamper = ReviewTimeStamper.create(review_type: 1, review_id: review.id)
+      end
+      stamper.update(created_at: review.created_at)
+    end
+
+    binding pry
+  end
 
 end

@@ -113,14 +113,17 @@ myApp.controller('MainCtrl', [
     }
 
     $scope.getHotReviews = function() {
+      $(document).scrollTop(0);
       $rootScope.$broadcast("filter_type", { type: "hot" });
     }
 
     $scope.getNewReviews = function() {
+      $(document).scrollTop(0);
       $rootScope.$broadcast("filter_type", { type: "new" });
     }
 
     $scope.getBestReviews = function() {
+      $(document).scrollTop(0);
       $rootScope.$broadcast("filter_type", { type: "best" });
     }
 
@@ -454,7 +457,58 @@ myApp.controller('PinCtrl', [
       }
     }
 
+    var scroll_param = true
+    window.onscroll = function(ev) {
+      console.log('xxxxxxxxxxx')
+      if(scroll_param) {
+        console.log('yyyyyyyyyyy')
+        if($(window).scrollTop() + window.innerHeight > $(document).height() - 500) {
+          console.log('zzzzzzzzzzz')
+          var last_review = $scope.reviews[$scope.reviews.length-1];
+          scroll_param = false;
+          getMoreCard(last_review);
+        }
+      }
+    };
+
+    function getMoreCard(last_review) {
+      var url = '/get_more_'+review_type+'_'+filter_type+'.json'
+      var data = { last_review: last_review }
+
+      if(filter_type === "hot") {
+        data.index = $scope.indexof_hot;
+      } else if(filter_type === "best") {
+        data.index = $scope.indexof_best;
+      }
+      $http({
+        method: 'post',
+        url: url,
+        data: data
+      })
+        .then(function(data, status, headers, config) {
+          console.log(review_container)
+          if(data.data.reviews) {
+            for(var i=0; i<data.data.reviews.length; i++) {
+              $scope.reviews.push(data.data.reviews[i]);
+            }
+          }
+
+          if(data.data.type === "best") {
+            $scope.indexof_best = data.data.index;
+          } else if(data.data.type === "hot") {
+            $scope.indexof_hot = data.data.index;
+          }
+          $timeout(function() {
+            scroll_param = true;
+
+            console.log(review_container);
+          }, 2000);
+        });
+    }
+
+    var filter_type = "hot";
     $scope.$on("filter_type", function(event, type) {
+      console.log(scroll_param)
       filter_type = type.type;
       if(filter_type === "best") {
         $('.sub-navbar .hot').removeClass('selected');
@@ -474,15 +528,18 @@ myApp.controller('PinCtrl', [
       }
     })
 
+    var review_type;
     function getAllReviews() {
       $http({
         method: 'get',
         url: '/get_reviews.json'
       })
         .then(function(data, status, headers, config) {
-          console.log(data);
+          review_type = 'all';
           review_container = data.data;
           $scope.reviews = data.data.review_hot;
+          $scope.indexof_hot = data.data.indexof_hot;
+          $scope.indexof_best = data.data.indexof_best;
         });
     }
 
@@ -493,8 +550,11 @@ myApp.controller('PinCtrl', [
         url: '/get_house_reviews.json'
       })
         .then(function(data, status, headers, config) {
+          review_type = 'oneroom';
           review_container = data.data;
           $scope.reviews = data.data.review_hot;
+          $scope.indexof_hot = data.data.indexof_hot;
+          $scope.indexof_best = data.data.indexof_best;
         });
     }
 
@@ -504,8 +564,11 @@ myApp.controller('PinCtrl', [
         url: '/get_life_reviews.json'
       })
         .then(function(data, status, headers, config) {
+          review_type = 'life';
           review_container = data.data;
           $scope.reviews = data.data.review_hot;
+          $scope.indexof_hot = data.data.indexof_hot;
+          $scope.indexof_best = data.data.indexof_best;
         });
     }
 
@@ -619,7 +682,6 @@ myApp.controller('ShowCtrl', [
     });
 
     $scope.to_user_page = function (user_id) {
-      console.log('xx');
       window.location.href = "/user_reviews/"+user_id;
     }
     // $scope.to_prev_image = function() {
@@ -936,7 +998,6 @@ myApp.controller('ShowLifeCtrl', [
     });
 
     $scope.to_user_page = function (user_id) {
-      console.log('xx');
       window.location.href = "/user_reviews/"+user_id;
     }
 
@@ -1141,14 +1202,11 @@ myApp.controller('ShowLifeCtrl', [
     function deleteLink(str) {
       var start_index = str.indexOf("<a href");
       var str = str;
-      console.log(str)
       if(start_index) {
         var url = findURL(str);
-        console.log(url)
         if(url) {
           var end_index = str.indexOf("</a>");
           str = str.replace(str.substring(start_index, end_index + 4), url[0]);
-          console.log(str)
         }
       }
       return str;

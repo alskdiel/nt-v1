@@ -1,5 +1,6 @@
 class ReviewHousesController < ApplicationController
   before_action :set_review_house, only: [:show, :edit, :update, :destroy]
+  CARDNUMPERLOAD = 10
 
   # GET /review_houses
   # GET /review_houses.json
@@ -11,21 +12,68 @@ class ReviewHousesController < ApplicationController
   end
 
   def get_reviews
-    @reviews_all = ReviewHouse.all.order("created_at DESC")
-    # return render json: { ret: true,
-    #                       reviews: reviews}
+
+    begin
+      @reviews_all = ReviewHouse.order("created_at DESC").take(CARDNUMPERLOAD);
+    rescue
+      @reviews_all = ReviewHouse.order("created_at DESC").all;
+    end
     @reviews = {}
+
     @reviews[:new] = @reviews_all.clone
     begin
-      @reviews[:best] = JSON[$redis.get("house_best")]
+      @reviews[:best] = JSON[$redis.get("house_best")][0..CARDNUMPERLOAD-1]
     rescue
     end
+    @best_index = CARDNUMPERLOAD
 
     begin
-      @reviews[:hot] = JSON[$redis.get("house_hot")]
+      @reviews[:hot] = JSON[$redis.get("house_hot")][0..CARDNUMPERLOAD-1]
     rescue
     end
+    @hot_index = CARDNUMPERLOAD
 
+    # binding pry
+  end
+
+  def get_more_new
+    review_last = params[:last_review]
+    last_time = ReviewHouse.find(review_last[:id]).created_at
+    review_tmp = []
+    begin
+      cur_reviews = ReviewHouse.where("created_at < ?", last_time).take(4)
+    rescue
+      cur_reviews = ReviewHouse.where("created_at < ?", last_time)
+    end
+    @reviews = cur_reviews
+  end
+
+  def get_more_hot
+    index = params[:index]
+    begin
+      reviews_hot = JSON[$redis.get("house_hot")][index..(index + CARDNUMPERLOAD - 1)]
+      hot_index = index + CARDNUMPERLOAD
+      return render json: {
+        reviews: reviews_hot,
+        type: "hot",
+        index: hot_index
+      }
+    rescue
+    end
+  end
+
+  def get_more_best
+    index = params[:index]
+    begin
+      reviews_best = JSON[$redis.get("house_best")][index..(index + CARDNUMPERLOAD - 1)]
+      best_index = index + CARDNUMPERLOAD
+      return render json: {
+        reviews: reviews_best,
+        type: "best",
+        index: best_index
+      }
+    rescue
+    end
   end
 
   # GET /review_houses/1
@@ -134,6 +182,8 @@ class ReviewHousesController < ApplicationController
     if user_signed_in?
       review_house = current_user.review_houses.new(review_house_params)
       review_house.save
+
+      ReviewTimeStamper.create(review_type: 0, review_id: review_house.id)
 
       pics = params[:pic_house]
 

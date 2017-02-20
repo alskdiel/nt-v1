@@ -1,9 +1,5 @@
-json.indexof_best @best_index
-json.indexof_hot @hot_index
-json.review_hot @reviews[:hot]
-json.review_best @reviews[:best]
-json.review_new do
-  json.array! @reviews[:new] do |review|
+json.reviews do
+  json.array! @reviews do |review|
     json.is_house_review review.is_house_review?
     json.id review.id
     json.thumb_nail review.thumb_nail

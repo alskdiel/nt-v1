@@ -20,7 +20,12 @@
             <div>사진업로드</div>
           </div>
         </label>
-        <div class="image-path"><%= @review.pic_houses.take.image_file_name %></div>
+        <div class="image-path">
+        <% @r = @review.pic_houses.take %>
+        <% if @r.present? %>
+          <%= @r.image_file_name %>
+        <% end %>
+        </div>
         <input type="file" id="write-img" name="pic_house[]"/>
       </div>
       <div class="satisfactions">

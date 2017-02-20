@@ -11,6 +11,7 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
   root "main#index"
+  # root "main#g_timestamper"
   get "review_map" => "main#review_map"
   get "user_info" => "user_info#change_info"
   post "update_user_info" => "user_info#update_info"
@@ -84,6 +85,19 @@ Rails.application.routes.draw do
   post "qna" => "main#create_qna"
   get "terms" => "main#terms"
   get "policy" => "main#policy"
+
+
+  post "get_more_all_new" => "main#get_more_new"
+  post "get_more_all_best" => "main#get_more_best"
+  post "get_more_all_hot" => "main#get_more_hot"
+
+  post "get_more_oneroom_new" => "review_houses#get_more_new"
+  post "get_more_oneroom_best" => "review_houses#get_more_best"
+  post "get_more_oneroom_hot" => "review_houses#get_more_hot"
+
+  post "get_more_life_new" => "review_life#get_more_new"
+  post "get_more_life_best" => "review_life#get_more_best"
+  post "get_more_life_hot" => "review_life#get_more_hot"
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170218153928) do
+ActiveRecord::Schema.define(version: 20170220090004) do
 
   create_table "comment_houses", force: :cascade do |t|
     t.integer  "review_house_id"
@@ -128,6 +128,13 @@ ActiveRecord::Schema.define(version: 20170218153928) do
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
     t.integer  "hit_count",          default: 0
+  end
+
+  create_table "review_time_stampers", force: :cascade do |t|
+    t.integer  "review_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.integer  "review_type"
   end
 
   create_table "scrap_houses", force: :cascade do |t|

@@ -1,3 +1,5 @@
+json.indexof_best @best_index
+json.indexof_hot @hot_index
 json.review_hot @reviews[:hot]
 json.review_best @reviews[:best]
 json.review_new do
