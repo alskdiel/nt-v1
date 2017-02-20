@@ -42,9 +42,9 @@ class ReviewLifeController < ApplicationController
     review_tmp = []
 
     begin
-      cur_reviews = ReviewLife.where("created_at < ?", last_time).order("created_at").take(CARDNUMPERLOAD)
+      cur_reviews = ReviewLife.where("created_at < ?", last_time).order("created_at DESC").take(CARDNUMPERLOAD)
     rescue
-      cur_reviews = ReviewLife.where("created_at < ?", last_time).order("created_at")
+      cur_reviews = ReviewLife.where("created_at < ?", last_time).order("created_at DESC")
     end
 
     @reviews = cur_reviews

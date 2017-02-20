@@ -41,9 +41,9 @@ class ReviewHousesController < ApplicationController
     last_time = ReviewHouse.find(review_last[:id]).created_at
     review_tmp = []
     begin
-      cur_reviews = ReviewHouse.where("created_at < ?", last_time).order("created_at").take(CARDNUMPERLOAD)
+      cur_reviews = ReviewHouse.where("created_at < ?", last_time).order("created_at DESC").take(CARDNUMPERLOAD)
     rescue
-      cur_reviews = ReviewHouse.where("created_at < ?", last_time).order("created_at")
+      cur_reviews = ReviewHouse.where("created_at < ?", last_time).order("created_at DESC")
     end
     @reviews = cur_reviews
   end
