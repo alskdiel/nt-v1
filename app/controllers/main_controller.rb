@@ -56,9 +56,9 @@ class MainController < ApplicationController
 
     cur_reviews = []
     begin
-      cur_review_stamper = ReviewTimeStamper.where("created_at < ?", last_time).take(CARDNUMPERLOAD)
+      cur_review_stamper = ReviewTimeStamper.where("created_at < ?", last_time).order("created_at DESC").take(CARDNUMPERLOAD)
     rescue
-      cur_review_stamper = ReviewTimeStamper.where("created_at < ?", last_time)
+      cur_review_stamper = ReviewTimeStamper.where("created_at < ?", last_time).order("created_at DESC")
     end
     cur_review_stamper.each do |stamper|
       if stamper.review_type == 0  # house
