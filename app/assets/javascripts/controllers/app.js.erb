@@ -311,12 +311,20 @@ myApp.controller('MapCtrl', [
       // bound changed
       daum.maps.event.addListener(map, 'bounds_changed', function() {
         bounds = map.getBounds();
-        getReviewsInBound(bounds);
+        if(flag) {
+          flag = false;
+          getReviewsInBound(bounds);
+          setTimeout(function() {
+            flag = true;
+          }, 3000);
+        }
       });
 
     }
+    var flag = true;
 
     function getReviewsInBound(bounds) {
+      console.log('NOW LOADING...')
       $http({
         method: 'post',
         url: '/get_reviews_in_bound.json',
