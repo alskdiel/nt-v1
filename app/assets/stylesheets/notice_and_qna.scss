@@ -86,6 +86,14 @@
                     line-heigt: 15px;
                     font-weight: bold;
                   }
+                  div:last-child {
+                    white-space: pre-wrap;
+                  }
+                }
+              }
+              &.noti-component-content {
+                td {
+                  white-space: pre-wrap;
                 }
               }
             }
