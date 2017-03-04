@@ -11,11 +11,14 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
   root "main#index"
+  # root "index#index"
   # root "main#g_timestamper"
   get "review_map" => "main#review_map"
   get "user_info" => "user_info#change_info"
   post "update_user_info" => "user_info#update_info"
   post "update_password" => "user_info#update_password"
+
+  get "index" => "index#index"
 
   get "link_to/:id" => "main#link_to"
 

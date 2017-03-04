@@ -5,10 +5,13 @@ class ReviewHousesController < ApplicationController
   # GET /review_houses
   # GET /review_houses.json
   def index
-    # @reviews = ReviewHouse.all
-    @mode = "oneroom"
-    # binding pry
-    render "main/index"
+    if user_signed_in?
+      @mode = "oneroom"
+      # binding pry
+      render "main/index"
+    else
+      redirect_to :controller => :index, :action => :index
+    end
   end
 
   def get_reviews

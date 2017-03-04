@@ -21,6 +21,7 @@
 
   </head>
   <body ng-app="myApp" ng-controller="MainCtrl">
+    <% if !@isIndex %>
     <div class="main-container">
       <%= render template: "layouts/navbar" %>
       <div class="content-container">
@@ -29,5 +30,10 @@
     </div>
     <%= render template: "layouts/sidebar" %>
     <%= render template: "modals/templates" %>
+  <% else %>
+    <%= yield %>
+    <%= render template: "modals/templates" %>
+  <% end %>
+
   </body>
 </html>

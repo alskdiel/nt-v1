@@ -2,10 +2,12 @@ class ReviewLifeController < ApplicationController
   CARDNUMPERLOAD = 10
 
   def index
-    # @reviews = ReviewLife.all
-    @mode = "life"
-    render "main/index"
-    # binding pry
+    if user_signed_in?
+      @mode = "life"
+      render "main/index"
+    else
+      redirect_to :controller => :index, :action => :index
+    end
   end
 
   def get_reviews

@@ -301,7 +301,8 @@ var modal_function = function () {
         // success callback
         if(data.ret) {
           // login successful
-          window.location.reload(true);
+          // window.location.reload(true);
+          window.location.href = "/";
         } else {
           alert("이메일 또는 비밀번호를 확인하세요.");
           // login failed

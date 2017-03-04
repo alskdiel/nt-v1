@@ -2,10 +2,12 @@ class MainController < ApplicationController
   CARDNUMPERLOAD = 10
 
   def index
-    @mode = "all"
-    # binding pry
-
-    render "main/index"
+    if user_signed_in?
+      @mode = "all"
+      render "main/index"
+    else
+      redirect_to :controller => :index, :action => :index
+    end
   end
 
   def get_reviews
@@ -177,7 +179,11 @@ class MainController < ApplicationController
   end
 
   def review_map
-    render "review_map/index"
+    if user_signed_in?
+      render "review_map/index"
+    else
+      redirect_to :controller => :index, :action => :index
+    end
   end
 
   def reviews_in_bound
