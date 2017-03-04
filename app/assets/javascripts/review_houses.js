@@ -59,50 +59,39 @@ var review_houses_function = function() {
     $(this).parent().find('.image-path').text(file_path);
   });
 
+  $('.write-container .content-wrapper .reviews .right textarea').on('focusout', function(){
+    var str_len = $(this).val().length;
+    if(str_len < 100) {
+      $(this).parent().parent().children('.left').children('.warning').text("글자 수가 부족합니다");
+    } else {
+      $(this).parent().parent().children('.left').children('.warning').text("");
+    }
+  });
+
   function checkDataEntered() {
-    // var title = $("input[type='text'][name='review_house[title]']").val() ? true : "제목";
-    // var latitude = $("input[type='hidden'][name='latitude']").val() ? true : "주소";
-    // var longtitude = $("input[type='hidden'][name='longtitude']").val() ? true : "주소";
-    // var address = $("input[type='text'][name='review_house[address]']").val() ? true : "주소";
-    // var start_time = $("input[type='hidden'][name='review_house[start_time]']").val() ? true : "거주기간";
-    // var end_time = $("input[type='hidden'][name='review_house[end_time]']").val() ? true : "거주기간";
-    // var price_satisfaction = $("input[type='hidden'][name='review_house[price_satisfaction]']").val() ? true : "가격만족도";
-    // var residence_satisfaction = $("input[type='hidden'][name='review_house[residence_satisfaction]']").val() ? true : "주거지만족도";
-    // var env_satisfaction = $("input[type='hidden'][name='review_house[env_satisfaction]']").val() ? true : "주거환경경만족도";
-    // var price_review = $("textarea[name='review_house[price_review]']").val().length >= 100 ? true : "가격리뷰";
-    // var residence_review = $("textarea[name='review_house[residence_review]']").val().length >= 100 ? true : "주거지리뷰";
-    // var env_review = $("textarea[name='review_house[env_review]']").val().length >= 100 ? true : "주거환경리뷰";
-    // var cons = $("input[type='text'][name='cons[0]']").val().length > 0 && $("input[type='text'][name='cons[0]']").val().length <= 15 ? true :
-    //           ($("input[type='text'][name='cons[1]']").val().length > 0 && $("input[type='text'][name='cons[1]']").val().length <= 15 ? true :
-    //           ($("input[type='text'][name='cons[2]']").val().length > 0 && $("input[type='text'][name='cons[2]']").val().length <= 15 ? true : "단점"));
-    // var pros = $("input[type='text'][name='pros[0]']").val().length > 0 && $("input[type='text'][name='pros[0]']").val().length <= 15 ? true :
-    //           ($("input[type='text'][name='pros[1]']").val().length > 0 && $("input[type='text'][name='pros[1]']").val().length <= 15 ? true :
-    //           ($("input[type='text'][name='pros[2]']").val().length > 0 && $("input[type='text'][name='pros[2]']").val().length <= 15 ? true : "장점"));
-
-
-    var proc = $("input[type='text'][name='review_house[title]']").val() ? true : "제목을";
+    var proc = $("input[type='text'][name='review_house[title]']").val() ? true : "제목을 입력해주세요.";
     if(proc === true) {
-      proc = $("input[type='hidden'][name='review_house[latitude]']").val() ? true : "주소를";
+      proc = $("input[type='hidden'][name='review_house[latitude]']").val() ? true : "올바른 도로명 주소 or 지번 주소를 입력해주세요.\n단, 호 수를 제외한 건물주소까지만 입력해주세요.";
       if(proc === true) {
-        proc = $("input[type='hidden'][name='review_house[longtitude]']").val() ? true : "주소를";
+        proc = $("input[type='hidden'][name='review_house[longtitude]']").val() ? true : "올바른 도로명 주소 or 지번 주소를 입력해주세요.\n단, 호 수를 제외한 건물주소까지만 입력해주세요.";
         if(proc === true) {
-          proc = $("input[type='text'][name='review_house[address]']").val() ? true : "주소를";
+          proc = $("input[type='text'][name='review_house[address]']").val() ? true : "올바른 도로명 주소 or 지번 주소를 입력해주세요.\n단, 호 수를 제외한 건물주소까지만 입력해주세요.";
           if(proc === true) {
-            proc = $("input[type='hidden'][name='review_house[start_time]']").val() ? true : "거주기간을";
+            proc = $("input[type='hidden'][name='review_house[start_time]']").val() ? true : "거주기간을 입력해주세요.";
             if(proc === true) {
-              proc = $("input[type='hidden'][name='review_house[end_time]']").val() ? true : "거주기간을";
+              proc = $("input[type='hidden'][name='review_house[end_time]']").val() ? true : "거주기간을 입력해주세요.";
               if(proc === true) {
-                proc = $("input[type='hidden'][name='review_house[price_satisfaction]']").val() ? true : "가격만족도를";
+                proc = $("input[type='hidden'][name='review_house[price_satisfaction]']").val() ? true : "각 항목에 평점을 매겨주세요.";
                 if(proc === true) {
-                  proc = $("input[type='hidden'][name='review_house[residence_satisfaction]']").val() ? true : "주거지만족도를";
+                  proc = $("input[type='hidden'][name='review_house[residence_satisfaction]']").val() ? true : "각 항목에 평점을 매겨주세요.";
                   if(proc === true) {
-                    proc = $("input[type='hidden'][name='review_house[env_satisfaction]']").val() ? true : "주거환경경만족도를";
+                    proc = $("input[type='hidden'][name='review_house[env_satisfaction]']").val() ? true : "각 항목에 평점을 매겨주세요.";
                     if(proc === true) {
-                      proc = $("textarea[name='review_house[price_review]']").val().length >= 100 ? true : "가격리뷰를";
+                      proc = $("textarea[name='review_house[price_review]']").val().length >= 100 ? true : "가격리뷰의 최소 글자 수가 부족합니다.";
                       if(proc === true) {
-                        proc = $("textarea[name='review_house[residence_review]']").val().length >= 100 ? true : "주거지리뷰를";
+                        proc = $("textarea[name='review_house[residence_review]']").val().length >= 100 ? true : "주거지리뷰의 최소 글자 수가 부족합니다.";
                         if(proc === true) {
-                          proc = $("textarea[name='review_house[env_review]']").val().length >= 100 ? true : "주거환경리뷰를";
+                          proc = $("textarea[name='review_house[env_review]']").val().length >= 100 ? true : "주거환경리뷰의 최소 글자 수가 부족합니다.";
                           if(proc === true) {
                             proc = $("input[type='text'][name='cons[0]']").val().length > 0 && $("input[type='text'][name='cons[0]']").val().length <= 15 ? true :
                                   ($("input[type='text'][name='cons[1]']").val().length > 0 && $("input[type='text'][name='cons[1]']").val().length <= 15 ? true :
@@ -128,7 +117,7 @@ var review_houses_function = function() {
       }
     }
 
-    alert("올바른 " + proc + " 입력해주세요");
+    alert(proc);
     return false;
   }
 
