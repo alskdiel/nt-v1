@@ -108,10 +108,10 @@ class User < ActiveRecord::Base
 
   def self.find_for_facebook_oauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
-      @u = user
       user.provider = auth.provider
       user.uid = auth.uid
-      user.email = auth.info.email
+      # user.email = auth.info.email
+      user.email = "#{auth.uid}@facebook.com"
       user.password = Devise.friendly_token[8,16]
       user.name = auth.info.name   # assuming the user model has a name
       user.skip_confirmation!
