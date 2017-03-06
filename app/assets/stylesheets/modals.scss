@@ -77,9 +77,16 @@
                 color: #fff;
                 margin-bottom: 15.5px;
                 &.fb {
-                  display: none;
+                  // display: none;
                   background: #4065b4;
                   margin-bottom: 0px;
+                  a {
+                    color: white;
+                    &:hover {
+                      text-decoration: none;
+                      background: none;
+                    }
+                  }
                 }
               }
             }
@@ -95,6 +102,7 @@
               }
             }
             .forgot-container {
+              margin-bottom: 20px;
               font-size: 19px;
               line-height: 19px;
               div {
@@ -102,6 +110,16 @@
                 &.find-pw {
                   cursor: pointer;
                   text-decoration: underline;
+                }
+              }
+            }
+            .terms-and-policy-container {
+              text-align: center;
+              a {
+                &:hover {
+                  color: black;
+                  text-decoration: none;
+                  background: none;
                 }
               }
             }

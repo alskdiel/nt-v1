@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   resources :review_houses
-  devise_for :users, controllers: { sessions: "users/sessions", registrations: "users/registrations", confirmations: "users/confirmations", passwords: "users/passwords" }
+  devise_for :users, controllers: { sessions: "users/sessions", registrations: "users/registrations", confirmations: "users/confirmations", passwords: "users/passwords", :omniauth_callbacks => "users/omniauth_callbacks" }
 
   devise_scope :user do
     post "users/confirm" => "users/registrations#confirm"

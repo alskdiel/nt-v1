@@ -24,8 +24,10 @@
               <div>로그인 상태 유지</div>
             </div>
             <div class="sign-in-btn-container">
-              <div class="sign-in-btn my-btn">로그인</div>
-              <div class="sign-in-btn my-btn fb">페이스북으로 로그인</div>
+              <div class="sign-in-btn my-btn email">로그인</div>
+              <div class="sign-in-btn my-btn fb">
+                <%= link_to "페이스북으로 로그인", user_facebook_omniauth_authorize_path %>
+              </div>
             </div>
             <div class="sign-up-btn-container">
               <div class="sign-up-info">아직 회원이 아니신가요?</div>
@@ -34,6 +36,15 @@
             <div class="forgot-container">
               <div>비밀번호를 모르시겠나요?</div>
               <div class="find-pw">비밀번호 찾기</div>
+            </div>
+            <div class="terms-and-policy-container">
+              <div>
+                계정을 만들면 내집탐방의
+                <%= link_to "이용약관", "/terms" %>
+                과
+                <%= link_to "개인정보 취급방침", "/policy" %>
+                에 동의하는 것으로 간주합니다.
+              </div>
             </div>
           </div>
         </div>

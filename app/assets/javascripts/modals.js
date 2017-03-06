@@ -87,7 +87,7 @@ var modal_function = function () {
     }
   });
 
-  $('#modal-sign-in .modal-content .content-wrapper.sign-in-main .sign-in-btn').on('click', function() {
+  $('#modal-sign-in .modal-content .content-wrapper.sign-in-main .sign-in-btn.email').on('click', function() {
     var user_email = $(this).parent().parent().children('.email-container').children('.user-id').val();
     var user_pw = $(this).parent().parent().children('.password-container').children('.user-pw').val();
     var remember_me = $(this).parent().parent().children('.remember-container').children('.remember-me').is(':checked') ? 1: 0;
