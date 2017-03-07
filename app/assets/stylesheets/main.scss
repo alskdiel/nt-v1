@@ -16,4 +16,14 @@ body {
   img {
     vertical-align: top;
   }
+
+  img {
+    &.yonsei-banner {
+      cursor: pointer;
+      position: fixed;
+      top: 220px;
+      left: 30px;
+      width: 11%;
+    }
+  }
 }

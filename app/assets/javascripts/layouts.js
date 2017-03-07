@@ -3,6 +3,15 @@ init  = function() {
   $side_bar_bg = $('.side-bar-background');
   $side_bar = $('.side-bar');
 
+  /**************** 연대 배너 **********************/
+  $('.yonsei-banner').on('click', function() {
+    var redirectWindow = window.open('http://findahouse.co.kr:3000', '_blank');
+        redirectWindow.location;
+  });
+  /**************** 연대 배너 **********************/
+
+
+
   window.onresize = function(event) {
     var window_size = $(window).width();
     if(window_size < 930) {
